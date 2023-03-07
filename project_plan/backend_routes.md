@@ -7,8 +7,10 @@ This web app uses the following API routes to dynamically update the page to cre
 * A logged in user can create a post
 * A logged in user can update and delete their own post
 * Users can view posts
+* Users can view a specific user's posts
 
   * `GET '/api/posts'`
+  * `GET '/api/users/:userId/posts'`
   * `POST '/api/posts'`
   * `PUT '/api/posts/:postId'`
   * `DELETE '/api/posts/:postId'`
@@ -34,5 +36,6 @@ This web app uses the following API routes to dynamically update the page to cre
 * A logged in user can follow and unfollow other users
 * A logged in user can see their followers
 
+  * `GET '/api/users/:userId/followers'`
   * `POST '/api/users/:userId/followers'`
-  * `DELETE '/api/users/:userId/followers'`
+  * `DELETE '/api/followers/:followerId'`

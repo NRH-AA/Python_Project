@@ -1,5 +1,5 @@
  # User Stories
- 
+
  ## Posts
 
 ### Create Posts
@@ -7,7 +7,7 @@
 * As a logged in user, I want to be able to make new Posts the other users can see and enjoy
   * From my user page I can use a button clearly marked in order to:
     * Write and submit a new Post,
-    * So that I can share my thoughts and memes with my friends.
+    * So that I can share my thoughts and propaganda with my friends.
 
 ### Viewing Feed
 
@@ -31,19 +31,19 @@
 
 ### Deleting Posts
 
-* As a logged in user, I want to be able to delete my posts by clicking a Delete button associated with the Post from my user profile page where I submitted it. 
+* As a logged in user, I want to be able to delete my posts by clicking a Delete button associated with the Post from my user profile page where I submitted it.
   * When I'm on the `/posts/:postId` or `/users/:userId` pages:
     * I can click "Delete" to permanently delete a post I have posted.
     * So that when I realize what I shared may have been innappropriate it is easily removed.
 
- ## Comments 
+ ## Comments
 
  ### Create Comments
 
 * As a logged in user, I want to be able to make new comments the other users can see and respond to.
   * From the page the post is displayed I can use a button clearly marked in order to:
     * Write and submit a new comment,
-    * So that I can share my thoughts regarding the post with others that enjoyed it.     
+    * So that I can share my thoughts regarding the post with others that enjoyed it.
 
 ### Updating Comments
 
@@ -54,7 +54,7 @@
 
 ### Deleting Comments
 
-* As a logged in user, I want to be able to delete my comments by clicking a Delete button associated with the comment from the comment section of the post. 
+* As a logged in user, I want to be able to delete my comments by clicking a Delete button associated with the comment from the comment section of the post.
   * When I'm on the `/posts/:postId` page:
     * I can click "Delete" to permanently delete a comment I have posted.
     * So that when I realize what I shared may have been innappropriate it is easily removed.
@@ -73,7 +73,7 @@
 * As a logged in user, I want to be able to like the posts others have submitted and add to the total number of likes for that post.
 * From the page the post is displayed I can use a small button clearly marked whith a heart  in order to:
   * Add to the number of likes for the post so that the creator can see how many have enjoyed the post.
-      
+
  ### Read Likes
 
 * As a logged in or logged out user, I want to be able to see how many people have liked the post I am looking at.
@@ -81,11 +81,11 @@
 
 ### Deleting Likes
 
-* As a logged in user, I want to be able to delete my likes by clicking a the same button that I did to like the post. 
+* As a logged in user, I want to be able to delete my likes by clicking a the same button that I did to like the post.
   * When I'm on the `/posts/:postId` page:
       * I can click a small heart to remove my like from the total likes of the post.
       * So that if my opinion changes I can decide not to support that post any longer.
-    
+
 ## Follows
 
 ### Create Follow
