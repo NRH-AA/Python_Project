@@ -36,6 +36,4 @@ Scrollr, a Tumbler clone, is a website for users to share brief thoughts, engage
 
 ## 6. Bonus Features
 
-* To
-* Be
-* Determined
+* TBD
