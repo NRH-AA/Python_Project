@@ -70,7 +70,7 @@
 
  ### Create Likes
 
-* As a logged in user, I want to be able to like the posts others have submitted so that the other users can see that I enjoyed the post.
+* As a logged in user, I want to be able to like the posts others have submitted and add to the total number of likes for that post.
 * From the page the post is displayed I can use a small button clearly marked whith a heart  in order to:
   * Add to the number of likes for the post so that the creator can see how many have enjoyed the post.
       
