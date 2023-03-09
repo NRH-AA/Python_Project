@@ -29,6 +29,7 @@ This web app uses the following API routes to dynamically update the page to cre
 
   * `GET '/api/posts/:postId/comment'`
   * `POST '/api/posts/:postId/comment'`
+  * `PUT 'api/posts/:postId/comment`
   * `DELETE '/api/comments/:commentid'`
 
 ## Follows
