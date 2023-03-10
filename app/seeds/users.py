@@ -86,17 +86,11 @@ def seed_users():
         updatedAt=datetime.now()
     )
 
-    # 10 total accounts
-    db.session.add(demoUser)
-    db.session.add(user2)
-    db.session.add(user3)
-    db.session.add(user4)
-    db.session.add(user5)
-    db.session.add(user6)
-    db.session.add(user7)
-    db.session.add(user8)
-    db.session.add(user9)
-    db.session.add(user10)
+    users = [demoUser, user2, user3, user4, user5,
+                user6, user7, user8, user9, user10]
+
+    add_users = [db.session.add(user) for user in users]
+
     db.session.commit()
 
 

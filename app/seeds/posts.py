@@ -115,21 +115,12 @@ def seed_posts():
         updatedAt=datetime.now()
     )
 
-    db.session.add(post1)
-    db.session.add(post2)
-    db.session.add(post3)
-    db.session.add(post4)
-    db.session.add(post5)
-    db.session.add(post6)
-    db.session.add(post7)
-    db.session.add(post8)
-    db.session.add(post9)
-    db.session.add(post10)
-    db.session.add(post11)
-    db.session.add(post12)
-    db.session.add(post13)
-    db.session.add(post14)
-    db.session.add(post15)
+    posts = [post1, post2, post3, post4, post5,
+                post6, post7, post8, post9, post10,
+                post11, post12, post13, post14, post15]
+
+    add_posts = [db.session.add(post) for post in posts]
+
     db.session.commit()
 
 

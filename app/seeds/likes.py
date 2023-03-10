@@ -65,21 +65,12 @@ def seed_likes():
         post_id=1
     )
 
-    db.session.add(like1)
-    db.session.add(like2)
-    db.session.add(like3)
-    db.session.add(like4)
-    db.session.add(like5)
-    db.session.add(like6)
-    db.session.add(like7)
-    db.session.add(like8)
-    db.session.add(like9)
-    db.session.add(like10)
-    db.session.add(like11)
-    db.session.add(like12)
-    db.session.add(like13)
-    db.session.add(like14)
-    db.session.add(like15)
+    likes = [like1, like2, like3, like4, like5,
+                like6, like7, like8, like9, like10,
+                like11, like12, like13, like14, like15]
+
+    add_likes = [db.session.add(like) for like in likes]
+
     db.session.commit()
 
 

@@ -65,21 +65,13 @@ def seed_follows():
         following=3
     )
 
-    db.session.add(follow1)
-    db.session.add(follow2)
-    db.session.add(follow3)
-    db.session.add(follow4)
-    db.session.add(follow5)
-    db.session.add(follow6)
-    db.session.add(follow7)
-    db.session.add(follow8)
-    db.session.add(follow9)
-    db.session.add(follow10)
-    db.session.add(follow11)
-    db.session.add(follow12)
-    db.session.add(follow13)
-    db.session.add(follow14)
-    db.session.add(follow15)
+    follows = [follow1, follow2, follow3, follow4, follow5,
+                follow6, follow7, follow8, follow9, follow10,
+                follow11, follow12, follow13, follow14, follow15]
+
+    add_follows = [db.session.add(follow) for follow in follows]
+
+    db.session.commit()
 
 
 def undo_follows():
