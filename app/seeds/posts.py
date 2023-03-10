@@ -29,7 +29,7 @@ def seed_posts():
     post4 = Post(
         user_id=5,
         post_title='Just graduated App Academy!',
-        post_caption='After about half a year I did it!',
+        post_heading='After about half a year I did it!',
         post_text='It was okay.',
         createdAt=datetime.now(),
         updatedAt=datetime.now()

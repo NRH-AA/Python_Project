@@ -14,7 +14,7 @@ class Post(db.Model):
     post_title = db.Column(db.String(100))
     post_heading = db.Column(db.String(100))
     post_text = db.Column(db.Text(2000))
-    imageURL = db.Column(db.Text(500), nullable=False)
+    imageURL = db.Column(db.Text(500))
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
