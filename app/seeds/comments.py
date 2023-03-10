@@ -3,6 +3,7 @@ from app.models import db, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 
+
 def seed_comments():
     comment1 = Comment(
         user_id=2,

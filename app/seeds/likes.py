@@ -2,6 +2,7 @@ from app.models import db, environment, SCHEMA
 # import model name when it's done
 from sqlalchemy.sql import text
 
+
 def seed_likes():
     like1 = Like(
         user_id=9,
