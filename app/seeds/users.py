@@ -11,7 +11,6 @@ def seed_users():
         username='Demo',
         email='demo@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -21,7 +20,6 @@ def seed_users():
         username='marnie',
         email='marnie@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -31,7 +29,6 @@ def seed_users():
         username='bobbie',
         email='bobbie@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -41,7 +38,6 @@ def seed_users():
         username='movieenjoyer',
         email='movies@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -51,7 +47,6 @@ def seed_users():
         username='danieltheprogrammer',
         email='daniel@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -61,7 +56,6 @@ def seed_users():
         username='normalaccount',
         email='normal@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -71,7 +65,6 @@ def seed_users():
         username='gameenjoyer',
         email='games@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -81,7 +74,6 @@ def seed_users():
         username='throwaway-account',
         email='fake@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -91,7 +83,6 @@ def seed_users():
         username='scrollr-official',
         email='official@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -101,7 +92,6 @@ def seed_users():
         username='doglover284',
         email='dogs@aa.io',
         password='password',
-        # profilePicUrl='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
