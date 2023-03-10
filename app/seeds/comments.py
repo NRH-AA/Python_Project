@@ -1,5 +1,4 @@
-from app.models import db, environment, SCHEMA
-# import model name when it's done
+from app.models import db, Comment, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 
