@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_picture = db.Column(db.Text, default='https://64.media.tumblr.com/543927eaa6100b4a89090ae9caaca7ae/tumblr_nr3p4vlQ8S1u0setpo4_r1_500.png')
     firstName = db.Column(db.String(100), nullable=False)
     lastName = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())

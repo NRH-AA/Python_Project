@@ -5,3 +5,31 @@
 .hidden {
   display: none;
 }
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+
+  background-color: black;
+  border: 1px solid red
+}
+
+#navbar-left {
+  padding-left: 25px;
+}
+
+#logo {
+  color: white;
+  text-decoration: none;
+}
+
+#navbar-right {
+  padding-right: 25px;
+}
