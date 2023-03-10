@@ -10,7 +10,7 @@ def get_posts():
 
 # Get all posts route
 @post_routes.route('/', methods=['GET'])
-def get_posts():
+def get_posts2():
     return f'<h1>Get All Posts Route</h1>'
 
 # Get Single post route
