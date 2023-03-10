@@ -11,9 +11,9 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    post_title = db.Column(db.String(100), nullable=False)
-    post_heading = db.Column(db.String(100), nullable=False)
-    post_text = db.Column(db.Text(2000), nullable=False)
+    post_title = db.Column(db.String(100))
+    post_heading = db.Column(db.String(100))
+    post_text = db.Column(db.Text(2000))
     imageURL = db.Column(db.Text(500), nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
