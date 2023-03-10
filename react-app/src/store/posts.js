@@ -36,7 +36,7 @@ export const createPosts = (post) =>({
 })
 
 export const deletePost = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${id}`, {
+    const response = await csrfFetch(`/api/posts/${id}`, {
         method: "DELETE",
     })
     dispatch(deletePosts(id));
@@ -95,7 +95,7 @@ export const getPosts = () => async (dispatch) => {
     }
 
     export const getPost = (id) => async (dispatch) => {
-        const data = await csrfFetch(`/api/posts/${id}`)
+        const data = await csrfFetch(`/api/posts/user/${id}`)
         
         const posts = await data.json()
        
