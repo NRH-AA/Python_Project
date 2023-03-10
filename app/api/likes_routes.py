@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
 
-like_routes = Blueprint('comments', __name__)
+like_routes = Blueprint('like', __name__)
 
 @like_routes.route('/<int:likeId>', methods=['DELETE'])
 @login_required
