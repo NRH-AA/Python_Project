@@ -1,5 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import login_required
+from app.models import db, Comment
+from app.forms import CommentForm
+from datetime import datetime
 
 comment_routes = Blueprint('comments', __name__)
 

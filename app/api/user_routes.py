@@ -50,7 +50,9 @@ def create_user_post(userId):
         )
         db.session.add(new_post)
         db.session.commit()
-        return new_post.to_dict()
+        
+        ret = Post.query.get(new_post.id)
+        return ret.to_dict()
     
     if form.errors:
         return {"errors": form.errors}
