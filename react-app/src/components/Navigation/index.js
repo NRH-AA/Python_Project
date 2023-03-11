@@ -11,9 +11,13 @@ function Navigation({ isLoaded }){
 		<div id='navbar'>
 			<div id='navbar-left'>
 				<NavLink exact to="/" id='logo'>S</NavLink>
+				<div id='searchbar-container'>
+					<i id='search-icon' className="fa-solid fa-magnifying-glass" />
+					<input id='searchbar' type='text' placeholder='Search Scrollr'></input>
+				</div>
 			</div>
 			{isLoaded && (
-				<div id='navbar-right'>
+				<div id='navbar-right-logged-out'>
 					<ProfileButton user={sessionUser} />
 				</div>
 			)}
