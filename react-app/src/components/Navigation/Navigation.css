@@ -47,6 +47,10 @@ body {
   align-items: center;
 }
 
+#searchbar-container:focus-within * {
+  background-color: rgb(37, 37, 37);
+}
+
 #search-icon {
   display: flex;
   align-items: center;
@@ -62,25 +66,22 @@ body {
 #searchbar {
   background: none;
   outline: none;
+  border: none;
   display: flex;
   align-items: center;
   padding: 5px;
   width: 435px;
   height: 25px;
   background-color: rgb(59, 59, 59);
-  border: none;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  font-weight: 600;
+  color: rgb(202, 202, 202);
 }
 
 #searchbar::placeholder {
   font-weight: 600;
   color: rgb(180, 180, 180);
-}
-
-#searchbar {
-  font-weight: 600;
-  color: rgb(202, 202, 202);
 }
 
 #navbar-right-logged-out {
@@ -101,10 +102,12 @@ body {
 
 #session-options *:first-child {
   background-color: rgb(25, 218, 25);
+  cursor: pointer;
 }
 
 #session-options *:last-child {
   background-color: rgb(31, 191, 240);
+  cursor: pointer;
 }
 
 /* For ProfileButton.js */
