@@ -41,12 +41,14 @@ const handleSubmit = (e) => {
 
 return (
     <div className="createForm">
-      <h1 className="sign-up-form-text" >Create Post</h1>
+        <i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
+                <div id='sign-up-modal-container'></div>
+      <h1 className="create-form-text" >Create Post</h1>
       <form onSubmit={handleSubmit} autocomplete="on">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label className="sign-up-input-label">
+        <label className="create-input-label">
         
           <input className="input"
           placeholder="Post Title"
@@ -96,7 +98,7 @@ return (
           </label>
     
           
-        <button className='sign-up-form-button' type="submit" >Create Posts</button>
+        <button className='create-form-button' type="submit" >Create Posts</button>
       </form>
     </div>
   );

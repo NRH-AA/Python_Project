@@ -2,8 +2,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
-
 #modal-content {
     height: fit-content;
     width: 622px;
@@ -13,7 +11,25 @@
     color: white;
 }
 
-.sign-up-form {
+#backtrack-button {
+    margin: 20px 0px 0px 20px;
+    cursor: pointer;
+}
+
+#create-modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px 30px 10px;
+}
+
+#create-title {
+    margin-top: 0;
+    font-family: 'Tilt Warp', cursive;
+}
+
+.create-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,8 +37,121 @@
     justify-content: center;
     width: 340px;
 }
-.sign-up-form-text {
+
+.create-form > * {
+    width: 95%;
+}
+
+.hidden,
+.hidden * {
+    display: none;
+}
+
+.create-form-text {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     margin: 15px 0;
+}
+
+.create-form-text-container {
+    margin: 0px 0px 15px 0px;
+}
+
+.create-form-text-container *.create-form-text {
+    margin: 4px;
+}
+
+.create-input-label {
+    display: flex;
+    width: 90%;
+    border-radius: 10px;
+    padding: 15px 10px;
+    background-color: rgba(159, 132, 255, 0.596);
+}
+
+.create-input-label * {
+    width: 100%;
+    color: white;
+    font-size: 18px;
+}
+
+.create-password,
+.create-names {
+    margin-top: 10px;
+}
+
+.create-input-label:focus-within {
+    border: 2px solid rgba(220, 210, 255, 0.651);
+}
+
+.create-input-field {
+    background-color: rgba(159, 132, 255, 0);
+    border: none;
+    outline: none;
+}
+
+.create-input-field::placeholder {
+    color: rgba(220, 210, 255, 0.651);
+}
+
+.create-form-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    outline: none;
+    border: none;
+    background-color: white;
+    color: black;
+    margin-top: 40px;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.create-form-button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+i.create-form-arrow-img {
+    width: 10px;
+    padding-left: 20px;
+}
+
+#demo-user-sign-in {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#create-blog-name {
+    display: flex;
+    align-items: center;
+}
+
+#create-form-at {
+    color: rgba(220, 210, 255, 0.651);
+    padding-right: 10px;
+    width: 15px;
+}
+
+#create-form-errors {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 30px 0px -5% 0px;
+    padding: 8px 10px;
+    background-color: rgb(255, 60, 0);
+    border-radius: 3px;
+}
+
+#create-form-errors.hidden {
+    display: none;
+}
+
+#create-errors-symbol {
+    padding-right: 8px;
 }
