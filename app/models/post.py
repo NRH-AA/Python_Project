@@ -31,4 +31,6 @@ class Post(db.Model):
             "imageURL": self.imageURL,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
+            "user": self.user.to_dict(),
+            "comments": [comment.to_dict() for comment in self.comments]
         }

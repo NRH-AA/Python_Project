@@ -5,21 +5,28 @@ const UPDATE_POST = "/posts/:postId/edit"
 const READ_POSTS = "/posts"
 const READ_POST = "/posts/:postId"
 
-export const createPost = (post) => async (dispatch) => {
-    //need to breakdown content of post from python query
-    const data = await csrfFetch("/api/posts", {
+
+
+export const createPost = (post, userId) => async (dispatch) => {
+    const {user_id, post_title, post_heading, post_text, imageUrl} = post
+    const data = await csrfFetch(`/api/${userId}/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-// Need to add content of post from database
+            user_id, 
+            post_title, 
+            post_heading, 
+            post_text, 
+            imageUrl
         })
     })
     if (data.ok) {
     const response = await data.Json()
     dispatch(createPosts(response))
     return response
+
     } else if (response.status < 500) {
 		const data = await response.json();
 		if (data.errors) {
@@ -36,7 +43,7 @@ export const createPosts = (post) =>({
 })
 
 export const deletePost = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${id}`, {
+    const response = await csrfFetch(`/api/posts/${id}`, {
         method: "DELETE",
     })
     dispatch(deletePosts(id));
@@ -51,11 +58,15 @@ export const deletePosts = (id) => {
 }
 
 export const updatePost = (id) => async (dispatch) => {
-   // get data from post
+   const {user_id, post_title, post_heading, post_text} = post
     const data = await csrfFetch(`/api/posts/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-    // info from post
+            user_id,
+            post_title,
+            post_heading,
+            post_text
+            
         }),
     });
     if (data.ok) {
@@ -94,13 +105,15 @@ export const getPosts = () => async (dispatch) => {
         }
     }
 
-    export const getPost = (id) => async (dispatch) => {
-        const data = await csrfFetch(`/api/posts/${id}`)
+
+
+    export const getUser = (userId) => async (dispatch) => {
+        const data = await csrfFetch(`/api`)
         
         const posts = await data.json()
        
-        dispatch(readPost(spot))
-        
+        dispatch(readPost(posts))
+        return posts
     }
 export const readPosts = (posts) => ({
     type: READ_POSTS, 
