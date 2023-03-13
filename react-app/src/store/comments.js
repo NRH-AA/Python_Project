@@ -5,14 +5,16 @@ const READ_COMMENTS = "/comments"
 const READ_COMMENT = "/comments/:commentId"
 
 export const createComment = (comment) => async (dispatch) => {
-    //need to breakdown content of comment from python query
+   const {user_id, post_id, com} = comment
     const data = await csrfFetch("/api/comments", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-// Need to add content of comment from database
+              user_id,
+              post_id,
+              com
         })
     })
     if (data.ok) {
