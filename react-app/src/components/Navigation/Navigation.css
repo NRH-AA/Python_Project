@@ -1,4 +1,8 @@
 /* For index.js */
+#takes-up-space {
+  height: 54px;
+}
+
 .profile-dropdown {
   position: absolute;
 }
