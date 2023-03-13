@@ -140,7 +140,11 @@ export default function postReducer(state = initialState, action) {
     let newState = { ...state }
     switch (action.type) {
         case READ_POSTS:
-            action.payload.forEach(post => newState.allPosts[post.id] = post)
+            const variable = action.payload.reduce((acc, post) => {
+                acc[post.id] = post
+                return acc
+            }, {})
+            newState.allPosts = variable
             return newState
 
         case READ_POST:

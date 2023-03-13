@@ -34,9 +34,9 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     liked_posts = db.relationship(
-        "Post", 
+        "Post",
         secondary = "user_likes",
-        back_populates = "user_likes"               
+        back_populates = "user_likes"
     )
     followers = db.relationship(
         "User",
@@ -61,9 +61,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            "profile_picture": self.profile_picture,
+            'profile_picture': self.profile_picture,
             'email': self.email,
             'followers': self.followers,
-            'posts': self.posts,
-            'comments': [comment.to_dict() for comment in self.comments]
         }

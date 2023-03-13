@@ -5,7 +5,7 @@ import "./Feed.css";
 
 function Feed() {
     const dispatch = useDispatch();
-    const posts = useSelector(state => state.posts)
+    const posts = useSelector(state => state.posts.allPosts)
 
     useEffect(() => {
         dispatch(getPosts())
@@ -14,7 +14,7 @@ function Feed() {
     return (
         <div id='dashboard'>
             <div id="feed">
-                {posts && Object.values(posts.allPosts).map((post, idx) => (
+                {posts && Object.values(posts).map((post, idx) => (
                     <div className="post" key={idx}>
                         <div className="post-user-image"></div>
                         <div className="post-details">
