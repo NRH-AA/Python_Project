@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from sqlalchemy.sql import text
-from app.models import db, Post, Comment
+from app.models import db, Post, Comment, User
 from app.forms import PostForm, CommentForm
 from datetime import datetime
 
@@ -94,33 +94,25 @@ def create_post_comment(postId):
     if form.errors:
         return {"errors": form.errors}
     
-@post_routes.route('/<int:postId>/likes', methods=['POST'])
+@post_routes.route('<int:postId>/likes', methods=['POST'])
 @login_required
-def add_post_like(postId):
+def like_post(postId):
     post = Post.query.get(postId)
     
-    if not post:
-        return {"errors": ["Unable to find post"]}
+    user_id = request.get_json()['user_id']
+    user = User.query.get(user_id)
     
-    userId = request.get_json()['user_id']
-    like = Like.query.where(text(f'user_id = {userId} AND post_id = {postId}')).all()
-    likeObj = like and like[0] or None
+    if not user:
+        return {"errors": ["User does not exist"]}
     
-    if not likeObj:
-        new_like = Like(
-            user_id = userId,
-            post_id = postId
-        )
+    for likedPosts in user.liked_posts:
+        if likedPosts.id == post.id:
+            user.liked_posts.remove(post)
+            db.session.commit()
+            ret = Post.query.get(postId)
+            return ret.to_dict()
     
-        db.session.add(new_like)
-        db.session.commit()
-        return post.to_dict()
-    else:
-        db.session.delete(likeObj)
-        db.session.commit()
-        return post.to_dict()
-    
-        
-
-# /api/posts      : GET
-# /api/posts/<postId>   : PUT/PATCH/DELETE
+    user.liked_posts.append(post)
+    db.session.commit()
+    ret = Post.query.get(postId)
+    return ret.to_dict()
