@@ -1,3 +1,4 @@
+/* For index.js */
 .profile-dropdown {
   position: absolute;
 }
@@ -6,30 +7,180 @@
   display: none;
 }
 
+body {
+  background-color: black;
+}
+
 #navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-
+  height: 54px;
   background-color: black;
-  border: 1px solid red
+  border-bottom: 1px solid rgb(36, 36, 36);
 }
 
 #navbar-left {
-  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 110px;
 }
 
 #logo {
-  color: white;
+  font-family: 'Tilt Warp', cursive;
+  font-weight: bold;
+  font-size: 45px;
+  padding-right: 10px;
   text-decoration: none;
+  color: white;
 }
 
-#navbar-right {
-  padding-right: 25px;
+#searchbar-container {
+  display: flex;
+  align-items: center;
+}
+
+#searchbar-container:focus-within * {
+  background-color: rgb(37, 37, 37);
+}
+
+#search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(180, 180, 180);
+  background-color: rgb(59, 59, 59);
+  height: 35px;
+  width: 34px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+#searchbar {
+  background: none;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 435px;
+  height: 25px;
+  background-color: rgb(59, 59, 59);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(202, 202, 202);
+}
+
+#searchbar::placeholder {
+  font-weight: 600;
+  color: rgb(180, 180, 180);
+}
+
+#navbar-right-logged-out {
+  display: flex;
+  align-items: center;
+  padding-right: 130px;
+}
+
+#session-options * {
+  background: none;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 15px;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#session-options *:first-child {
+  background-color: rgb(25, 218, 25);
+  cursor: pointer;
+}
+
+#session-options *:last-child {
+  background-color: rgb(31, 191, 240);
+  cursor: pointer;
+}
+
+/* For ProfileButton.js */
+#navbar-right-logged-in {
+  display: flex;
+  align-items: center;
+}
+
+#user-menu-button {
+  cursor: pointer;
+  color: rgb(168, 168, 168);
+  background: none;
+  border: none;
+}
+
+#user-menu-button:focus {
+  color:white
+}
+
+#user-menu-options {
+  position: absolute;
+  top: 50px;
+  right: 105px;
+  background-color: rgb(36, 36, 36);
+  width: 233px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+#user-menu-options > * {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(241, 241, 241);
+  height: 36px;
+  padding: 0 20px 0 10px;
+}
+
+#logout-button {
+  cursor: pointer;
+}
+
+.user-menu-section:not(.user-menu-header) {
+  height: 41px;
+}
+
+.user-menu-section:not(.user-menu-header):hover {
+  background-color: rgb(63, 63, 63);
+}
+
+.user-menu-section-image {
+  padding-right: 15px;
+}
+
+.user-menu-section.user-menu-header {
+  background-color: rgb(54, 54, 54);
+}
+
+.user-menu-section.user-menu-header * {
+  color: rgb(199, 199, 199);
+}
+
+.user-menu-section.user-menu-header.top {
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+#nav-post-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 47px;
+  background-color: rgb(22, 189, 255);
+  border-radius: 2px;
+  cursor: pointer;
+  margin-left: 30px;
 }
