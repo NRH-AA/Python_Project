@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Post, Comment
+from sqlalchemy.sql import text
+from app.models import db, Post, Comment, Like
 from app.forms import PostForm, CommentForm
 from datetime import datetime
 
@@ -92,6 +93,34 @@ def create_post_comment(postId):
     
     if form.errors:
         return {"errors": form.errors}
+    
+@post_routes.route('/<int:postId>/likes', methods=['POST'])
+@login_required
+def add_post_like(postId):
+    post = Post.query.get(postId)
+    
+    if not post:
+        return {"errors": ["Unable to find post"]}
+    
+    userId = request.get_json()['user_id']
+    like = Like.query.where(text(f'user_id = {userId}')).all()
+    likeObj = like and like[0] or None
+    
+    if not likeObj:
+        new_like = Like(
+            user_id = userId,
+            post_id = postId
+        )
+    
+        db.session.add(new_like)
+        db.session.commit()
+        return post.to_dict()
+    else:
+        db.session.delete(likeObj)
+        db.session.commit()
+        return post.to_dict()
+    
+        
 
 # /api/posts      : GET
 # /api/posts/<postId>   : PUT/PATCH/DELETE
