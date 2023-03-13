@@ -17,7 +17,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    margin: 0px 10px 30px 10px;
+}
+
+#sign-up-title {
+    margin-top: 0;
+    font-family: 'Tilt Warp', cursive;
 }
 
 .sign-up-form {
@@ -38,6 +43,20 @@
     display: none;
 }
 
+.sign-up-form-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 15px 0;
+}
+
+.sign-up-form-text-container {
+    margin: 0px 0px 15px 0px;
+}
+
+.sign-up-form-text-container *.sign-up-form-text {
+    margin: 4px;
+}
+
 .sign-up-input-label {
     display: flex;
     width: 90%;
@@ -48,6 +67,11 @@
 
 .sign-up-input-label * {
     color: white;
+}
+
+.sign-up-password,
+.sign-up-names {
+    margin-top: 10px;
 }
 
 .sign-up-input-label:focus-within {
@@ -93,4 +117,34 @@ i.sign-up-form-arrow-img {
 #demo-user-sign-in {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#sign-up-blog-name {
+    display: flex;
+    align-items: center;
+}
+
+#sign-up-form-at {
+    color: rgba(220, 210, 255, 0.651);
+    padding-right: 8px;
+}
+
+#sign-up-form-errors {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 30px 0px -5% 0px;
+    padding: 8px 10px;
+    background-color: rgb(255, 60, 0);
+    border-radius: 3px;
+}
+
+#sign-up-form-errors.hidden {
+    display: none;
+}
+
+#sign-up-errors-symbol {
+    padding-right: 8px;
 }

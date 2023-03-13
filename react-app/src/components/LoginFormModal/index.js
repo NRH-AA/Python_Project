@@ -43,7 +43,7 @@ function LoginFormModal() {
       <div id='login-modal-container'>
         <h1 id="login-title">scrollr</h1>
         <form noValidate className={isEmailEntered ? 'hidden login-form' : 'login-form'} onSubmit={handleEmailSubmit}>
-          <h4>Enter your email to log in or register:</h4>
+          <h4 className="login-form-text">Enter your email to log in or register:</h4>
           <label className="login-input-label">
             <input
               className="login-input-field"
@@ -61,8 +61,7 @@ function LoginFormModal() {
         </form>
 
         <form noValidate className={isEmailEntered ? 'login-form' : 'hidden login-form'} onSubmit={handleLoginSubmit}>
-          <h4>Welcome back to your corner of the internet.</h4>
-          <h4>Glad you're here.</h4>
+          <h4 className="login-form-text">Welcome back to your corner of the internet.</h4>
           <label className="login-input-label">
             <input
               className="login-input-field"
@@ -78,11 +77,14 @@ function LoginFormModal() {
             <i className="fa-solid fa-arrow-right login-form-arrow-img" />
           </button>
         </form>
-        
-        <ul id='login-form-errors'>
-          {errors.map((error, idx) => (
-            <li className='login-form-error' key={idx}>{error}</li>
-          ))}
+
+        <ul id='login-form-errors' className={errors.length ? '' : 'hidden'}>
+          <i className="fa-solid fa-circle-exclamation" id='login-errors-symbol' />
+          <div id='login-form-error-container'>
+            {errors.map((error, idx) => (
+              <li className='login-form-error' key={idx}>{error}</li>
+            ))}
+          </div>
         </ul>
 
         <p id='demo-user-sign-in' onClick={signInDemoUser}>demo user</p>
