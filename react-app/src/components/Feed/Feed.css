@@ -24,12 +24,30 @@
 
 }
 
-.post-details .follow-user-button {
-    padding: 15px;
+.post-details .post-user {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 15px 15px;
 }
 
-.post-title {
+.post-user .user-username {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+.post-user .follow-user-button {
+    padding: 0px;
+    color: rgb(22, 189, 255);
+    cursor: pointer;
+}
+
+.post-user .follow-user-button:hover {
+    text-decoration: underline;
+}
+
+.post-details .post-title {
     margin: 0;
+    padding-left: 15px;
 }
 
 .post-image {
@@ -53,7 +71,7 @@
 .post-details .post-option-container {
     display: flex;
     justify-content: space-between;
-    /* justify-content: space-between; */
+    padding: 15px 15px 10px 15px;
     width: auto;
 }
 
@@ -61,7 +79,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0px 0px 10px 0px;
+    padding: 0px;
 }
 
 .post-options .view-comments-button {
@@ -105,4 +123,34 @@
     height: 0px;
     margin: 0px;
     padding: 0px;
+}
+
+/* Comment styles down here */
+.post-details .post-comments-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.post-comments-container .post-comment-container {
+    display: flex;
+    padding: 10px 15px;
+}
+
+.post-comment-box {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.post-commenter-username {
+
+}
+
+.post-comments-container .post-commenter-image {
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+    margin-right: 10px;
+    border-radius: 2px;
 }
