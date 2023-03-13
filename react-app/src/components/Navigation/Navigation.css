@@ -1,6 +1,6 @@
 /* For index.js */
 #takes-up-space {
-  height: 47px;
+  height: 80px;
 }
 
 .profile-dropdown {
@@ -26,6 +26,7 @@ body {
   height: 54px;
   background-color: black;
   border-bottom: 1px solid rgb(36, 36, 36);
+  z-index: 1000;
 }
 
 #navbar-left {
@@ -158,6 +159,7 @@ body {
 
 .user-menu-section:not(.user-menu-header) {
   height: 41px;
+  cursor: pointer;
 }
 
 .user-menu-section:not(.user-menu-header):hover {
@@ -181,6 +183,19 @@ body {
 .user-menu-section.user-menu-header.top {
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
+}
+
+#user-information-section {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  height: fit-content;
+}
+
+#user-profile-picture {
+  border-radius: 3px;
+  width: 37px;
+  margin-right: 10px;
 }
 
 #nav-post-button {
