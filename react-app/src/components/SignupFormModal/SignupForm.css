@@ -128,7 +128,8 @@ i.sign-up-form-arrow-img {
 
 #sign-up-form-at {
     color: rgba(220, 210, 255, 0.651);
-    padding-right: 8px;
+    padding-right: 10px;
+    width: 15px;
 }
 
 #sign-up-form-errors {
