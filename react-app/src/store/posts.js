@@ -5,6 +5,8 @@ const UPDATE_POST = "/posts/:postId/edit"
 const READ_POSTS = "/posts"
 const READ_POST = "/posts/:postId"
 
+
+
 export const createPost = (post) => async (dispatch) => {
     const {user_id, post_title, post_heading, post_text, imageUrl} = post
     const data = await csrfFetch("/api/posts", {
