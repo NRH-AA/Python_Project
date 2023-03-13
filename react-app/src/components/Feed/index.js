@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/posts"
 import "./Feed.css";
@@ -6,24 +6,27 @@ import "./Feed.css";
 function Feed() {
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.allPosts)
-    // console.log(posts)
 
     useEffect(() => {
         dispatch(getPosts())
-    }, [])
+    }, [dispatch])
 
-    if (posts === undefined || posts === null) return null;
+    if (posts === undefined || posts === null || Object.keys(posts).length === 0) return null;
 
     return (
-        <h1>
-        {
-            // console.log("Values: ", Object.values(posts))
-            Object.values(posts).map((post, idx) => (
-                // console.log(post)
-                <h1>{post.post_text}</h1>
-            ))
-        }
-        </h1>
+        <div id='feed'>
+            {Object.values(posts).map((post, idx) =>
+                <div className="post" key={idx}>
+                    <div className="post-title">{post.post_title}</div>
+                    <div className="post-heading">{post.post_heading}</div>
+                    <div className="post-text">{post.post_text}</div>
+                    {post.imageURL !== null ?
+                        <img className="post-image" src={post.imageURL} alt=''></img>
+                        :
+                        <div className="hidden"></div>}
+                </div>
+            )}
+        </div>
     )
 }
 

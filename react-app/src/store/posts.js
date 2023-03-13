@@ -134,8 +134,8 @@ export const getUser = (userId) => async (dispatch) => {
     return data
 }
 
-
 const initialState = { allPosts: {}, singlePost: {} }
+
 export default function postReducer(state = initialState, action) {
     let newState = { ...state }
     switch (action.type) {
@@ -153,6 +153,7 @@ export default function postReducer(state = initialState, action) {
 
         case DELETE_POST:
             delete newState[action.payload.id]
+            return newState
 
         case UPDATE_POST:
             newState.allPosts[action.payload.id] = action.payload
