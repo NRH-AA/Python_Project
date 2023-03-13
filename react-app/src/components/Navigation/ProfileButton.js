@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import UserFollowing from "./UserFollowing";
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -59,7 +60,8 @@ function ProfileButton({ user }) {
             <div className="user-menu-section">
               <div>
                 <i className="fa-regular fa-address-book user-menu-section-image" />
-                <span>       <OpenModalButton
+                <span id="user-menu-following">       <OpenModalButton
+
                   buttonText="Following"
                   modalComponent={<UserFollowing userId={user.id} />}
                 />

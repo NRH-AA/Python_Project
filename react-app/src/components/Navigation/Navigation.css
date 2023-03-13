@@ -126,7 +126,7 @@ body {
 }
 
 #user-menu-button:focus {
-  color:white
+  color: white
 }
 
 #user-menu-options {
@@ -139,7 +139,7 @@ body {
   font-size: 15px;
 }
 
-#user-menu-options > * {
+#user-menu-options>* {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -187,4 +187,9 @@ body {
   border-radius: 2px;
   cursor: pointer;
   margin-left: 30px;
+}
+
+#user-menu-following button {
+  background-color: rgb(36, 36, 36);
+  border: none;
 }
