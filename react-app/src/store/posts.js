@@ -7,9 +7,9 @@ const READ_POST = "/posts/:postId"
 
 
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, userId) => async (dispatch) => {
     const {user_id, post_title, post_heading, post_text, imageUrl} = post
-    const data = await csrfFetch("/api/posts", {
+    const data = await csrfFetch(`/api/${userId}/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -107,8 +107,8 @@ export const getPosts = () => async (dispatch) => {
 
 
 
-    export const getPost = (userId) => async (dispatch) => {
-        const data = await csrfFetch(`/api/users/${userId}/posts`)
+    export const getUser = (userId) => async (dispatch) => {
+        const data = await csrfFetch(`/api`)
         
         const posts = await data.json()
        
