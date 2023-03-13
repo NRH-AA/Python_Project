@@ -1,0 +1,28 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+#modal-content {
+    height: fit-content;
+    width: 622px;
+    background-color: rgba(125, 89, 255, 0.959);
+    border-radius: 5px;
+    margin: 10px;
+    color: white;
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 340px;
+}
+.sign-up-form-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin: 15px 0;
+}
