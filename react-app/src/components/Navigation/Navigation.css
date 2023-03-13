@@ -1,6 +1,6 @@
 /* For index.js */
 #takes-up-space {
-  height: 54px;
+  height: 47px;
 }
 
 .profile-dropdown {
@@ -104,12 +104,16 @@ body {
 
 #session-options *:first-child {
   background-color: rgb(25, 218, 25);
+  color: black;
   cursor: pointer;
+  font-size: 15px;
 }
 
 #session-options *:last-child {
   background-color: rgb(31, 191, 240);
+  color: black;
   cursor: pointer;
+  font-size: 15px;
 }
 
 /* For ProfileButton.js */
@@ -158,6 +162,8 @@ body {
 
 .user-menu-section:not(.user-menu-header):hover {
   background-color: rgb(63, 63, 63);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .user-menu-section-image {
@@ -187,4 +193,8 @@ body {
   border-radius: 2px;
   cursor: pointer;
   margin-left: 30px;
+}
+
+#nav-post-button * {
+  color: black;
 }

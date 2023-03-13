@@ -102,7 +102,7 @@ def seed_posts():
     post14 = Post(
         user_id=6,
         post_title='Great new game just dropped!',
-        imageURL='https://static.wikia.nocookie.net/allthetropes/images/8/84/Space_Invaders_Gameplay_Screen.png/revision/latest?cb=20200605104001',
+        imageURL='https://play-lh.googleusercontent.com/36FNeTAKSh3hg1VBzOUNyq1G9Djy_uu6vQ5D_3Yru1GyNEzAckDiqGaGBqzCeQja1w=w526-h296-rw',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
