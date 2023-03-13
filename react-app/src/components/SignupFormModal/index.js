@@ -10,9 +10,6 @@ function SignupFormModal() {
 	const [isEmailEntered, setIsEmailEntered] = useState(false);
 	const [password, setPassword] = useState("");
 	const [isPasswordEntered, setIsPasswordEntered] = useState(false);
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [isFirstAndLastNameEntered, setIsFirstAndLastNameEntered] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [username, setUsername] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -37,14 +34,9 @@ function SignupFormModal() {
 		}
 	};
 
-	const handleFirstAndLastNameSubmit = async (e) => {
-		e.preventDefault();
-		setIsFirstAndLastNameEntered(true);
-	}
-
 	const handleSignUpSubmit = async (e) => {
 		e.preventDefault();
-		const data = await dispatch(signUp(username, email, password, firstName, lastName));
+		const data = await dispatch(signUp(username, email, password));
 		if (data) {
 			setErrors(data);
 		} else {
@@ -69,7 +61,7 @@ function SignupFormModal() {
 							required
 						/>
 					</label>
-					<button className='sign-up-form-button' type='submit' disabled={email === ''}>
+					<button className='sign-up-form-button' type='submit' disabled={email === ''} onClick={(e) => setErrors([])}>
 						Next
 						<i className="fa-solid fa-arrow-right sign-up-form-arrow-img" />
 					</button>
@@ -100,41 +92,13 @@ function SignupFormModal() {
 							required
 						/>
 					</label>
-					<button className='sign-up-form-button' type='submit' disabled={password === '' || confirmPassword === ''}>
+					<button className='sign-up-form-button' type='submit' disabled={password === '' || confirmPassword === ''} onClick={(e) => setErrors([])}>
 						Next
 						<i className="fa-solid fa-arrow-right sign-up-form-arrow-img" />
 					</button>
 				</form>
 
-				<form noValidate className={isPasswordEntered && (!isFirstAndLastNameEntered) ? 'sign-up-form' : 'hidden sign-up-form'} onSubmit={handleFirstAndLastNameSubmit}>
-					<h4 className="sign-up-form-text">Everyone has a name. What's yours?</h4>
-					<label className="sign-up-input-label sign-up-names">
-						<input
-							className="sign-up-input-field"
-							type="text"
-							placeholder="First name"
-							value={firstName}
-							onChange={(e) => setFirstName(e.target.value)}
-							required
-						/>
-					</label>
-					<label className="sign-up-input-label sign-up-names">
-						<input
-							className="sign-up-input-field"
-							type="text"
-							placeholder="Last name"
-							value={lastName}
-							onChange={(e) => setLastName(e.target.value)}
-							required
-						/>
-					</label>
-					<button className='sign-up-form-button' type='submit' disabled={firstName === '' || lastName === ''}>
-						Next
-						<i className="fa-solid fa-arrow-right sign-up-form-arrow-img" />
-					</button>
-				</form>
-
-				<form noValidate className={isFirstAndLastNameEntered ? 'sign-up-form' : 'hidden sign-up-form'} onSubmit={handleSignUpSubmit}>
+				<form noValidate className={isPasswordEntered ? 'sign-up-form' : 'hidden sign-up-form'} onSubmit={handleSignUpSubmit}>
 					<div className="sign-up-form-text-container">
 						<h4 className="sign-up-form-text">What should we call you?</h4>
 						<h5 className="sign-up-form-text">This will be how you appear to others on Scrollr, and your URL. Don't worry, you can change this later.</h5>
