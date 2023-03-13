@@ -94,7 +94,7 @@ def create_post_comment(postId):
     if form.errors:
         return {"errors": form.errors}
     
-@post_routes.route('<int:postId>/likes', methods=['POST'])
+@post_routes.route('/<int:postId>/likes', methods=['POST'])
 @login_required
 def like_post(postId):
     post = Post.query.get(postId)
