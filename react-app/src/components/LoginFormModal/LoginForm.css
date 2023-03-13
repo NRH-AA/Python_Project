@@ -1,0 +1,96 @@
+#modal-content {
+    height: fit-content;
+    width: 622px;
+    background-color: rgba(125, 89, 255, 0.959);
+    border-radius: 5px;
+    margin: 10px;
+    color: white;
+}
+
+#backtrack-button {
+    margin: 20px 0px 0px 20px;
+    cursor: pointer;
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 340px;
+}
+
+#login-form > * {
+    width: 95%;
+}
+
+.input-label {
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    padding: 15px 10px;
+    background-color: rgba(159, 132, 255, 0.596);
+    color: white;
+}
+
+.input-label:focus-within {
+    border: 2px solid rgba(220, 210, 255, 0.651);
+}
+
+.input-field {
+    background-color: rgba(159, 132, 255, 0);
+    border: none;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: rgba(220, 210, 255, 0.651);
+}
+
+.form-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    outline: none;
+    border: none;
+    background-color: white;
+    color: black;
+    margin-top: 40px;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+i.form-arrow-img {
+    width: 10px;
+    padding-left: 20px;
+}
+
+#demo-user-sign-in {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#login-errors {
+
+}
+
+.login-error {
+    
+}
