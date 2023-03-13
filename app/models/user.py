@@ -4,6 +4,19 @@ from flask_login import UserMixin
 from datetime import datetime
 
 
+user_likes = db.Table(
+    'user_likes',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key = True),
+    db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key = True)
+)
+
+follows = db.Table(
+    "follows",
+    db.Column('follower', db.Integer, db.ForeignKey('users.id', primary_key=True)),
+    db.Column('followed', db.Integer, db.ForeignKey('users.id', primary_key=True))
+)
+
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -15,13 +28,23 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.Text, default='https://64.media.tumblr.com/543927eaa6100b4a89090ae9caaca7ae/tumblr_nr3p4vlQ8S1u0setpo4_r1_500.png')
-    firstName = db.Column(db.String(100), nullable=False)
-    lastName = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+    liked_posts = db.relationship(
+        "Post", 
+        secondary = "user_likes",
+        back_populates = "user_likes"               
+    )
+    followers = db.relationship(
+        "User",
+        secondary = "follows",
+        primaryjoin = follows.c.followed == id,
+        secondaryjoin = follows.c.follower == id,
+        backref="following"
+    )
 
     @property
     def password(self):
@@ -38,5 +61,9 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            "profile_picture": self.profile_picture,
+            'email': self.email,
+            'followers': self.followers,
+            'posts': self.posts,
+            'comments': [comment.to_dict() for comment in self.comments]
         }
