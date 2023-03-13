@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import UserFollowing from "./UserFollowing";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -58,7 +59,12 @@ function ProfileButton({ user }) {
             <div className="user-menu-section">
               <div>
                 <i className="fa-regular fa-address-book user-menu-section-image" />
-                Following
+                <span>       <OpenModalButton
+                  buttonText="Following"
+                  modalComponent={<UserFollowing userId={user.id} />}
+                />
+
+                </span>
               </div>
             </div>
             <div className="user-menu-header user-menu-section">
