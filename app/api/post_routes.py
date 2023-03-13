@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Post
-from app.forms import PostForm
+from app.models import db, Post, Comment
+from app.forms import PostForm, CommentForm
 from datetime import datetime
 
 post_routes = Blueprint('posts', __name__)
@@ -17,7 +17,6 @@ def get_posts():
 @post_routes.route('/', methods=['GET'])
 def get_posts2():
     posts = Post.query.all()
-    
     return [post.to_dict() for post in posts]
 
 # Get Single post route
@@ -69,6 +68,30 @@ def delete_post(postId):
     db.session.delete(post)
     db.session.commit()
     return {"id": postId}
+
+# Create comment route
+@post_routes.route('/<int:postId>/comments', methods=["POST"])
+@login_required
+def create_post_comment(postId):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id = form.user_id.data,
+            post_id = postId,
+            comment = form.comment.data,
+            createdAt = datetime.now(),
+            updatedAt = datetime.now()
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        
+        ret = Comment.query.get(new_comment.id)
+        return ret.to_dict()
+    
+    if form.errors:
+        return {"errors": form.errors}
 
 # /api/posts      : GET
 # /api/posts/<postId>   : PUT/PATCH/DELETE
