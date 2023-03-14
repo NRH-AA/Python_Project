@@ -46,7 +46,11 @@
 }
 
 .post-details .post-title {
-    margin: 0;
+    margin: 0px;
+    padding-left: 15px;
+}
+
+.post-details .post-text {
     padding-left: 15px;
 }
 
@@ -71,8 +75,19 @@
 .post-details .post-option-container {
     display: flex;
     justify-content: space-between;
-    padding: 15px 15px 10px 15px;
+    padding: 15px 0px 10px 0px;
     width: auto;
+    border-bottom: 1px solid grey;
+}
+
+.post-details div.post-option-container:not(.hidden) {
+    border-bottom: none;
+}
+
+.post-option-container .close-notes-button-text {
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
 }
 
 .post-option-container .post-options {
@@ -87,9 +102,20 @@
     padding: 0px;
 }
 
-.post-options .view-comments-button.show {
-    background-color: rgb(85, 85, 85);
-    padding: 10px;
+.post-options .view-comments-button.show,
+.post-options .close-comments-button.show {
+    padding: 6px 10px 6px 0px;
+}
+
+.post-options .close-comments-button.show {
+    display: flex;
+    align-items: center;
+    background-color: rgb(70, 70, 70);
+    border-radius: 25px;
+}
+
+.post-options .close-comments-button-image {
+    padding: 0px 8px 0px 0px;
 }
 
 .post-options .comment-and-like-button-container {
@@ -123,34 +149,4 @@
     height: 0px;
     margin: 0px;
     padding: 0px;
-}
-
-/* Comment styles down here */
-.post-details .post-comments-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    margin-bottom: 10px;
-}
-
-.post-comments-container .post-comment-container {
-    display: flex;
-    padding: 10px 15px;
-}
-
-.post-comment-box {
-    border: 1px solid grey;
-    border-radius: 10px;
-}
-
-.post-commenter-username {
-
-}
-
-.post-comments-container .post-commenter-image {
-    width: 32px;
-    height: 32px;
-    padding: 0px;
-    margin-right: 10px;
-    border-radius: 2px;
 }

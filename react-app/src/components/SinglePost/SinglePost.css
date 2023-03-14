@@ -1,0 +1,182 @@
+.post-details div.post-comment-section-container {
+    padding: 15px 15px 0px 15px;
+}
+
+.post-comment-section-container div.post-stats-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+}
+
+.post-stats-container div.post-stats {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.post-stats > * {
+    display: flex;
+    align-items: center;
+}
+
+.post-comment-section-container div.post-comments-container {
+    padding: 0px;
+}
+
+.post-comments-container .post-stats-container {
+    border-bottom: 1px solid grey;
+}
+
+.post-stats .post-comment-count-container .comment-button,
+.post-stats .post-comment-count-container .post-comment-count,
+.post-stats .post-like-count-container .like-button,
+.post-stats .post-like-count-container .post-like-count {
+    padding: 0px;
+}
+
+.close-comments-button.show .close-comments-button-image {
+    padding-left: 10px;
+}
+
+.post-stats .post-comment-count-container .comment-button,
+.post-stats .post-like-count-container .like-button {
+    padding-right: 10px;
+}
+
+.post-stats-container .post-stats .post-comment-count-container,
+.post-stats-container .post-stats .post-like-count-container {
+    padding: 15px 10px;
+}
+
+.post-stats-container .post-stats .post-comment-count-container.viewing * {
+    color: rgb(22, 189, 255);
+}
+
+.post-stats-container .post-stats .post-comment-count-container.viewing {
+    padding: 15px 10px;
+    border-bottom: 2px solid rgb(22, 189, 255);
+}
+
+.post-stats-container .post-stats .post-comment-count-container:not(.viewing) {
+    margin-bottom: 2px;
+}
+
+.post-stats-container .post-stats .post-like-count-container.viewing * {
+    color: rgb(252, 99, 39);
+}
+
+.post-stats-container .post-stats .post-like-count-container.viewing {
+    padding: 15px 10px;
+    border-bottom: 2px solid rgb(252, 99, 39);
+}
+
+.post-stats-container .post-stats .post-like-count-container:not(.viewing) {
+    margin-bottom: 2px;
+}
+
+.hidden {
+    display: none;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Post a comment bar here */
+div.make-comment-container.false {
+    display: flex;
+    align-items: center;
+    padding: 15px 0px 10px 0px;
+}
+
+div.make-comment-container.false .current-user-image-container {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px 0px 0px;
+}
+
+div.make-comment-container.false img.current-user-image {
+    height: 32px;
+    width: 32px;
+    padding: 0px;
+    border-radius: 16px;
+}
+
+div.make-comment-container.false form.type-comment-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+}
+
+.type-comment-box-container {
+    border: 1px solid grey;
+    border-radius: 20px;
+    min-height: 42px;
+    height: max-content;
+    width: 100%;
+}
+
+.type-comment-box-container textarea.type-comment-box,
+.type-comment-box-container textarea.type-comment-box:focus {
+    background: none;
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    min-height: 18px;
+    max-height: 150px;
+    line-height: 20px;
+}
+
+.submit-comment-button {
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
+.submit-comment-button:not(:disabled) {
+    color: rgb(22, 189, 255);
+}
+
+/* Comments here */
+.post-comments-container div.post-comment-container {
+    display: flex;
+    padding-left: 0px;
+}
+
+.post-comment-container img.post-commenter-image {
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+.post-comment-container .post-comment-box {
+    border: 1px solid rgb(68, 68, 68);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.post-comment-container div.post-comment-box {
+    padding: 8px 12px;
+}
+
+.post-comment-box .post-commenter-username {
+    padding: 0px;
+}
+
+.post-comment-box div.post-commenter-username {
+    padding: 0px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-comment-box div.post-comment {
+    padding: 5px 0px 0px 0px;
+    font-size: 16px;
+}
