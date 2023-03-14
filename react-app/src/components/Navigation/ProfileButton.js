@@ -4,7 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import UserFollowing from "./UserFollowing";
+import UserFollower from "./UserFollower";
 import './Navigation.css';
 
 function ProfileButton({ user }) {
@@ -60,10 +60,10 @@ function ProfileButton({ user }) {
             <div className="user-menu-section">
               <div>
                 <i className="fa-regular fa-address-book user-menu-section-image" />
-                <span id="user-menu-following">       <OpenModalButton
+                <span id="user-menu-follower">       <OpenModalButton
 
-                  buttonText="Following"
-                  modalComponent={<UserFollowing userId={user.id} />}
+                  buttonText="Follower"
+                  modalComponent={<UserFollower userId={user.id} />}
                 />
 
                 </span>

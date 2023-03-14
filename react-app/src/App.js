@@ -27,7 +27,7 @@ function App() {
             <SignupFormPage />
           </Route>
 
-          <Route path="/">
+          <Route path="/checkout">
             <Feed />
           </Route>
         </Switch>

@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from sqlalchemy.sql import text
-from app.models import db, Post, Comment, Like
+from app.models import db, Post, Comment
 from app.forms import PostForm, CommentForm
 from datetime import datetime
 
@@ -103,7 +103,7 @@ def add_post_like(postId):
         return {"errors": ["Unable to find post"]}
     
     userId = request.get_json()['user_id']
-    like = Like.query.where(text(f'user_id = {userId}')).all()
+    like = Like.query.where(text(f'user_id = {userId} AND post_id = {postId}')).all()
     likeObj = like and like[0] or None
     
     if not likeObj:
