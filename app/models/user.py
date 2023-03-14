@@ -6,15 +6,21 @@ from datetime import datetime
 
 user_likes = db.Table(
     'user_likes',
+    db.Model.metadata,
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True)
 )
 
 follows = db.Table(
     "follows",
+    db.Model.metadata,
     db.Column('follower', db.Integer, db.ForeignKey('users.id', primary_key=True)),
     db.Column('followed', db.Integer, db.ForeignKey('users.id', primary_key=True))
 )
+
+if environment == 'production':
+    user_likes.schema = SCHEMA
+    follows.schema = SCHEMA
 
 
 class User(db.Model, UserMixin):
