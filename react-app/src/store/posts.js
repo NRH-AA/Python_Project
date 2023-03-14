@@ -172,6 +172,38 @@ export const createCommentThunk = (postId, user_id, comment) => async (dispatch)
     return res;
 };
 
+export const updateCommentThunk = (commentId, comment) => async (dispatch) => {
+    const res = await fetch(`/api/comments/${commentId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            comment
+        })
+    });
+    
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getPosts());
+        return data;
+    };
+    return res;
+};
+
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
+    const res = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getPosts());
+        return data;
+    };
+    return res;
+};
+
 const initialState = { allPosts: {}, singlePost: {} }
 
 export default function postReducer(state = initialState, action) {
