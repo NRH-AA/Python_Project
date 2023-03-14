@@ -7,10 +7,10 @@ import './createPosts.css';
 import { useHistory, useParams} from "react-router-dom";
 
 
-function CreatePostForm() {
+function CreatePostForm({id}) {
 
   const dispatch = useDispatch();
-  const posts = useSelector(state=>state.posts.allPosts)
+//   const posts = useSelector(state=>state.posts.allPosts)
   const user = useSelector(state=>state.session.user)
   const [post_title, setPostTitle] = useState("");
   const [post_heading, setPostHeading] = useState("");
@@ -41,8 +41,8 @@ const handleSubmit = (e) => {
 
 return (
     <div className="createForm">
-        <i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
-                <div id='sign-up-modal-container'></div>
+        
+             
       <h1 className="create-form-text" >Create Post</h1>
       <form onSubmit={handleSubmit} autocomplete="on">
         <ul>
@@ -51,7 +51,7 @@ return (
         <label className="create-input-label">
         
           <input className="input"
-          placeholder="Post Title"
+          placeholder="Title"
             type="text"
             id="PostTitle"
            
@@ -60,27 +60,29 @@ return (
             required
           />
         </label>
-        <label className="labels">
+        {/* <label className="labels">
       
-          <input className="input"
+       <input className="input"
           placeholder="Heading"
             type="text"
             value={post_heading}
             onChange={(e) => setPostHeading(e.target.value)}
             required
           />
-        </label>
+        </label> */}
         <label className="labels">
       
-          <input className="input"
-          placeholder="text"
-            type="text"
+          <textarea className="post-text" placeholder="text"
+          maxLength="500"
+          cols="20"
+            rows="10"
             value={post_text}
             onChange={(e) => setPostText(e.target.value)}
-            required
-          />
+            required>
+          </textarea>
+        
         </label>
-        <label className="labels">
+        {/* // <label className="labels"> 
       
           <input className="input"
           placeholder="Image Url"
@@ -95,10 +97,12 @@ return (
       
      
        
-          </label>
-    
-          
+          </label> */}
+  
+          <div className="buttonPots">
+
         <button className='create-form-button' type="submit" >Create Posts</button>
+          </div>
       </form>
     </div>
   );

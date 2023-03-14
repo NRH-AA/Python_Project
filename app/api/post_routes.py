@@ -11,7 +11,6 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('', methods=['GET'])
 def get_posts():
     posts = Post.query.all()
-    
     return [post.to_dict() for post in posts]
 
 # Get all posts route
@@ -40,20 +39,23 @@ def edit_post(postId):
     
     
     if form.validate_on_submit():
-        if form.post_title.data:
-            post.post_title = form.post_title.data
-            
-        if form.post_heading.data:
-            post.post_heading = form.post_heading.data
-            
-        if form.post_text.data:
-            post.post_text = form.post_text.data
-            
-        post.updatedAt = datetime.now()
+        title = form.post_title.data
+        text = form.post_text.data
         
+        if not title and not text:
+            return {"errors": ["Invalid Post Request"]}
+        
+        if title:
+            post.post_title = title
+            
+        if text:
+            post.post_text = text
+
+        post.updatedAt = datetime.now()
+
         db.session.commit()
         return post.to_dict()
-    
+
     if form.errors:
         return {"errors": form.errors}
 
