@@ -1,11 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/posts"
 import "./Feed.css";
 
 function Feed() {
     const dispatch = useDispatch();
+
     const posts = useSelector(state => state.posts.allPosts)
+
+    // const commentPlaceholders = [
+    //     "Add to the discussion",
+    //     "Say your thing",
+    //     "Add something wonderful",
+    //     "Your words here",
+    //     "Have something to say?",
+    //     "Unleash a compliment",
+    //     "Reply your heart out",
+    //     "Send something nice"
+    // ];
 
     useEffect(() => {
         dispatch(getPosts())
@@ -13,11 +25,18 @@ function Feed() {
 
     const handleCommentButton = async (e) => {
         console.log('Comment button is working!', e.target)
-    }
+    };
 
     const handleLikeButton = async (e) => {
         console.log('Like button is working!', e.target.classList)
-    }
+    };
+
+    // const handleCommentSubmit = async (e) => {
+    //     e.preventDefault();
+    //     console.log('Submit comment button is working!')
+    //     console.log('Here is the comment being sent: ', e.target.children[0].value)
+    //     console.log('Here is the post id: ', e.target.classList[0])
+    // };
 
     return (
         <div id='dashboard'>
@@ -48,7 +67,42 @@ function Feed() {
                                     </div>
                                 </div>
                             </div>
-                            <div className={post.comments ? "post-comments-container" : "hidden"}>
+
+                            <div className={post.comments.length ? "post-comments-container" : "hidden"}>
+                                <div className="post-stats-container">
+                                    <div className="post-stats">
+                                        <div className="post-comment-count-container">
+                                            <i className="fa-sharp fa-regular fa-comment fa-lg comment-button" />
+                                            <div className="post-comment-count">{post.comments.length}</div>
+                                        </div>
+                                        <div className="post-like-count-container">
+                                            <i className="fa-sharp fa-regular fa-heart fa-lg like-button" />
+                                            <div className="post-like-count">{post.likes}</div>
+                                        </div>
+                                    </div>
+                                    <div className="comment-order-selector-container">
+                                        {/* <div className="comment-order-selector">
+
+                                        </div> */}
+                                    </div>
+                                </div>
+                                {/* <div className="make-comment-container">
+                                    <div className="current-user-image">
+
+                                    </div>
+                                    <form className="type-comment-box-container" onSubmit={(e) => handleCommentSubmit(e)}>
+                                        <input className={`${post.id} type-comment-box`}
+                                            type="text"
+                                            placeholder={commentPlaceholders[Math.floor(Math.random() * commentPlaceholders.length)]}
+                                            required
+                                        />
+                                        <button className={`${post.id} submit-comment-button`}
+                                            type="submit"
+                                        >
+                                            Reply
+                                        </button>
+                                    </form>
+                                </div> */}
                                 {post.comments.map((comment, idx) => (
                                     <div className="post-comment-container" key={idx}>
                                         <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
