@@ -34,7 +34,7 @@ class Post(db.Model):
             "imageURL": self.imageURL,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
-            "likes": len(self.user_likes),
+            "likes": dict(amount=len(self.user_likes), users=[user.to_dict2() for user in self.user_likes]),
             "user": self.user.to_dict(),
             "comments": [comment.to_dict() for comment in self.comments]
         }
