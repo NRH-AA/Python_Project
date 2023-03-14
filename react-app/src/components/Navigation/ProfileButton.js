@@ -73,9 +73,9 @@ function ProfileButton({ user }) {
               <div>Blogs</div>
               <div>+ New</div>
             </div>
-            {/* <img src={user.profile_picture}></img> */}
-            <div className="user-menu-section">
-              {user.username}
+            <div id="user-information-section" className="user-menu-section">
+              <img id='user-profile-picture' src={user.profile_picture} alt='user profile'></img>
+              <div id='user-username'>{user.username}</div>
             </div>
           </div>
           <div id="nav-post-button">

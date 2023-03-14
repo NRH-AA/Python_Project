@@ -5,12 +5,10 @@
 #dashboard {
     display: flex;
     justify-content: center;
-    border: 1px solid red;
 }
 
 .post {
     display: flex;
-    border: 1px solid yellow;
     margin-bottom: 20px;
 }
 
@@ -18,7 +16,6 @@
     background-color: rgb(46, 46, 46);
     border-radius: 3px;
     width: 540px;
-    border: 1px solid green;
     margin-right: 12px;
 }
 
@@ -27,35 +24,85 @@
 
 }
 
-.follow-user-button {
-    padding-bottom: 15px;
+.post-details .post-user {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 15px 15px;
+}
+
+.post-user .user-username {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+.post-user .follow-user-button {
+    padding: 0px;
+    color: rgb(22, 189, 255);
+    cursor: pointer;
+}
+
+.post-user .follow-user-button:hover {
+    text-decoration: underline;
+}
+
+.post-details .post-title {
+    margin: 0;
+    padding-left: 15px;
 }
 
 .post-image {
     width: 100%;
 }
 
-.post-user-image {
-    border: 1px solid blue;
+.post-user-image-container {
+    display: flex;
+    justify-content: center;
     width: 100px;
 }
 
-.post-option-container {
-    display: flex;
-    justify-content: center;
-    width: 92%;
+.post-user-image {
+    position: sticky;
+    top: 70px;
+    width: 64px;
+    height: 64px;
+    border-radius: 3px;
 }
 
-.post-options {
+.post-details .post-option-container {
     display: flex;
-    justify-content: flex-end;
-    width: 95%;
-    border-top: 1px solid grey;
+    justify-content: space-between;
+    padding: 15px 15px 10px 15px;
+    width: auto;
 }
 
-.like-button,
-.comment-button {
+.post-option-container .post-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px;
+}
+
+.post-options .view-comments-button {
     cursor: pointer;
+    padding: 0px;
+}
+
+.post-options .view-comments-button.show {
+    background-color: rgb(85, 85, 85);
+    padding: 10px;
+}
+
+.post-options .comment-and-like-button-container {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.comment-and-like-button-container *.comment-button,
+.comment-and-like-button-container *.like-button {
+    cursor: pointer;
+    padding: 0px;
+    margin-left: 24px;
 }
 
 #extras {
@@ -73,7 +120,37 @@
 
 .hidden {
     display: none;
-    height: 0;
-    margin: 0;
-    padding: 0;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Comment styles down here */
+.post-details .post-comments-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.post-comments-container .post-comment-container {
+    display: flex;
+    padding: 10px 15px;
+}
+
+.post-comment-box {
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.post-commenter-username {
+
+}
+
+.post-comments-container .post-commenter-image {
+    width: 32px;
+    height: 32px;
+    padding: 0px;
+    margin-right: 10px;
+    border-radius: 2px;
 }

@@ -6,8 +6,8 @@ from datetime import datetime
 
 user_likes = db.Table(
     'user_likes',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key = True),
-    db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key = True)
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True)
 )
 
 follows = db.Table(
@@ -63,5 +63,13 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'profile_picture': self.profile_picture,
             'email': self.email,
-            'followers': self.followers,
+            'followers': [follower.to_dict2() for follower in self.followers],
+        }
+    
+    def to_dict2(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profile_picture': self.profile_picture,
+            'email': self.email,
         }
