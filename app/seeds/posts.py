@@ -7,7 +7,6 @@ def seed_posts():
     post1 = Post(
         user_id=2,
         post_title='This is my first post to Scrollr! Happy to be here!',
-        post_heading='',
         post_text='',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
@@ -29,7 +28,6 @@ def seed_posts():
     post4 = Post(
         user_id=5,
         post_title='Just graduated App Academy!',
-        post_heading='After about half a year I did it!',
         post_text='It was okay.',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
@@ -44,7 +42,7 @@ def seed_posts():
     post6 = Post(
         user_id=7,
         post_title='Just found this new game!',
-        post_heading='It\'s called Pong. Really intuitive controls and incredible story. 10/10!',
+        post_text='It\'s called Pong. Really intuitive controls and incredible story. 10/10!',
         imageURL='https://i.guim.co.uk/img/static/sys-images/Technology/Pix/pictures/2008/04/16/Pong460x276.jpg?width=465&quality=85&dpr=1&s=none',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
