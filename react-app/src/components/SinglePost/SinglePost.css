@@ -9,6 +9,16 @@
     color: red;
 } */
 
+/* Origional commenter options */
+.post-comment-container div.origional-commenter-options-container {
+    padding: 0px;
+}
+
+.origional-commenter-options-menu {
+    position: absolute;
+    right: 41%;
+}
+
 /* Comment section below */
 .post-details div.post-comment-section-container {
     padding: 15px 15px 0px 15px;
@@ -168,9 +178,15 @@ div.make-comment-container.false form.type-comment-box-container {
     padding: 0px;
 }
 
+.post-comment-container div.post-commenter-information-container {
+    display: flex;
+    padding: 0px;
+}
+
 .post-comments-container div.post-comment-container {
     display: flex;
-    padding-left: 0px;
+    justify-content: space-between;
+    padding: 10px 0px;
 }
 
 .post-comment-container img.post-commenter-image {

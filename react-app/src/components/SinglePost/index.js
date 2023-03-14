@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import PostLike from "../PostLike";
 import { likePost, createCommentThunk } from "../../store/posts";
 import "./SinglePost.css";
+import CommentOptionsMenu from "../CommentOptionsMenu";
 import OpenModalButton from "../OpenModalButton";
 import DeletePostModal from "../DeletePostModal";
 
@@ -49,7 +50,7 @@ function SinglePost({ info }) {
         <>
             {session.user &&
                 <div className={`origional-poster-options ${post.user_id !== session.user.id && "hidden"}`}>
-                    
+
                 </div>
             }
             <div className="post-comment-section-container">
@@ -108,14 +109,19 @@ function SinglePost({ info }) {
                     <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
                         {post.comments.length ? post.comments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
-                                <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
-                                <div className="post-comment-box">
-                                    <div className="post-commenter-username">
-                                        {comment.user.username}
+                                <div className="post-commenter-information-container">
+                                    <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
+                                    <div className="post-comment-box">
+                                        <div className="post-commenter-username">
+                                            {comment.user.username}
+                                        </div>
+                                        <div className="post-comment" key={idx}>
+                                            {comment.comment}
+                                        </div>
                                     </div>
-                                    <div className="post-comment" key={idx}>
-                                        {comment.comment}
-                                    </div>
+                                </div>
+                                <div className={`origional-commenter-options-container ${comment.user_id !== session.user.id && "hidden"}`}>
+                                    <CommentOptionsMenu />
                                 </div>
                             </div>
                         ))
