@@ -16,6 +16,10 @@ follows = db.Table(
     db.Column('followed', db.Integer, db.ForeignKey('users.id', primary_key=True))
 )
 
+if environment == 'production':
+    user_likes.schema = SCHEMA
+    follows.schema = SCHEMA
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
