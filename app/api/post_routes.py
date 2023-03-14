@@ -11,7 +11,6 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('', methods=['GET'])
 def get_posts():
     posts = Post.query.all()
-    
     return [post.to_dict() for post in posts]
 
 # Get all posts route
