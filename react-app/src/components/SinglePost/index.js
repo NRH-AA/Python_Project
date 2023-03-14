@@ -49,17 +49,7 @@ function SinglePost({ info }) {
         <>
             {session.user &&
                 <div className={`origional-poster-options ${post.user_id !== session.user.id && "hidden"}`}>
-                    <OpenModalButton
-                        className="delete-post-button"
-                        modalComponent={<DeletePostModal />}
-                    >
-                    <i className="fa-regular fa-trash-can delete-post-button-icon" />
-                        </OpenModalButton>
-                    <OpenModalButton
-                        className="edit-post-button"
-                        modalComponent={<DeletePostModal />}
-                    />
-                    {/* <i className="fa-solid fa-pencil edit-post-button-icon" /> */}
+                    
                 </div>
             }
             <div className="post-comment-section-container">
