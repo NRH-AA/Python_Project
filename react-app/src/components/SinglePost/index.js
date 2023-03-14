@@ -55,7 +55,7 @@ function SinglePost({ info }) {
                         </div>
                         <div className={`post-like-count-container ${viewStat === "likes" && "viewing"}`} onClick={() => setViewStat('likes')}>
                             <i className="fa-sharp fa-regular fa-heart fa-lg like-button" />
-                            <div className="post-like-count">{post.likes}</div>
+                            <div className="post-like-count">{post.likes.amount}</div>
                         </div>
                     </div>
                     <div className="comment-order-selector-container">
