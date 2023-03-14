@@ -7,4 +7,4 @@ __pycache__/
 Pipfile.lock
 package-lock.json
 instance/
-migrations/
+migrations/versions/*.py
