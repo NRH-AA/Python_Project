@@ -152,6 +152,26 @@ export const likePost = (user_id, postId) => async (dispatch) => {
     }
 }
 
+export const createCommentThunk = (postId, user_id, comment) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/comments`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            user_id,
+            comment
+        })
+    });
+    
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(getPosts());
+        return data;
+    };
+    return res;
+};
+
 const initialState = { allPosts: {}, singlePost: {} }
 
 export default function postReducer(state = initialState, action) {
