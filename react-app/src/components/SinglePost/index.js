@@ -25,8 +25,12 @@ function SinglePost({ info }) {
     ];
 
     const handleLikeButton = () => {
-        setLiked(!liked);
-        dispatch(likePost(session.user.id, post.id))
+        if (session?.user) {
+            setLiked(!liked);
+            dispatch(likePost(session.user.id, post.id))
+        } else {
+            console.log("You need to belogged in to test that feature!")
+        }
     };
 
     const handleCommentSubmit = async (e) => {
@@ -48,7 +52,7 @@ function SinglePost({ info }) {
                     </div>
                     <div className="comment-and-like-button-container">
                         <i className={"fa-sharp fa-regular fa-comment fa-xl comment-button"} onClick={() => setOpenComments(!openComments)} />
-                        <i className={`fa-heart fa-xl like-button ${likePost ? "liked fa-solid" : "fa-regular"}`} onClick={handleLikeButton} />
+                        <i className={`fa-heart fa-xl like-button ${liked ? "liked fa-solid" : "fa-regular"}`} onClick={handleLikeButton} />
                     </div>
                 </div>
             </div>
