@@ -1,0 +1,33 @@
+.post-comments-container div.user-like-info {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+div.user-like-info .post-like-user-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    padding: 0px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+div.user-like-info .post-like-user-username {
+    padding: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.post-comments-container div.follow-button,
+.post-comments-container div.unfollow-button {
+    color: rgb(22, 189, 255);
+    padding: 0px;
+}
+
+.post-comments-container div.follow-button:hover,
+.post-comments-container div.unfollow-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

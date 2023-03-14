@@ -80,8 +80,10 @@ def create_post_comment(postId):
     form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
+        
+        userId = request.get_json()['user_id']
         new_comment = Comment(
-            user_id = form.user_id.data,
+            user_id = userId,
             post_id = postId,
             comment = form.comment.data,
             createdAt = datetime.now(),
@@ -95,6 +97,7 @@ def create_post_comment(postId):
     
     if form.errors:
         return {"errors": form.errors}
+
     
 @post_routes.route('/<int:postId>/likes', methods=['POST'])
 @login_required
