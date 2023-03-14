@@ -1,6 +1,7 @@
 const READ_USERS = "/user"
 const READ_USER = "/user/:userId"
-
+const READ_USER_FOLLOWERS = "/user/:userId/followers"
+const READ_USER_FOLLOWINGS = "/user/:userId/followings"
 
 export const getUser = () => async (dispatch) => {
     const data = await fetch("/api")
@@ -15,21 +16,21 @@ export const getUser = () => async (dispatch) => {
         //     }
         // } else {
         //     return ["An error occurred. Please try again."];
-        }
     }
+}
 
 
 
-    export const getUserById = (userId) => async (dispatch) => {
-        const data = await fetch(`/api/${userId}`)
-        
-        const user = await data.json()
-       
-        dispatch(readUser(user))
-        return user
-    }
+export const getUserById = (userId) => async (dispatch) => {
+    const data = await fetch(`/api/${userId}`)
+
+    const user = await data.json()
+
+    dispatch(readUser(user))
+    return user
+}
 export const readUsers = (user) => ({
-    type: READ_USERS, 
+    type: READ_USERS,
     payload: user
 })
 
@@ -38,25 +39,61 @@ export const readUser = (user) => ({
     payload: user
 })
 
+export const readUserFollowers = (followers) => ({
+    type: READ_USER_FOLLOWERS,
+    payload: followers
+})
 
+export const readUserFollowings = (followings) => ({
+    type: READ_USER_FOLLOWINGS,
+    payload: followings
+})
 
-let initialState = {allUsers:{}, singleUser:{}}
+export const getUserFollowers = (userId) => async (dispatch) => {
+    const data = await fetch(`/api/users/${userId}/followers`)
+
+    const followers = await data.json()
+
+    dispatch(readUserFollowers(followers))
+    return followers
+}
+
+export const getUserFollowings = (userId) => async (dispatch) => {
+    const data = await fetch(`/api/users/${userId}/followings`)
+
+    const followings = await data.json()
+
+    dispatch(readUserFollowings(followings))
+    return followings
+}
+
+let initialState = { allUsers: {}, singleUser: {} }
 export default function userReducer(state = initialState, action) {
     let newState = {}
-	switch (action.type) {
-		case READ_USERS:
-			newState = {...state, allUsers:{}}
-               
-                action.payload.forEach(user => newState.allUsers[user.id] = user)
-                return newState 
+    switch (action.type) {
+        case READ_USERS:
+            newState = { ...state, allUsers: {} }
+
+            action.payload.forEach(user => newState.allUsers[user.id] = user)
+            return newState
 
         case READ_USER:
-                    newState ={...state, singleUser: {} };
-                   newState.singleUser = action.payload
-                   return newState
+            newState = { ...state, singleUser: {} };
+            newState.singleUser = action.payload
+            return newState
 
-            default:
-                return state;  
+        case READ_USER_FOLLOWERS:
+            newState = { ...state };
+            newState.followers = action.payload["followers"]
+            return newState
+
+        case READ_USER_FOLLOWINGS:
+            newState = { ...state };
+            newState.followings = action.payload["followings"]
+            return newState
+
+        default:
+            return state;
     };
 
 }

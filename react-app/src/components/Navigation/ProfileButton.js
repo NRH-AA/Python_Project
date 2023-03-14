@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import UserFollower from "./UserFollower";
+import UserFollowing from "./UserFollowing";
 import './Navigation.css';
 
 function ProfileButton({ user }) {
@@ -60,12 +61,20 @@ function ProfileButton({ user }) {
             <div className="user-menu-section">
               <div>
                 <i className="fa-regular fa-address-book user-menu-section-image" />
-                <span id="user-menu-follower">       <OpenModalButton
-
-                  buttonText="Follower"
-                  modalComponent={<UserFollower userId={user.id} />}
-                />
-
+                <span className="user-menu-follow">
+                  <OpenModalButton buttonText="Follower"
+                    modalComponent={<UserFollower userId={user.id} />}
+                  />
+                </span>
+              </div>
+            </div>
+            <div className="user-menu-section">
+              <div>
+                <i className="fa-regular fa-address-book user-menu-section-image" />
+                <span className="user-menu-follow">
+                  <OpenModalButton buttonText="Following"
+                    modalComponent={<UserFollowing userId={user.id} />}
+                  />
                 </span>
               </div>
             </div>

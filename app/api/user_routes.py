@@ -66,6 +66,10 @@ def create_user_post(userId):
 @user_routes.route('/<int:userId>/followers', methods=['GET'])
 def get_user_follower(userId):
     user = User.query.get(userId)
-    return user.to_dict()
-    # return [user.to_dict() for user in user.followers]
-    # return {f'{following.id}': following.to_dict() for following in followings}
+    return {"followers": user.to_dict()["followers"]}
+
+
+@user_routes.route('/<int:userId>/followings', methods=['GET'])
+def get_user_following(userId):
+    user = User.query.get(userId)
+    return {"followings": user.to_dict()["followings"]}

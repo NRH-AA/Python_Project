@@ -215,7 +215,16 @@ body {
 }
 
 
-#user-menu-follower button {
+.user-menu-follow button {
   background-color: rgb(36, 36, 36);
   border: none;
+}
+
+
+.user-follow-image {
+  width: 32px;
+  height: 32px;
+  padding: 0px;
+  margin-right: 10px;
+  border-radius: 2px;
 }
