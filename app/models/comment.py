@@ -13,7 +13,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     post_id = db.Column(db.Integer, db.ForeignKey(Post.id))
-    comment = db.Column(db.Text(1000), nullable=False)
+    comment = db.Column(db.Text, nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
