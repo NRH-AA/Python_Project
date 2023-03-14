@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PostLike.css";
 
 function PostLike({ info }) {
     const [like, session] = info;
-    const currUserFollowings = session?.user?.followings
 
     const handleFollow = () => {
         if (!session?.user){

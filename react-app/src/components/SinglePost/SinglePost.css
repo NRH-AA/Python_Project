@@ -1,3 +1,15 @@
+/* Origional user options */
+.origional-poster-options > * {
+    background: none;
+    border: none;
+    color: red;
+}
+
+.origional-poster-options * * {
+    color: red;
+}
+
+/* Comment section below */
 .post-details div.post-comment-section-container {
     padding: 15px 15px 0px 15px;
 }

@@ -4,8 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
-import LoginFormModal from "./components/LoginFormModal";
-import SignupFormModal from "./components/SignupFormModal";
 
 function App() {
   const dispatch = useDispatch();

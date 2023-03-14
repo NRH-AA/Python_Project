@@ -15,6 +15,8 @@ function Feed() {
         dispatch(getPosts())
     }, [dispatch])
 
+    // Need to implement a way to check if a post's user is in current user's followings
+
     return (
         <div id='dashboard'>
             <div id="feed">
@@ -26,7 +28,7 @@ function Feed() {
                         <div className="post-details">
                             <div className="post-user">
                                 <div className="user-username">{post.user.username}</div>
-                                <div className="follow-user-button">Follow</div>
+                                <div className={`follow-user-button ${(post.user_id === session?.user?.id) && "hidden"}`}>Follow</div>
                             </div>
                             <h2 className="post-title">{post.post_title}</h2>
                             <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
