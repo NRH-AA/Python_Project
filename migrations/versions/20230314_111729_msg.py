@@ -1,16 +1,19 @@
-"""empty message
+"""msg
 
-Revision ID: 943eed74dfb7
+Revision ID: c05641241812
 Revises: 
-Create Date: 2023-03-13 15:52:12.969692
+Create Date: 2023-03-14 11:17:29.130174
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '943eed74dfb7'
+revision = 'c05641241812'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,18 +34,18 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     op.create_table('follows',
-    sa.Column('follower', sa.Integer(), nullable=True),
-    sa.Column('followed', sa.Integer(), nullable=True),
+    sa.Column('follower', sa.Integer(), nullable=False),
+    sa.Column('followed', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['followed'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['follower'], ['users.id'], )
+    sa.ForeignKeyConstraint(['follower'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('follower', 'followed')
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('post_title', sa.String(length=100), nullable=True),
-    sa.Column('post_heading', sa.String(length=100), nullable=True),
-    sa.Column('post_text', sa.Text(length=2000), nullable=True),
-    sa.Column('imageURL', sa.Text(length=500), nullable=True),
+    sa.Column('post_text', sa.Text(), nullable=True),
+    sa.Column('imageURL', sa.Text(), nullable=True),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -52,7 +55,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('post_id', sa.Integer(), nullable=True),
-    sa.Column('comment', sa.Text(length=1000), nullable=False),
+    sa.Column('comment', sa.Text(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
@@ -66,6 +69,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'post_id')
     )
+    
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_likes SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
