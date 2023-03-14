@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PostLike from "../PostLike";
 import "./SinglePost.css";
 
 function SinglePost({ info }) {
@@ -21,11 +22,13 @@ function SinglePost({ info }) {
 
     const handleLikeButton = () => {
         setLikePost(!likePost);
+        console.log("Like button is working! Post id and curr user id: ", post.id, session.user.id)
     };
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         console.log("Comment submit button is working! Input: ", comment)
+        setComment("")
     };
 
     return (
@@ -33,7 +36,7 @@ function SinglePost({ info }) {
             <div className="post-option-container">
                 <div className="post-options">
                     <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
-                        {post.comments.length} notes
+                        {post.comments.length + post.likes.amount} notes
                     </div>
                     <div className={`close-comments-button ${openComments ? "show" : "hidden"}`} onClick={() => setOpenComments(!openComments)}>
                         <i className="fa-solid fa-x fa-xs close-comments-button-image" />
@@ -64,14 +67,15 @@ function SinglePost({ info }) {
                         </div> */}
                     </div>
                 </div>
-                <div className={`make-comment-container ${!session.user && "hidden"}`}>
+                <div className={`make-comment-container ${(!session?.user || viewStat !== "comments") && "hidden"}`}>
                     <div className="current-user-image-container">
-                        <img className="current-user-image" src={session.user.profile_picture} alt="user profile"></img>
+                        <img className="current-user-image" src={session?.user?.profile_picture} alt="user profile"></img>
                     </div>
                     <form className="type-comment-box-container" onSubmit={(e) => handleCommentSubmit(e)}>
                         <textarea className="type-comment-box"
                             rows="1"
                             type="text"
+                            value={comment}
                             placeholder={commentPlaceholders[Math.floor(Math.random() * commentPlaceholders.length)]}
                             onChange={(e) => setComment(e.target.value)}
                         />
@@ -83,22 +87,34 @@ function SinglePost({ info }) {
                         </button>
                     </form>
                 </div>
-                {post.comments.length ? post.comments.map((comment, idx) => (
-                    <div className="post-comment-container" key={idx}>
-                        <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
-                        <div className="post-comment-box">
-                            <div className="post-commenter-username">
-                                {comment.user.username}
-                            </div>
-                            <div className="post-comment" key={idx}>
-                                {comment.comment}
+                <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
+                    {post.comments.length ? post.comments.map((comment, idx) => (
+                        <div className="post-comment-container" key={idx}>
+                            <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
+                            <div className="post-comment-box">
+                                <div className="post-commenter-username">
+                                    {comment.user.username}
+                                </div>
+                                <div className="post-comment" key={idx}>
+                                    {comment.comment}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))
-            :
-            <p className="hidden"></p>
-            }
+                    ))
+                        :
+                        <p className="hidden"></p>
+                    }
+                </div>
+                <div className={`likes-container ${viewStat !== "likes" && "hidden"}`}>
+                    {post.likes.amount ? post.likes.users.map((like, idx) => (
+                        <div className="user-like" key={idx}>
+                            <PostLike info={[like, session]} />
+                        </div>
+                    ))
+                        :
+                        <p className="hidden"></p>
+                    }
+                </div>
             </div>
         </div>
     )

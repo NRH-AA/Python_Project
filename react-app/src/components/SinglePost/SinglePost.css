@@ -20,6 +20,10 @@
     align-items: center;
 }
 
+div.post-comment-section-container div.post-options-container {
+    padding: 0px;
+}
+
 .post-comment-section-container div.post-comments-container {
     padding: 0px;
 }
@@ -33,6 +37,10 @@
 .post-stats .post-like-count-container .like-button,
 .post-stats .post-like-count-container .post-like-count {
     padding: 0px;
+}
+
+.like-button.liked {
+    color: rgb(252, 99, 39);
 }
 
 .close-comments-button.show .close-comments-button-image {
@@ -143,6 +151,11 @@ div.make-comment-container.false form.type-comment-box-container {
 }
 
 /* Comments here */
+.post-comments-container div.comments-container {
+    margin: 0px;
+    padding: 0px;
+}
+
 .post-comments-container div.post-comment-container {
     display: flex;
     padding-left: 0px;
@@ -154,6 +167,7 @@ div.make-comment-container.false form.type-comment-box-container {
     padding: 0px;
     margin-right: 10px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .post-comment-container .post-comment-box {
@@ -168,6 +182,7 @@ div.make-comment-container.false form.type-comment-box-container {
 
 .post-comment-box .post-commenter-username {
     padding: 0px;
+    cursor: pointer;
 }
 
 .post-comment-box div.post-commenter-username {
@@ -179,4 +194,19 @@ div.make-comment-container.false form.type-comment-box-container {
 .post-comment-box div.post-comment {
     padding: 5px 0px 0px 0px;
     font-size: 16px;
+}
+
+/* Likes container */
+.post-comments-container div.likes-container {
+    padding: 0px 0px 20px 0px;
+    height: 540px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+div.likes-container div.user-like {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
 }
