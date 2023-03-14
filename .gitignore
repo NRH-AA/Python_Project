@@ -6,5 +6,5 @@ __pycache__/
 .vscode/
 Pipfile.lock
 package-lock.json
-migrations/
 instance/
+migrations/versions/*.py

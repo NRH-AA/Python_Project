@@ -11,6 +11,14 @@ function Feed() {
         dispatch(getPosts())
     }, [dispatch])
 
+    const handleCommentButton = async (e) => {
+        console.log('Comment button is working!', e.target)
+    }
+
+    const handleLikeButton = async (e) => {
+        console.log('Like button is working!', e.target.classList)
+    }
+
     return (
         <div id='dashboard'>
             <div id="feed">
@@ -20,8 +28,9 @@ function Feed() {
                             <img className="post-user-image" src={post.user.profile_picture} alt='user profile'></img>
                         </div>
                         <div className="post-details">
-                            <div className="follow-user-button">
-                                {post.user.username} Follow
+                            <div className="post-user">
+                                <div className="user-username">{post.user.username}</div>
+                                <div className="follow-user-button">Follow</div>
                             </div>
                             <h2 className="post-title">{post.post_title}</h2>
                             <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
@@ -33,12 +42,26 @@ function Feed() {
                                         {post.comments.length} notes
                                     </div>
                                     <div className="comment-and-like-button-container">
-                                        <i className="fa-sharp fa-regular fa-comment fa-xl comment-button" />
-                                        {/* <i className="fa-sharp fa-solid fa-comment fa-xl" /> */}
-                                        <i className="fa-regular fa-heart fa-xl like-button" />
-                                        {/* <i className="fa-solid fa-heart fa-xl" /> */}
+                                        <i className={`fa-sharp fa-regular fa-comment fa-xl comment-button ${post.id}`} onClick={(e) => handleCommentButton(e)} />
+                                        <i className={`fa-regular fa-heart fa-xl like-button ${post.id}`} onClick={(e) => handleLikeButton(e)} />
+                                        <i className={`fa-solid fa-heart fa-xl hidden ${post.id}`} onClick={(e) => handleLikeButton(e)} />
                                     </div>
                                 </div>
+                            </div>
+                            <div className={post.comments ? "post-comments-container" : "hidden"}>
+                                {post.comments.map((comment, idx) => (
+                                    <div className="post-comment-container" key={idx}>
+                                        <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
+                                        <div className="post-comment-box">
+                                            <div className="post-commenter-username">
+                                                {comment.user.username}
+                                            </div>
+                                            <div className="post-comment" key={idx}>
+                                                {comment.comment}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
