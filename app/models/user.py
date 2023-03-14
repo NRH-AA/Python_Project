@@ -63,5 +63,13 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'profile_picture': self.profile_picture,
             'email': self.email,
-            'followers': self.followers,
+            'followers': [follower.to_dict2() for follower in self.followers],
+        }
+    
+    def to_dict2(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profile_picture': self.profile_picture,
+            'email': self.email,
         }
