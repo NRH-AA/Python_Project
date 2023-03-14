@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PostLike from "../PostLike";
+import { likePost } from "../../store/posts";
 import "./SinglePost.css";
 
 function SinglePost({ info }) {
     const [openComments, setOpenComments] = useState(false);
-    const [likePost, setLikePost] = useState(false);
+    const [liked, setLiked] = useState(false);
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
     const [post, session] = info
+
+    const dispatch = useDispatch()
 
     const commentPlaceholders = [
         "Add to the discussion",
@@ -21,8 +25,8 @@ function SinglePost({ info }) {
     ];
 
     const handleLikeButton = () => {
-        setLikePost(!likePost);
-        console.log("Like button is working! Post id and curr user id: ", post.id, session.user.id)
+        setLiked(!liked);
+        dispatch(likePost(session.user.id, post.id))
     };
 
     const handleCommentSubmit = async (e) => {

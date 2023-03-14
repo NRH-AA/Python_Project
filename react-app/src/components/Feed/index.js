@@ -7,7 +7,8 @@ import "./Feed.css";
 function Feed() {
     const dispatch = useDispatch();
 
-    const posts = useSelector(state => state.posts.allPosts)
+    const allPosts = useSelector(state => state.posts)
+    const posts = allPosts.allPosts
     const session = useSelector(state => state.session)
 
     useEffect(() => {

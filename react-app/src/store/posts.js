@@ -1,9 +1,10 @@
 // constants
 const CREATE_POST = "/posts/new";
 const DELETE_POST = "/posts/:postId";
-const UPDATE_POST = "/posts/:postId/edit"
-const READ_POSTS = "/posts"
-const READ_POST = "/posts/:postId"
+const UPDATE_POST = "/posts/:postId/edit";
+const READ_POSTS = "/posts";
+const READ_POST = "/posts/:postId";
+const LIKE_POST = "/posts/:postId/likes"
 
 
 export const createPosts = (post) => ({
@@ -42,7 +43,6 @@ export const createPost = (post, userId) => async (dispatch) => {
     // }
 }
 
-
 export const deletePosts = (id) => {
     return {
         type: DELETE_POST,
@@ -57,7 +57,6 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch(deletePosts(id));
     return response
 }
-
 
 export const updatePosts = (post) => ({
     type: UPDATE_POST,
@@ -92,9 +91,6 @@ export const updatePost = (id, post) => async (dispatch) => {
     // }
 }
 
-
-
-
 export const readPosts = (posts) => ({
     type: READ_POSTS,
     payload: posts
@@ -117,7 +113,6 @@ export const getPosts = () => async (dispatch) => {
     // }
 }
 
-
 export const readPost = (post) => ({
     type: READ_POST,
     payload: post
@@ -132,6 +127,29 @@ export const getUser = (userId) => async (dispatch) => {
         return posts
     }
     return data
+}
+
+export const createLike = (post) => {
+    return {
+        type: LIKE_POST,
+        post
+    }
+}
+
+export const likePost = (user_id, postId) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/likes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id,
+            postId
+        })
+    })
+
+    if (res.ok) {
+        const post = await res.json();
+        dispatch(createLike(post))
+    }
 }
 
 const initialState = { allPosts: {}, singlePost: {} }
@@ -161,6 +179,10 @@ export default function postReducer(state = initialState, action) {
 
         case UPDATE_POST:
             newState.allPosts[action.payload.id] = action.payload
+            return newState
+
+        case LIKE_POST:
+            newState.allPosts[action.post.id] = action.post
             return newState
 
         default:
