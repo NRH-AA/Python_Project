@@ -16,7 +16,7 @@ function CreatePostForm({id}) {
   const [post_heading, setPostHeading] = useState("");
   const [post_text, setPostText] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-console.log(user.id)
+
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
