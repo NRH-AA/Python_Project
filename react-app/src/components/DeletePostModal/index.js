@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { deletePost } from "../../store/posts";
 import "./DeletePostModal.css";
 
-const DeletePostModal = () => {
+const DeletePostModal = (id) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
     const handleDelete = () => {
         console.log("Delete modal button working!")
+        dispatch(deletePost(id))
     }
 
     return (
