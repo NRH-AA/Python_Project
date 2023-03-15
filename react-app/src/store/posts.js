@@ -59,21 +59,21 @@ export const deletePost = (id) => async (dispatch) => {
     return response
 }
 
-export const updatePosts = (post) => ({
-    type: UPDATE_POST,
-    payload: post
-})
+export const updatePosts = (post) => {
+    return {
+        type: UPDATE_POST,
+        payload: post
+    }
+}
 
 export const updatePost = (id, postDetails) => async (dispatch) => {
-    const { user_id, post_title, imageUrl, post_text } = postDetails
+    const { post_title, imageUrl, post_text } = postDetails
     const data = await fetch(`/api/posts/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-            user_id,
             post_title,
             imageUrl,
             post_text
-
         }),
     });
     if (data.ok) {

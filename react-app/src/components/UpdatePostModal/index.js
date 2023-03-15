@@ -17,13 +17,11 @@ const UpdatePostModal = ({ info }) => {
     const handleUpdate = () => {
         console.log("Update modal button working!")
         const postDetails = {
-            user_id: post.user.id,
             post_title: postTitle,
             post_URL: imageURL,
             post_text: postText
         }
-        console.log(postDetails)
-        // dispatch(updatePost())
+        dispatch(updatePost(post.id, postDetails))
     }
 
     return (

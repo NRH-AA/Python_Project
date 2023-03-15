@@ -54,18 +54,22 @@ function SinglePost({ info }) {
                     <OpenModalButton
                         className="open-update-post-modal-button"
                         buttonText={<i className="fa-regular fa-trash-can fa-xl delete-post-button-icon" />}
-                        modalComponent={<DeletePostModal />} />
+                        modalComponent={<DeletePostModal
+                            postId={post.id}
+                        />} />
                     <OpenModalButton
                         className="open-delete-post-modal-button"
                         buttonText={<i className="fa-solid fa-pencil fa-xl edit-post-button-icon" />}
-                        modalComponent={<UpdatePostModal />}
+                        modalComponent={<UpdatePostModal
+                            info={[session, post]}
+                        />}
                     />
                 </div>
             }
             <div className="post-option-container">
                 <div className="post-options">
                     <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
-                        {post.comments.length + post.likes.amount} notes
+                        {post?.comments?.length + post?.likes?.amount} notes
                     </div>
                     <div className={`close-comments-button ${openComments ? "show" : "hidden"}`} onClick={() => setOpenComments(!openComments)}>
                         <i className="fa-solid fa-x fa-xs close-comments-button-image" />
@@ -83,11 +87,11 @@ function SinglePost({ info }) {
                         <div className="post-stats">
                             <div className={`post-comment-count-container ${viewStat === "comments" && "viewing"}`} onClick={() => setViewStat('comments')}>
                                 <i className="fa-sharp fa-regular fa-comment fa-lg comment-button" />
-                                <div className="post-comment-count">{post.comments.length}</div>
+                                <div className="post-comment-count">{post?.comments?.length}</div>
                             </div>
                             <div className={`post-like-count-container ${viewStat === "likes" && "viewing"}`} onClick={() => setViewStat('likes')}>
                                 <i className="fa-sharp fa-regular fa-heart fa-lg like-button" />
-                                <div className="post-like-count">{post.likes.amount}</div>
+                                <div className="post-like-count">{post?.likes?.amount}</div>
                             </div>
                         </div>
                         <div className="comment-order-selector-container">
@@ -115,7 +119,7 @@ function SinglePost({ info }) {
                         </form>
                     </div>
                     <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
-                        {post.comments.length ? post.comments.map((comment, idx) => (
+                        {post?.comments?.length ? post.comments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container">
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
@@ -138,7 +142,7 @@ function SinglePost({ info }) {
                         }
                     </div>
                     <div className={`likes-container ${viewStat !== "likes" && "hidden"}`}>
-                        {post.likes.amount ? post.likes.users.map((like, idx) => (
+                        {post?.likes?.amount ? post.likes.users.map((like, idx) => (
                             <div className="user-like" key={idx}>
                                 <PostLike info={[like, session]} />
                             </div>
