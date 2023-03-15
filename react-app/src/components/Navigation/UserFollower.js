@@ -9,7 +9,7 @@ export default function UserFollower({ userId }) {
     //console.log(followers)
     useEffect(() => {
         dispatch(getUserFollowers(userId))
-    }, [dispatch])
+    }, [dispatch, userId])
 
 
 
