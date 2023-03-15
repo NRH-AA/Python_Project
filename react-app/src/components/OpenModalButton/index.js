@@ -6,7 +6,8 @@ function OpenModalButton({
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose, // optional: callback function that will be called once the modal is closed
-  img
+  img,
+  icon, // icon classname for i tag
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -17,9 +18,12 @@ function OpenModalButton({
   };
 
   if (img) {
-    return (<img src={img} onClick={onClick}/>)
+    return (<img src={img} onClick={onClick} />)
   } else {
-    return (<button onClick={onClick}>{buttonText}</button>)
+    return (<button onClick={onClick}>
+      {icon && <i className={icon} />}
+      {buttonText}
+    </button>)
   }
 }
 

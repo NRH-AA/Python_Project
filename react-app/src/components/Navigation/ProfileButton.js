@@ -6,7 +6,9 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import UserFollower from "./UserFollower";
 import UserFollowing from "./UserFollowing";
+import UserLikedPosts from "./UserLikedPost";
 import './Navigation.css';
+import CreatePostForm from "../CreatePosts/index"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -52,31 +54,18 @@ function ProfileButton({ user }) {
               <div>Account</div>
               <div id='logout-button' onClick={handleLogout}>Log out</div>
             </div>
-            <div className="user-menu-section">
-              <div>
-                <i className="fa-solid fa-heart user-menu-section-image" />
-                Likes
-              </div>
+            <div className="user-menu-section user-menu-modals">
+              <OpenModalButton buttonText="Likes" icon="fa-solid fa-heart user-menu-section-image"
+                modalComponent={<UserLikedPosts userId={user.id} />}
+              />
             </div>
-            <div className="user-menu-section">
-              <div>
-                <i className="fa-regular fa-address-book user-menu-section-image" />
-                <span className="user-menu-follow">
-                  <OpenModalButton buttonText="Follower"
-                    modalComponent={<UserFollower userId={user.id} />}
-                  />
-                </span>
-              </div>
+            <div className="user-menu-section user-menu-modals">
+              <OpenModalButton buttonText="Follower" icon="fa-regular fa-address-book user-menu-section-image"
+                modalComponent={<UserFollower userId={user.id} />} />
             </div>
-            <div className="user-menu-section">
-              <div>
-                <i className="fa-regular fa-address-book user-menu-section-image" />
-                <span className="user-menu-follow">
-                  <OpenModalButton buttonText="Following"
-                    modalComponent={<UserFollowing userId={user.id} />}
-                  />
-                </span>
-              </div>
+            <div className="user-menu-section user-menu-modals">
+              <OpenModalButton buttonText="Following" icon="fa-regular fa-address-book user-menu-section-image"
+                modalComponent={<UserFollowing userId={user.id} />} />
             </div>
             <div className="user-menu-header user-menu-section">
               <div>Blogs</div>
@@ -89,6 +78,11 @@ function ProfileButton({ user }) {
           </div>
           <div id="nav-post-button">
             <i className="fa-sharp fa-solid fa-pencil fa-lg" />
+            <span className="bts" >
+                  <OpenModalButton id="postbutton"
+                    modalComponent={<CreatePostForm userId={user.id} />}
+                  />
+                </span>
           </div>
         </div>
       ) : (
