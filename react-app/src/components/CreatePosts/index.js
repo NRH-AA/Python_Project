@@ -42,7 +42,7 @@ return (
     <div className="createForm">
         
              
-      <h1 className="create-form-text" >Create Post</h1>
+      <h4 className="create-form-text" >{user.username}</h4>
       <form onSubmit={handleSubmit} autoComplete="on">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}

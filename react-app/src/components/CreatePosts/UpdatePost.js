@@ -10,17 +10,14 @@ import { useHistory, useParams} from "react-router-dom";
 function UpdatePostForm({post}) {
 
   const dispatch = useDispatch();
-//   const posts = useSelector(state=>state.posts.allPosts)
+
   const user = useSelector(state=>state.session.user)
   const [post_title, setPostTitle] = useState(post.post_title);
   
   const [post_text, setPostText] = useState(post.post_text);
-  const [imageUrl, setImageUrl] = useState("");
-
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
- 
 
 
 const handleSubmit = (e) => {
@@ -34,12 +31,12 @@ const handleSubmit = (e) => {
     if (data && data.errors) setErrors(data.errors);
   });
 
- history.push(`/posts/${id}`)
+ history.push(`/posts`)
   
 }
 
 return (
-    <div className="updateForm">
+    <div className="createForm">
         
              
       <h4 className="create-form-text" >{user.username}</h4>
@@ -75,7 +72,7 @@ return (
         </label>
        
   
-          <div className="buttonPots">
+          <div className="button">
 
         <button className='create-form-button' type="submit" >Update Posts</button>
           </div>
