@@ -12,7 +12,7 @@ div.post-details div.origional-poster-options * {
     margin: 10px 0px 12px 16px;
 }
 
-.origional-poster-options > * {
+.origional-poster-options>* {
     background: none;
     border: none;
 }
@@ -21,8 +21,8 @@ div.post-details div.origional-poster-options * {
     border: none;
 }
 
-.origional-poster-options > * .fa-trash-can.delete-post-button-icon,
-.origional-poster-options > * .fa-pencil.edit-post-button-icon {
+.origional-poster-options>* .fa-trash-can.delete-post-button-icon,
+.origional-poster-options>* .fa-pencil.edit-post-button-icon {
     padding: 0px;
     cursor: pointer;
 }
@@ -53,7 +53,7 @@ div.post-details div.origional-poster-options * {
     padding: 0px;
 }
 
-.post-stats > * {
+.post-stats>* {
     display: flex;
     align-items: center;
 }
@@ -79,6 +79,7 @@ div.post-comment-section-container div.post-options-container {
     width: 400px;
     height: 120px;
 }
+
 .edit-post-comment {
     width: 90%;
     border: none;
@@ -86,6 +87,7 @@ div.post-comment-section-container div.post-options-container {
     background-color: inherit;
     resize: none;
 }
+
 #edit-comment-button-div {
     display: flex;
     justify-content: flex-end;
@@ -93,6 +95,7 @@ div.post-comment-section-container div.post-options-container {
     margin-right: -15px;
     gap: 5px;
 }
+
 .edit-comment-button {
     width: 85px;
     height: 10px;
@@ -105,9 +108,11 @@ div.post-comment-section-container div.post-options-container {
     margin-bottom: -10px;
     cursor: pointer;
 }
+
 .edit-comment-button:hover {
     box-shadow: 0px 0px 1px 1px rgb(99, 97, 97);
 }
+
 .edit-comment-button:active {
     box-shadow: 0px 0px 1px 1px rgb(61, 59, 59);
     background-color: rgb(32, 30, 30);
@@ -236,6 +241,8 @@ div.make-comment-container.false form.type-comment-box-container {
 .post-comments-container div.comments-container {
     margin: 0px;
     padding: 0px;
+    height: 540px;
+    overflow-x: auto;
 }
 
 .post-comment-container div.post-commenter-information-container {
@@ -271,10 +278,12 @@ div.make-comment-container.false form.type-comment-box-container {
 .post-commenter-p {
     margin: 0px;
 }
+
 .post-commenter-p2 {
     margin: 0px;
     font-size: 14px;
 }
+
 .post-commenter-username {
     display: flex;
     justify-content: space-between;
@@ -314,4 +323,57 @@ div.likes-container div.user-like {
     align-items: center;
     justify-content: space-between;
     padding: 15px 0px 10px 0px;
+}
+
+.post-comments-container .comments-container.hidden.empty,
+.post-comments-container .comments-container.hidden.empty *,
+.post-comments-container .likes-container.hidden.empty,
+.post-comments-container .likes-container.hidden.empty * {
+    margin: 0px;
+    padding: 0px;
+    height: 0px;
+}
+
+.post-comments-container .comments-container.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-comments-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-comments-message-icon,
+.no-comments-message {
+    color: rgb(155, 155, 155);
+}
+
+.no-comments-message {
+    font-weight: bold;
+}
+
+.post-comments-container div.likes-container.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-likes-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-likes-message-icon,
+.no-likes-message {
+    color: rgb(155, 155, 155);
+}
+
+.no-likes-message {
+    font-weight: bold;
 }

@@ -69,28 +69,28 @@ function SinglePost({ info }) {
     function commentDiv(userComment) {
         if (updatingComment) {
             return <div className="post-comment">
-                    <textarea
-                        maxLength="250"
-                        className="edit-post-comment"
-                        value={updateComment ? updateComment : userComment.comment}
-                        onChange={(e) => setUpdateComment(e.target.value)}
-                    >
-                    </textarea>
-                    <div id="edit-comment-button-div">
-                        <button className="edit-comment-button"
-                            onClick={(e) => handleEditCommentSubmit(e, userComment)}
-                        >Update</button>
-                        <button className="edit-comment-button"
-                            onClick={() => setUpdatingComment(false)}
-                        >Cancel</button>
-                    </div>
-                   </div>
+                <textarea
+                    maxLength="250"
+                    className="edit-post-comment"
+                    value={updateComment ? updateComment : userComment.comment}
+                    onChange={(e) => setUpdateComment(e.target.value)}
+                >
+                </textarea>
+                <div id="edit-comment-button-div">
+                    <button className="edit-comment-button"
+                        onClick={(e) => handleEditCommentSubmit(e, userComment)}
+                    >Update</button>
+                    <button className="edit-comment-button"
+                        onClick={() => setUpdatingComment(false)}
+                    >Cancel</button>
+                </div>
+            </div>
         }
         return <div className="post-comment"
-                   onClick={() => session.user.id === comment.user_id ? setUpdatingComment(true) : ""}
-               >
-                  {userComment.comment}
-               </div>
+            onClick={() => session.user.id === comment.user_id ? setUpdatingComment(true) : ""}
+        >
+            {userComment.comment}
+        </div>
     }
 
     return (
@@ -164,7 +164,7 @@ function SinglePost({ info }) {
                             </button>
                         </form>
                     </div>
-                    <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
+                    <div className={`comments-container ${viewStat !== "comments" && "hidden"} ${post.comments.length ? "" : "empty"}`}>
                         {post.comments.length ? post.comments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container"
@@ -182,22 +182,28 @@ function SinglePost({ info }) {
                                     </div>
                                 </div>
                                 <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
-                                    <CommentOptionsMenu commentId={comment.id}/>
+                                    <CommentOptionsMenu commentId={comment.id} />
                                 </div>
                             </div>
                         ))
                             :
-                            <p className="hidden"></p>
+                            <div className="no-comments-message-container">
+                                <i className="fa-regular fa-comment fa-2xl no-comments-message-icon" />
+                                <div className="no-comments-message">Be the first to Reply!</div>
+                            </div>
                         }
                     </div>
-                    <div className={`likes-container ${viewStat !== "likes" && "hidden"}`}>
+                    <div className={`likes-container ${viewStat !== "likes" && "hidden"} ${post?.likes?.amount ? "" : "empty"}`}>
                         {post?.likes?.amount ? post.likes.users.map((like, idx) => (
                             <div className="user-like" key={idx}>
                                 <PostLike info={[like, session]} />
                             </div>
                         ))
                             :
-                            <p className="hidden"></p>
+                            <div className="no-likes-message-container">
+                                <i className="fa-regular fa-heart fa-2xl no-likes-message-icon" />
+                                <div className="no-likes-message">Give the first Like!</div>
+                            </div>
                         }
                     </div>
                 </div>
