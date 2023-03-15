@@ -13,18 +13,18 @@ export const createPosts = (post) => ({
 })
 
 export const createPost = (post, userId) => async (dispatch) => {
-    const { user_id, post_title, post_heading, post_text, imageUrl } = post
+    const { post_title, post_text } = post
     const data = await fetch(`/api/${userId}/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            user_id,
+            userId,
             post_title,
-            post_heading,
+       
             post_text,
-            imageUrl
+           
         })
     })
     if (data.ok) {
