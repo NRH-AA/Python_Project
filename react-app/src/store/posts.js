@@ -55,6 +55,7 @@ export const deletePost = (id) => async (dispatch) => {
         method: "DELETE",
     })
     dispatch(deletePosts(id));
+    dispatch(getPosts())
     return response
 }
 
@@ -63,14 +64,14 @@ export const updatePosts = (post) => ({
     payload: post
 })
 
-export const updatePost = (id, post) => async (dispatch) => {
-    const { user_id, post_title, post_heading, post_text } = post
+export const updatePost = (id, postDetails) => async (dispatch) => {
+    const { user_id, post_title, imageUrl, post_text } = postDetails
     const data = await fetch(`/api/posts/${id}`, {
         method: "PUT",
         body: JSON.stringify({
             user_id,
             post_title,
-            post_heading,
+            imageUrl,
             post_text
 
         }),
@@ -163,7 +164,7 @@ export const createCommentThunk = (postId, user_id, comment) => async (dispatch)
             comment
         })
     });
-    
+
     if (res.ok) {
         const data = await res.json();
         dispatch(getPosts());
@@ -182,7 +183,7 @@ export const updateCommentThunk = (commentId, comment) => async (dispatch) => {
             comment
         })
     });
-    
+
     if (res.ok) {
         const data = await res.json();
         dispatch(getPosts());
