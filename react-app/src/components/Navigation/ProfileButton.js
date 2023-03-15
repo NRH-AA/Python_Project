@@ -77,9 +77,10 @@ function ProfileButton({ user }) {
             </div>
           </div>
           <div id="nav-post-button">
-            <i className="fa-sharp fa-solid fa-pencil fa-lg" />
+            
             <span className="bts" >
-                  <OpenModalButton id="postbutton"
+                  <OpenModalButton id="postbutton" 
+                  buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
                     modalComponent={<CreatePostForm userId={user.id} />}
                   />
                 </span>
