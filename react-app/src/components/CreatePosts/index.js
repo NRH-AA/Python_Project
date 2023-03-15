@@ -16,7 +16,7 @@ function CreatePostForm({id}) {
   const [post_heading, setPostHeading] = useState("");
   const [post_text, setPostText] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-console.log(user.id)
+
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
@@ -29,13 +29,12 @@ const handleSubmit = (e) => {
     if(!user) return setErrors(["You Must Be Logged in To Create A post"])
    dispatch(postsActions.createPost({post_title, post_text}, user.id))
    .then(closeModal)
-  .then(()=>dispatch(postsActions.getPosts()))
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
 
- history.push(`/posts/${id}`)
+ history.push(`/posts`)
   
 }
 
@@ -63,7 +62,7 @@ return (
        
         <label className="labels">
       
-          <textarea className="post-text" placeholder="text"
+          <textarea className="create-post-text" placeholder="text"
           maxLength="500"
           cols="20"
             rows="10"

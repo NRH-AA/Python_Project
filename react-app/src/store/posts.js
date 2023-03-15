@@ -16,13 +16,12 @@ export const createPost = (post, userId) => async (dispatch) => {
 
     const { post_title, post_text } = post
 
-    const data = await fetch(`/api/${userId}/posts`, {
+    const data = await fetch(`/api/users/${userId}/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            userId,
             post_title,
        
             post_text,
