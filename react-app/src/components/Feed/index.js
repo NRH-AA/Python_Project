@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/posts"
+import CreatePostForm from "../CreatePosts";
+import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
 import "./Feed.css";
 
@@ -10,6 +12,10 @@ function Feed() {
     const allPosts = useSelector(state => state.posts)
     const posts = allPosts.allPosts
     const session = useSelector(state => state.session)
+
+    const unfinishedAlert = () => {
+        window.alert("Sorry, this feature is not functional.")
+    }
 
     useEffect(() => {
         dispatch(getPosts())
@@ -23,33 +29,38 @@ function Feed() {
                 <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
                     <img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>
                     <div id="logged-user-post-options">
-                        <div className="post-option-container">
-                            <i id="text-post-option-icon" className="fa-solid fa-font" />
-                            <div className="post-option-text"></div>
-                        </div>
-                        <div className="post-option-container">
-                            <i id="text-image-option-icon" className="fa-solid fa-camera" />
-                            <div className="post-option-text">Text</div>
-                        </div>
-                        <div className="post-option-container">
-                            <i id="text-quote-option-icon" className="fa-solid fa-quote-left" />
+                        <OpenModalButton
+                            buttonText={
+                                <div className="post-option-container">
+                                    <i id="post-text-option-icon" className="fa-solid fa-font fa-2xl post-option-icon" />
+                                    <div className="post-option-text">Text</div>
+                                </div>
+                            }
+                            modalComponent={<CreatePostForm />}
+                        />
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-image-option-icon" className="fa-solid fa-camera fa-2xl post-option-icon" />
                             <div className="post-option-text">Photo</div>
                         </div>
-                        <div className="post-option-container">
-                            <i id="text-link-option-icon" className="fa-solid fa-link" />
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />
                             <div className="post-option-text">Quote</div>
                         </div>
-                        <div className="post-option-container">
-                            <i id="text-chat-option-icon" className="fa-solid fa-message" />
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-link-option-icon" className="fa-solid fa-link fa-2xl post-option-icon" />
                             <div className="post-option-text">Link</div>
                         </div>
-                        <div className="post-option-container">
-                            <i id="text-audio-option-icon" className="fa-solid fa-headphones" />
-                            <div className="post-option-text"></div>
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-chat-option-icon" className="fa-solid fa-message fa-2xl post-option-icon" />
+                            <div className="post-option-text">Chat</div>
                         </div>
-                        <div className="post-option-container">
-                            <i id="text-video-option-icon" className="fa-solid fa-video" />
-                            <div className="post-option-text"></div>
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-audio-option-icon" className="fa-solid fa-headphones fa-2xl post-option-icon" />
+                            <div className="post-option-text">Audio</div>
+                        </div>
+                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                            <i id="post-video-option-icon" className="fa-solid fa-video fa-2xl post-option-icon" />
+                            <div className="post-option-text">Video</div>
                         </div>
                     </div>
                 </div>
@@ -75,10 +86,10 @@ function Feed() {
                 </div>
             </div>
             <div id='extras'>
-                {/* <p>About</p>
-                <p>Apps</p>
-                <p>Legal</p>
-                <p>Privacy</p> */}
+                <p onClick={() => unfinishedAlert()}>About</p>
+                <p onClick={() => unfinishedAlert()}>Apps</p>
+                <p onClick={() => unfinishedAlert()}>Legal</p>
+                <p onClick={() => unfinishedAlert()}>Privacy</p>
             </div>
         </div>
     )

@@ -3,15 +3,11 @@
 }
 
 #homepage {
-    border: 1px solid green;
-
     display: flex;
     justify-content: center;
 }
 
 #dashboard {
-    border: 1px solid blue;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,8 +15,6 @@
 }
 
 #logged-user-bar {
-    border: 1px solid red;
-
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -28,8 +22,6 @@
 }
 
 #logged-user-image {
-    border: 1px solid pink;
-
     border-radius: 3px;
     margin-left: 18px;
     height: 64px;
@@ -37,13 +29,61 @@
 }
 
 #logged-user-post-options {
-    border: 1px solid cyan;
-
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: rgb(40, 40, 40);
     border-radius: 3px;
     width: 540px;
     height: 104px;
     margin-right: 12px;
+}
+
+#logged-user-post-options > * {
+    border: none;
+    background: none;
+    padding: 0px;
+}
+
+.post-option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+#logged-user-post-options > * .post-option-container .post-option-text {
+    height: 19px;
+    font-size: 17px;
+}
+
+.post-option-text,
+.post-option-icon {
+    margin-top: 20px;
+}
+
+#post-image-option-icon {
+    color: rgb(255, 74, 42);
+}
+
+#post-quote-option-icon {
+    color: rgb(255, 123, 0);
+}
+
+#post-link-option-icon {
+    color: rgb(60, 212, 40);
+}
+
+#post-chat-option-icon {
+    color: rgb(0, 195, 255);
+}
+
+#post-audio-option-icon {
+    color: rgb(96, 82, 189);
+}
+
+#post-video-option-icon {
+    color: rgb(245, 103, 186);
 }
 
 #text-option-image {
@@ -177,19 +217,20 @@
 }
 
 #extras {
-    border: 1px solid rgb(255, 255, 255);
-
-    align-items: flex-start;
-    /* padding-right: 290px; */
+    display: flex;
     width: 320px;
+    margin-left: 20px;
 }
 
-#extras * {
+#extras p {
     position: sticky;
+    top: 920px;
     display: flex;
     font-size: 12px;
+    height: 20px;
     color: rgb(0, 195, 255);
-    padding-right: 10px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .hidden {
