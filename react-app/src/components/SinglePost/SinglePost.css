@@ -22,6 +22,11 @@ div.post-details div.origional-poster-options * {
 }
 
 /* Origional commenter options */
+.post-comment-container div.origional-commenter-options-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 5px 0px 0px;
+}
 
 /* Comment section below */
 .post-details div.post-comment-section-container:not(.hidden) {

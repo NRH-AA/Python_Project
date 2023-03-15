@@ -40,13 +40,13 @@ const CommentOptionsMenu = () => {
 
     return (
         <>
-            <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
-            <div className="origional-commenter-options-menu">
+            <div className={`origional-commenter-options-menu ${!showMenu && "hidden"}`}>
                 <div className={`origional-commenter-options-menu-section comment-reply-button ${!showMenu && "hidden"}`} onClick={handleReplyComment}>Reply</div>
                 <div className={`origional-commenter-options-menu-section comment-delete-button ${!showMenu && "hidden"}`} onClick={handleDeleteComment}>Delete Reply</div>
                 <div className={`origional-commenter-options-menu-section comment-edit-button ${!showMenu && "hidden"}`} onClick={handleUpdateComment}>Edit</div>
                 <div className={`origional-commenter-options-menu-section ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
             </div>
+            <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
         </>
     )
 }
