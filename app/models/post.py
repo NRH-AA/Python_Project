@@ -12,7 +12,6 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     post_title = db.Column(db.String(100))
-    post_heading = db.Column(db.String(100))
     post_text = db.Column(db.Text)
     imageURL = db.Column(db.Text)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
@@ -31,12 +30,11 @@ class Post(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "post_title": self.post_title,
-            "post_heading": self.post_heading,
             "post_text": self.post_text,
             "imageURL": self.imageURL,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
-            "likes": len(self.user_likes),
+            "likes": dict(amount=len(self.user_likes), users=[user.to_dict2() for user in self.user_likes]),
             "user": self.user.to_dict(),
             "comments": [comment.to_dict() for comment in self.comments]
         }

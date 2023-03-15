@@ -11,7 +11,6 @@ post_routes = Blueprint('posts', __name__)
 @post_routes.route('', methods=['GET'])
 def get_posts():
     posts = Post.query.all()
-    
     return [post.to_dict() for post in posts]
 
 # Get all posts route
@@ -40,20 +39,23 @@ def edit_post(postId):
     
     
     if form.validate_on_submit():
-        if form.post_title.data:
-            post.post_title = form.post_title.data
-            
-        if form.post_heading.data:
-            post.post_heading = form.post_heading.data
-            
-        if form.post_text.data:
-            post.post_text = form.post_text.data
-            
-        post.updatedAt = datetime.now()
+        title = form.post_title.data
+        text = form.post_text.data
         
+        if not title and not text:
+            return {"errors": ["Invalid Post Request"]}
+        
+        if title:
+            post.post_title = title
+            
+        if text:
+            post.post_text = text
+
+        post.updatedAt = datetime.now()
+
         db.session.commit()
         return post.to_dict()
-    
+
     if form.errors:
         return {"errors": form.errors}
 
@@ -78,8 +80,10 @@ def create_post_comment(postId):
     form['csrf_token'].data = request.cookies['csrf_token']
     
     if form.validate_on_submit():
+        
+        userId = request.get_json()['user_id']
         new_comment = Comment(
-            user_id = form.user_id.data,
+            user_id = userId,
             post_id = postId,
             comment = form.comment.data,
             createdAt = datetime.now(),
@@ -93,6 +97,7 @@ def create_post_comment(postId):
     
     if form.errors:
         return {"errors": form.errors}
+
     
 @post_routes.route('/<int:postId>/likes', methods=['POST'])
 @login_required

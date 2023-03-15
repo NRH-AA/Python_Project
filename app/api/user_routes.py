@@ -42,11 +42,16 @@ def create_user_post(userId):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
+        title = form.post_title.data
+        text = form.post_text.data
+        
+        if not title and not text:
+            return {"errors": ["Invalid Post Request"]}
+        
         new_post = Post(
             user_id=userId,
-            post_title=form.post_title.data,
-            post_heading=form.post_heading.data,
-            post_text=form.post_text.data,
+            post_title=title,
+            post_text=text,
             createdAt=datetime.now(),
             updatedAt=datetime.now()
         )

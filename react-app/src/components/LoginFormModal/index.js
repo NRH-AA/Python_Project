@@ -86,7 +86,6 @@ function LoginFormModal() {
             ))}
           </div>
         </ul>
-
         <p id='demo-user-sign-in' onClick={signInDemoUser}>demo user</p>
       </div>
     </>
