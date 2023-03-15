@@ -33,6 +33,16 @@
     align-items: center;
 }
 
+.origional-commenter-options-menu > button {
+    border: none;
+    background: none;
+    font-weight: bold;
+    font-size: 16px;
+    color:rgb(252, 53, 39);
+    cursor: pointer;
+    width: 100%;
+}
+
 .origional-commenter-options-menu div.origional-commenter-options-menu-section {
     cursor: pointer;
     font-weight: bold;
@@ -41,12 +51,9 @@
     padding: 10px 20px;
 }
 
+.origional-commenter-options-menu > button:hover,
 .origional-commenter-options-menu-section:hover {
     background-color: rgb(65, 65, 65);
-}
-
-.comment-delete-button {
-    color: rgb(252, 53, 39);
 }
 
 .hidden {
