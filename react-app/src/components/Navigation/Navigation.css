@@ -45,7 +45,8 @@ body {
   font-family: 'Tilt Warp', cursive;
   font-weight: bold;
   font-size: 45px;
-  padding-right: 10px;
+  padding: 0px;
+  margin-right: 10px;
   text-decoration: none;
   color: white;
 }
@@ -247,4 +248,9 @@ body {
 
 .user-menu-section.user-menu-modals {
   width: 88%;
+}
+
+.user-menu-liked-posts {
+  text-decoration: none;
+  padding: 1px 6px;
 }
