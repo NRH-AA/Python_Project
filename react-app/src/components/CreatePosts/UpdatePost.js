@@ -7,14 +7,14 @@ import './createPosts.css';
 import { useHistory, useParams} from "react-router-dom";
 
 
-function CreatePostForm({id}) {
+function UpdatePostForm({post}) {
 
   const dispatch = useDispatch();
 //   const posts = useSelector(state=>state.posts.allPosts)
   const user = useSelector(state=>state.session.user)
-  const [post_title, setPostTitle] = useState("");
-  const [post_heading, setPostHeading] = useState("");
-  const [post_text, setPostText] = useState("");
+  const [post_title, setPostTitle] = useState(post.post_title);
+  
+  const [post_text, setPostText] = useState(post.post_text);
   const [imageUrl, setImageUrl] = useState("");
 
   const [errors, setErrors] = useState([]);
@@ -26,23 +26,23 @@ function CreatePostForm({id}) {
 const handleSubmit = (e) => {
   e.preventDefault();
   setErrors([]);
-    if(!user) return setErrors(["You Must Be Logged in To Create A post"])
-   dispatch(postsActions.createPost({post_title, post_text}, user.id))
-   .then(closeModal)
+    if(!user) return setErrors(["You Must Be Logged in To update A post"])
+   dispatch(postsActions.updatePosts({post_title, post_text}, user.id))
+  .then(()=>dispatch(postsActions.getPosts()))
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
 
- history.push(`/posts`)
+ history.push(`/posts/${id}`)
   
 }
 
 return (
-    <div className="createForm">
+    <div className="updateForm">
         
              
-      <h1 className="create-form-text" >Create Post</h1>
+      <h4 className="create-form-text" >{user.username}</h4>
       <form onSubmit={handleSubmit} autoComplete="on">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -59,7 +59,8 @@ return (
             required
           />
         </label>
-       
+    
+      
         <label className="labels">
       
           <textarea className="create-post-text" placeholder="text"
@@ -72,10 +73,11 @@ return (
           </textarea>
         
         </label>
+       
   
-          <div className="button">
+          <div className="buttonPots">
 
-        <button className='create-form-button' type="submit" >Create Posts</button>
+        <button className='create-form-button' type="submit" >Update Posts</button>
           </div>
       </form>
     </div>
@@ -84,4 +86,4 @@ return (
 }
 
 
-export default CreatePostForm;
+export default UpdatePostForm;

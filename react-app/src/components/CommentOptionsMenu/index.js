@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { deleteCommentThunk } from "../../store/posts";
 import './CommentOptionsMenu.css'
 
-const CommentOptionsMenu = () => {
+const CommentOptionsMenu = ({commentId}) => {
+    const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -28,25 +31,22 @@ const CommentOptionsMenu = () => {
         console.log("Reply to comment button is working!")
     }
 
-    const handleUpdateComment = async (e) => {
-        console.log("Update comment button is working!")
-    }
-
-    const handleDeleteComment = async (e) => {
-        console.log("Delete comment button is working!")
+    const handleDeleteComment = async (e, commentId) => {
+        e.preventDefault();
+        
+        dispatch(deleteCommentThunk(commentId))
     }
 
     const closeMenu = () => setShowMenu(false);
 
     return (
         <>
-            <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
-            <div className="origional-commenter-options-menu">
-                <div className={`origional-commenter-options-menu-section comment-reply-button ${!showMenu && "hidden"}`} onClick={handleReplyComment}>Reply</div>
-                <div className={`origional-commenter-options-menu-section comment-delete-button ${!showMenu && "hidden"}`} onClick={handleDeleteComment}>Delete Reply</div>
-                <div className={`origional-commenter-options-menu-section comment-edit-button ${!showMenu && "hidden"}`} onClick={handleUpdateComment}>Edit</div>
+            <div className={`origional-commenter-options-menu ${!showMenu && "hidden"}`}>
+                {/* <div className={`origional-commenter-options-menu-section comment-reply-button ${!showMenu && "hidden"}`} onClick={handleReplyComment}>Reply</div> */}
+                <div className={`origional-commenter-options-menu-section comment-delete-button ${!showMenu && "hidden"}`} onClick={(e) => handleDeleteComment(e, commentId)}>Delete Reply</div>
                 <div className={`origional-commenter-options-menu-section ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
             </div>
+            <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
         </>
     )
 }

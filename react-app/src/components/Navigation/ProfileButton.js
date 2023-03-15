@@ -7,8 +7,8 @@ import SignupFormModal from "../SignupFormModal";
 import UserFollower from "./UserFollower";
 import UserFollowing from "./UserFollowing";
 import './Navigation.css';
+import CreatePostForm from "../CreatePosts/index"
 import { NavLink } from "react-router-dom";
-
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -78,6 +78,11 @@ function ProfileButton({ user }) {
           </div>
           <div id="nav-post-button">
             <i className="fa-sharp fa-solid fa-pencil fa-lg" />
+            <span className="bts" >
+              <OpenModalButton id="postbutton"
+                modalComponent={<CreatePostForm userId={user.id} />}
+              />
+            </span>
           </div>
         </div>
       ) : (
