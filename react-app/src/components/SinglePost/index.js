@@ -81,13 +81,13 @@ function SinglePost({ info }) {
                             onClick={(e) => handleEditCommentSubmit(e, userComment)}
                         >Update</button>
                         <button className="edit-comment-button"
-                            onClick={(e) => setUpdatingComment(false)}
+                            onClick={() => setUpdatingComment(false)}
                         >Cancel</button>
                     </div>
                    </div>
         }
         return <div className="post-comment"
-                   onClick={() => setUpdatingComment(true)}
+                   onClick={() => session.user.id === comment.user_id ? setUpdatingComment(true) : ""}
                >
                   {userComment.comment}
                </div>
@@ -164,18 +164,18 @@ function SinglePost({ info }) {
                             </button>
                         </form>
                     </div>
-                    <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}
-                        onClick={() => setUpdating()}
-                    >
+                    <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
                         {post.comments.length ? post.comments.map((comment, idx) => (
-                            <div className="post-comment-container" key={idx}>
+                            <div className="post-comment-container" key={idx}
+                                onClick={() => session.user.id === comment.user_id ? setUpdating() : ""}
+                            >
                                 <div className="post-commenter-information-container">
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
                                     <div className="post-comment-box">
                                         <div className="post-commenter-username">
                                             <p className="post-commenter-p">{comment.user.username}</p>
                                             <p className="post-commenter-p2">
-                                                {!updatingComment && session.user.id === comment.user.id ? "Click to update" : ""}
+                                                {!updatingComment && session?.user?.id === comment?.user?.id ? "Click to update" : ""}
                                             </p>
                                         </div>
                                         {commentDiv(comment)}
