@@ -184,9 +184,7 @@ export const updateCommentThunk = (commentId, comment) => async (dispatch) => {
     });
     
     if (res.ok) {
-        const data = await res.json();
         dispatch(getPosts());
-        return data;
     };
     return res;
 };
@@ -197,9 +195,7 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const data = await res.json();
         dispatch(getPosts());
-        return data;
     };
     return res;
 };
