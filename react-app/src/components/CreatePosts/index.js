@@ -63,7 +63,7 @@ return (
        
         <label className="labels">
       
-          <textarea className="post-text" placeholder="text"
+          <textarea className="create-post-text" placeholder="text"
           maxLength="500"
           cols="20"
             rows="10"
