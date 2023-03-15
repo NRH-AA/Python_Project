@@ -23,14 +23,6 @@
     font-family: 'Tilt Warp', cursive;
 }
 
-
-
-
-.hidden,
-.hidden * {
-    display: none;
-}
-
 .create-form-text {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -50,7 +42,7 @@
     margin: 4px;
     border:none;
 }
-.post-text {
+.create-post-text {
     display:flex;
     flex-flow:nowrap;
     width:32em;
@@ -102,36 +94,3 @@
     
 }
 
-.create-form-button:disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-i.create-form-arrow-img {
-    width: 10px;
-    padding-left: 20px;
-}
-
-
-
-
-
-#create-form-errors {
-    position: absolute;
-    bottom: 5px;
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    margin: 30px 0px -5% 0px;
-    padding: 8px 10px;
-    background-color: rgb(255, 60, 0);
-    border-radius: 3px;
-}
-
-#create-form-errors.hidden {
-    display: none;
-}
-
-#create-errors-symbol {
-    padding-right: 8px;
-}
