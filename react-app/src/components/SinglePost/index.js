@@ -175,7 +175,7 @@ function SinglePost({ info }) {
                                         <div className="post-commenter-username">
                                             <p className="post-commenter-p">{comment.user.username}</p>
                                             <p className="post-commenter-p2">
-                                                {!updatingComment && session.user.id === comment.user.id ? "Click to update" : ""}
+                                                {!updatingComment && session?.user?.id === comment?.user?.id ? "Click to update" : ""}
                                             </p>
                                         </div>
                                         {commentDiv(comment)}

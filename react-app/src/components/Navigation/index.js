@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
 				<div id='navbar-left'>
 					<NavLink exact to="/" id='logo'>S</NavLink>
 					<div id='searchbar-container'>
-						<i id='search-icon' className="fa-solid fa-magnifying-glass" />
+						<i id='search-icon' className="fa-solid fa-magnifying-glass" onClick={() => window.alert("Feature coming soon.")} />
 						<input id='searchbar' type='text' placeholder='Search Scrollr'></input>
 					</div>
 				</div>
