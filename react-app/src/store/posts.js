@@ -70,6 +70,9 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
     const { post_title, imageUrl, post_text } = postDetails
     const data = await fetch(`/api/posts/${id}`, {
         method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({
             post_title,
             imageUrl,
