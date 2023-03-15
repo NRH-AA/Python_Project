@@ -67,7 +67,7 @@ function SinglePost({ info }) {
     }
 
     function commentDiv(userComment) {
-        if (updatingComment) {
+        if (updatingComment && session.user.id === userComment.user_id) {
             return <div className="post-comment">
                 <textarea
                     maxLength="250"
