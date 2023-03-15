@@ -1,9 +1,40 @@
+.post-comment-container .fa-solid.fa-ellipsis.open-commenter-options-button {
+    visibility: hidden;
+}
+
+.post-comment-container:hover .fa-solid.fa-ellipsis.open-commenter-options-button {
+    visibility: visible;
+}
 .fa-solid.fa-ellipsis.open-commenter-options-button {
     padding: 0px;
     border-radius: 2px;
 }
 
+
+.origional-commenter-options-menu:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    margin-top: 30px;
+    margin-right: 5px;
+    left: auto;
+    bottom: auto;
+    background-color: rgb(40, 40, 40);
+    box-shadow: 0px 0px 10px black;
+    border-radius: 5px;
+    z-index: 100;
+}
+
 .origional-commenter-options-menu-section {
-    background-color: grey;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.comment-delete-button {
+    color: rgb(252, 53, 39);
+}
+
+.hidden {
+    box-shadow: none;
 }
