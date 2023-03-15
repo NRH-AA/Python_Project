@@ -29,19 +29,19 @@ function Feed() {
                         </div>
                         <div className="post-option-container">
                             <i id="text-image-option-icon" className="fa-solid fa-camera" />
-                            <div className="post-option-text"></div>
+                            <div className="post-option-text">Text</div>
                         </div>
                         <div className="post-option-container">
                             <i id="text-quote-option-icon" className="fa-solid fa-quote-left" />
-                            <div className="post-option-text"></div>
+                            <div className="post-option-text">Photo</div>
                         </div>
                         <div className="post-option-container">
                             <i id="text-link-option-icon" className="fa-solid fa-link" />
-                            <div className="post-option-text"></div>
+                            <div className="post-option-text">Quote</div>
                         </div>
                         <div className="post-option-container">
                             <i id="text-chat-option-icon" className="fa-solid fa-message" />
-                            <div className="post-option-text"></div>
+                            <div className="post-option-text">Link</div>
                         </div>
                         <div className="post-option-container">
                             <i id="text-audio-option-icon" className="fa-solid fa-headphones" />
