@@ -120,7 +120,7 @@ function SinglePost({ info }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`origional-commenter-options-container ${comment.user_id !== session?.user?.id && "hidden"}`}>
+                                <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
                                     <CommentOptionsMenu />
                                 </div>
                             </div>
