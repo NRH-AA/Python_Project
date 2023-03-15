@@ -84,7 +84,6 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
     if (data.ok) {
         const response = await data.json();
         dispatch(updatePosts(response));
-        dispatch(getPosts())
         return response;
     };
     return data;
