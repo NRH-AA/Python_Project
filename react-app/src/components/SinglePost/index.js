@@ -166,10 +166,10 @@ function SinglePost({ info }) {
                     </div>
                     <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
                         {post.comments.length ? post.comments.map((comment, idx) => (
-                            <div className="post-comment-container" key={idx}
-                                onClick={() => session.user.id === comment.user_id ? setUpdating() : ""}
-                            >
-                                <div className="post-commenter-information-container">
+                            <div className="post-comment-container" key={idx}>
+                                <div className="post-commenter-information-container"
+                                    onClick={() => session.user.id === comment.user_id ? setUpdating() : ""}
+                                >
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
                                     <div className="post-comment-box">
                                         <div className="post-commenter-username">
