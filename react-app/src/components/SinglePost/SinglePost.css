@@ -81,11 +81,13 @@ div.post-comment-section-container div.post-options-container {
 }
 
 .edit-post-comment {
-    width: 90%;
+    width: 95%;
     border: none;
     margin: none;
     background-color: inherit;
     resize: none;
+    font-size: 16px;
+    margin-left: -10px;
 }
 
 #edit-comment-button-div {
@@ -116,6 +118,10 @@ div.post-comment-section-container div.post-options-container {
 .edit-comment-button:active {
     box-shadow: 0px 0px 1px 1px rgb(61, 59, 59);
     background-color: rgb(32, 30, 30);
+}
+
+.edit-comment-button:disabled {
+    color: red;
 }
 
 .post-stats .post-comment-count-container .comment-button,
