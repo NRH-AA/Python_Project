@@ -31,30 +31,35 @@ def get_post(postId):
 def edit_post(postId):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     post = Post.query.get(postId)
-    
+
     if not post:
         return {"errors": ["Invalid Edit Request"]}
-    
-    
+
+
     if form.validate_on_submit():
         title = form.post_title.data
+        imageURL = form.imageURL.data
         text = form.post_text.data
-        
+
         if not title and not text:
             return {"errors": ["Invalid Post Request"]}
-        
+
         if title:
             post.post_title = title
-            
+
+        if imageURL:
+            post.imageURL = imageURL
+
         if text:
             post.post_text = text
 
         post.updatedAt = datetime.now()
 
         db.session.commit()
-        return post.to_dict()
+        ret=Post.query.get(postId)
+        return ret.to_dict()
 
     if form.errors:
         return {"errors": form.errors}
@@ -64,10 +69,10 @@ def edit_post(postId):
 @login_required
 def delete_post(postId):
     post = Post.query.get(postId)
-    
+
     if not post:
         return {"errors": ["Invalid Delete Request"]}
-    
+
     db.session.delete(post)
     db.session.commit()
     return {"id": postId}
@@ -78,9 +83,9 @@ def delete_post(postId):
 def create_post_comment(postId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
-        
+
         userId = request.get_json()['user_id']
         new_comment = Comment(
             user_id = userId,
@@ -91,32 +96,32 @@ def create_post_comment(postId):
         )
         db.session.add(new_comment)
         db.session.commit()
-        
+
         ret = Comment.query.get(new_comment.id)
         return ret.to_dict()
-    
+
     if form.errors:
         return {"errors": form.errors}
 
-    
+
 @post_routes.route('/<int:postId>/likes', methods=['POST'])
 @login_required
 def like_post(postId):
     post = Post.query.get(postId)
-    
+
     user_id = request.get_json()['user_id']
     user = User.query.get(user_id)
-    
+
     if not user:
         return {"errors": ["User does not exist"]}
-    
+
     for likedPosts in user.liked_posts:
         if likedPosts.id == post.id:
             user.liked_posts.remove(post)
             db.session.commit()
             ret = Post.query.get(postId)
             return ret.to_dict()
-    
+
     user.liked_posts.append(post)
     db.session.commit()
     ret = Post.query.get(postId)
