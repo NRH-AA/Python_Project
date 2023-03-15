@@ -13,7 +13,7 @@ export const createPosts = (post) => ({
 })
 
 export const createPost = (post, userId) => async (dispatch) => {
-    const { user_id, post_title, post_heading, post_text, imageUrl } = post
+    const { user_id, post_title, post_heading, post_text, imageURL } = post
     const data = await fetch(`/api/${userId}/posts`, {
         method: "POST",
         headers: {
@@ -24,7 +24,7 @@ export const createPost = (post, userId) => async (dispatch) => {
             post_title,
             post_heading,
             post_text,
-            imageUrl
+            imageURL
         })
     })
     if (data.ok) {
@@ -55,29 +55,34 @@ export const deletePost = (id) => async (dispatch) => {
         method: "DELETE",
     })
     dispatch(deletePosts(id));
+    dispatch(getPosts())
     return response
 }
 
-export const updatePosts = (post) => ({
-    type: UPDATE_POST,
-    payload: post
-})
+export const updatePosts = (post) => {
+    return {
+        type: UPDATE_POST,
+        payload: post
+    }
+}
 
-export const updatePost = (id, post) => async (dispatch) => {
-    const { user_id, post_title, post_heading, post_text } = post
+export const updatePost = (id, postDetails) => async (dispatch) => {
+    const { post_title, imageURL, post_text } = postDetails
     const data = await fetch(`/api/posts/${id}`, {
         method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-            user_id,
             post_title,
-            post_heading,
+            imageURL,
             post_text
-
         }),
     });
     if (data.ok) {
         const response = await data.json();
         dispatch(updatePosts(response));
+        dispatch(getPosts())
         return response;
     };
     return data;
@@ -163,7 +168,7 @@ export const createCommentThunk = (postId, user_id, comment) => async (dispatch)
             comment
         })
     });
-    
+
     if (res.ok) {
         const data = await res.json();
         dispatch(getPosts());
@@ -182,11 +187,9 @@ export const updateCommentThunk = (commentId, comment) => async (dispatch) => {
             comment
         })
     });
-    
+
     if (res.ok) {
-        const data = await res.json();
         dispatch(getPosts());
-        return data;
     };
     return res;
 };
@@ -197,9 +200,7 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        const data = await res.json();
         dispatch(getPosts());
-        return data;
     };
     return res;
 };
