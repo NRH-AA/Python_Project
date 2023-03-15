@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PostLike from "../PostLike";
-import { likePost, createCommentThunk } from "../../store/posts";
+import { likePost, createCommentThunk, updateCommentThunk } from "../../store/posts";
 import "./SinglePost.css";
 import CommentOptionsMenu from "../CommentOptionsMenu";
 import OpenModalButton from "../OpenModalButton";
@@ -13,6 +13,8 @@ function SinglePost({ info }) {
     const [liked, setLiked] = useState(false);
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
+    const [updateComment, setUpdateComment] = useState("")
+    const [updatingComment, setUpdatingComment] = useState(false)
     const [post, session] = info
 
     const dispatch = useDispatch()
@@ -46,6 +48,45 @@ function SinglePost({ info }) {
         dispatch(createCommentThunk(post.id, userId, comment));
         setComment("");
     };
+    
+    const handleEditCommentSubmit = async (e, userComment) => {
+        e.preventDefault();
+
+        if (userComment.user_id !== session.user.id) return;
+        if (updateComment.length < 1) return;
+        
+        dispatch(updateCommentThunk(userComment.id, updateComment));
+        setUpdatingComment(false);
+        setUpdateComment("")
+        setComment("");
+    }
+    
+    function commentDiv(userComment) {
+        if (updatingComment) {
+            return <div className="post-comment">
+                    <textarea 
+                        maxLength="250" 
+                        className="edit-post-comment"
+                        value={updateComment ? updateComment : userComment.comment}
+                        onChange={(e) => setUpdateComment(e.target.value)}
+                    >
+                    </textarea>
+                    <div id="edit-comment-button-div">
+                        <button className="edit-comment-button"
+                            onClick={(e) => handleEditCommentSubmit(e, userComment)}
+                        >Update</button>
+                        <button className="edit-comment-button"
+                            onClick={(e) => setUpdatingComment(false)}
+                        >Cancel</button>
+                    </div>
+                   </div>
+        }
+        return <div className="post-comment"
+                   onClick={() => setUpdatingComment(true)}
+               >
+                  {userComment.comment}
+               </div>
+    }
 
     return (
         <>
@@ -123,13 +164,11 @@ function SinglePost({ info }) {
                                         <div className="post-commenter-username">
                                             {comment.user.username}
                                         </div>
-                                        <div className="post-comment" key={idx}>
-                                            {comment.comment}
-                                        </div>
+                                        {commentDiv(comment)}
                                     </div>
                                 </div>
                                 <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
-                                    <CommentOptionsMenu />
+                                    <CommentOptionsMenu commentId={comment.id}/>
                                 </div>
                             </div>
                         ))
