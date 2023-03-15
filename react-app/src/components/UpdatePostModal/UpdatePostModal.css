@@ -62,7 +62,15 @@ textarea#update-text-input {
     margin: 20px;
 }
 
-#update-post-close-button {
+#update-post-options-container > * {
+    border: none;
+    padding: 4px 5px;
+    border-radius: 13px;
+    text-align: center;
+    width: 64px;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 20px;
     background-color: rgb(61, 59, 59);
 }
 
