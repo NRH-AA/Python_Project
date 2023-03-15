@@ -13,19 +13,18 @@ const UpdatePostModal = ({ info }) => {
     const [imageURL, setImageURL] = useState(post.imageURL || "")
     const [postText, setPostText] = useState(post.post_text || "")
 
-
     const handleUpdate = () => {
-        console.log("Update modal button working!")
         const postDetails = {
             post_title: postTitle,
             imageURL: imageURL,
             post_text: postText
         }
         dispatch(updatePost(post.id, postDetails))
+        .then(closeModal)
     }
 
     return (
-        <>
+        <div id="update-post-container-container">
             <div id="origional-user-username-container">
                 <p id="origional-user-username">{session.user.username}</p>
             </div>
@@ -38,7 +37,7 @@ const UpdatePostModal = ({ info }) => {
                 />
                 <textarea
                     id="update-image-input"
-                    placeholder="Image"
+                    placeholder="Image url"
                     value={imageURL}
                     onChange={(e) => setImageURL(e.target.value)}
                 />
@@ -50,10 +49,10 @@ const UpdatePostModal = ({ info }) => {
                 />
             </div>
             <div id="update-post-options-container">
-                <div id="update-post-close-button">Close</div>
+                <div id="update-post-close-button" onClick={closeModal}>Close</div>
                 <div id="update-post-save-button" onClick={handleUpdate}>Save</div>
             </div>
-        </>
+        </div>
     )
 };
 

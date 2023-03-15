@@ -2,12 +2,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
-#modal-content {
+#sign-up-modal-container-container {
     height: fit-content;
     width: 622px;
     background-color: rgba(125, 89, 255, 0.959);
     border-radius: 5px;
-    margin: 10px;
+    margin: 0px;
+    padding-bottom: 20px;
     color: white;
 }
 
