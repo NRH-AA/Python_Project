@@ -121,7 +121,7 @@ function SinglePost({ info }) {
                                     </div>
                                 </div>
                                 <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
-                                    <CommentOptionsMenu />
+                                    <CommentOptionsMenu commentId={comment.id} />
                                 </div>
                             </div>
                         ))
