@@ -7,6 +7,7 @@ const READ_POST = "/posts/:postId";
 const LIKE_POST = "/posts/:postId/likes"
 
 
+
 export const createPosts = (post) => ({
     type: CREATE_POST,
     payload: post
@@ -113,6 +114,16 @@ export const getPosts = () => async (dispatch) => {
     // }
 }
 
+//get user liked posts
+export const getUserLikedPosts = (userId) => async (dispatch) => {
+    const data = await fetch(`/api/users/${userId}/liked-posts`)
+    if (data.ok) {
+        const response = await data.json()
+        dispatch(readPosts(response))
+        return response
+    }
+}
+
 export const readPost = (post) => ({
     type: READ_POST,
     payload: post
@@ -163,7 +174,7 @@ export const createCommentThunk = (postId, user_id, comment) => async (dispatch)
             comment
         })
     });
-    
+
     if (res.ok) {
         const data = await res.json();
         dispatch(getPosts());
@@ -182,7 +193,7 @@ export const updateCommentThunk = (commentId, comment) => async (dispatch) => {
             comment
         })
     });
-    
+
     if (res.ok) {
         const data = await res.json();
         dispatch(getPosts());
@@ -203,6 +214,8 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     };
     return res;
 };
+
+
 
 const initialState = { allPosts: {}, singlePost: {} }
 

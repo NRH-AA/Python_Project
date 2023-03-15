@@ -6,8 +6,8 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import UserFollower from "./UserFollower";
 import UserFollowing from "./UserFollowing";
-import UserLikedPosts from "./UserLikedPost";
 import './Navigation.css';
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -54,9 +54,10 @@ function ProfileButton({ user }) {
               <div id='logout-button' onClick={handleLogout}>Log out</div>
             </div>
             <div className="user-menu-section user-menu-modals">
-              <OpenModalButton buttonText="Likes" icon="fa-solid fa-heart user-menu-section-image"
-                modalComponent={<UserLikedPosts userId={user.id} />}
-              />
+              <NavLink to="/likes" className="user-menu-liked-posts">
+                <i className="fa-solid fa-heart user-menu-section-image" />
+                Likes
+              </NavLink>
             </div>
             <div className="user-menu-section user-menu-modals">
               <OpenModalButton buttonText="Follower" icon="fa-regular fa-address-book user-menu-section-image"
