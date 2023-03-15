@@ -7,6 +7,7 @@ const READ_POST = "/posts/:postId";
 const LIKE_POST = "/posts/:postId/likes"
 
 
+
 export const createPosts = (post) => ({
     type: CREATE_POST,
     payload: post
@@ -83,7 +84,6 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
     if (data.ok) {
         const response = await data.json();
         dispatch(updatePosts(response));
-        dispatch(getPosts())
         return response;
     };
     return data;
@@ -117,6 +117,16 @@ export const getPosts = () => async (dispatch) => {
     // } else {
     //     return ["An error occurred. Please try again."];
     // }
+}
+
+//get user liked posts
+export const getUserLikedPosts = (userId) => async (dispatch) => {
+    const data = await fetch(`/api/users/${userId}/liked-posts`)
+    if (data.ok) {
+        const response = await data.json()
+        dispatch(readPosts(response))
+        return response
+    }
 }
 
 export const readPost = (post) => ({
@@ -205,6 +215,8 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     };
     return res;
 };
+
+
 
 const initialState = { allPosts: {}, singlePost: {} }
 

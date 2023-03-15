@@ -44,10 +44,10 @@ def create_user_post(userId):
     if form.validate_on_submit():
         title = form.post_title.data
         text = form.post_text.data
-        
+
         if not title and not text:
             return {"errors": ["Invalid Post Request"]}
-        
+
         new_post = Post(
             user_id=userId,
             post_title=title,
@@ -69,6 +69,7 @@ def create_user_post(userId):
 
 # Get user's followers
 @user_routes.route('/<int:userId>/followers', methods=['GET'])
+@login_required
 def get_user_follower(userId):
     user = User.query.get(userId)
     return {"followers": user.to_dict()["followers"]}
@@ -77,6 +78,7 @@ def get_user_follower(userId):
 
 
 @user_routes.route('/<int:userId>/followings', methods=['GET'])
+@login_required
 def get_user_following(userId):
     user = User.query.get(userId)
     return {"followings": user.to_dict()["followings"]}
@@ -84,8 +86,9 @@ def get_user_following(userId):
 
 # Get user's liked_posts
 @user_routes.route('/<int:userId>/liked-posts', methods=['GET'])
+@login_required
 def get_user_liked_posts(userId):
     user = User.query.get(userId)
     posts = user.liked_posts
-    # return {"liked_posts": posts.to_dict()}
-    return {post.id: post.to_dict() for post in posts}
+    # return {post.id: post.to_dict() for post in posts}
+    return [post.to_dict() for post in posts]

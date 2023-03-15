@@ -2,9 +2,94 @@
     color: aliceblue;
 }
 
-#dashboard {
+#homepage {
     display: flex;
     justify-content: center;
+}
+
+#dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logged-user-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#logged-user-image {
+    border-radius: 3px;
+    margin-left: 18px;
+    height: 64px;
+    width: 64px;
+}
+
+#logged-user-post-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    border-radius: 3px;
+    width: 540px;
+    height: 104px;
+    margin-right: 12px;
+}
+
+#logged-user-post-options > * {
+    border: none;
+    background: none;
+    padding: 0px;
+}
+
+.post-option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+#logged-user-post-options > * .post-option-container .post-option-text {
+    height: 19px;
+    font-size: 17px;
+}
+
+.post-option-text,
+.post-option-icon {
+    margin-top: 20px;
+}
+
+#post-image-option-icon {
+    color: rgb(255, 74, 42);
+}
+
+#post-quote-option-icon {
+    color: rgb(255, 123, 0);
+}
+
+#post-link-option-icon {
+    color: rgb(60, 212, 40);
+}
+
+#post-chat-option-icon {
+    color: rgb(0, 195, 255);
+}
+
+#post-audio-option-icon {
+    color: rgb(96, 82, 189);
+}
+
+#post-video-option-icon {
+    color: rgb(245, 103, 186);
+}
+
+#text-option-image {
+    width: 100px;
+    height: 100px;
+    color: red;
 }
 
 .post {
@@ -132,16 +217,20 @@
 }
 
 #extras {
-    align-items: flex-start;
-    padding-right: 290px;
+    display: flex;
+    width: 320px;
+    margin-left: 20px;
 }
 
-#extras * {
+#extras p {
     position: sticky;
+    top: 920px;
     display: flex;
     font-size: 12px;
+    height: 20px;
     color: rgb(0, 195, 255);
-    padding-right: 10px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .hidden {

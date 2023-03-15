@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updatePost } from "../../store/posts";
+import CancelChangesModal from "../CancelChangesModal";
+import OpenModalButton from "../OpenModalButton";
 import "./UpdatePostModal.css";
 
 const UpdatePostModal = ({ info }) => {
@@ -20,7 +22,7 @@ const UpdatePostModal = ({ info }) => {
             post_text: postText
         }
         dispatch(updatePost(post.id, postDetails))
-        .then(closeModal)
+            .then(closeModal)
     }
 
     return (
@@ -49,7 +51,11 @@ const UpdatePostModal = ({ info }) => {
                 />
             </div>
             <div id="update-post-options-container">
-                <div id="update-post-close-button" onClick={closeModal}>Close</div>
+                <OpenModalButton
+                    id="update-post-close-button"
+                    buttonText="Close"
+                    modalComponent={<CancelChangesModal />}
+                />
                 <div id="update-post-save-button" onClick={handleUpdate}>Save</div>
             </div>
         </div>
