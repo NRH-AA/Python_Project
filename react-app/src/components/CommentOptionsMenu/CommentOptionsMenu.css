@@ -5,11 +5,11 @@
 .post-comment-container:hover .fa-solid.fa-ellipsis.open-commenter-options-button {
     visibility: visible;
 }
+
 .fa-solid.fa-ellipsis.open-commenter-options-button {
     padding: 0px;
     border-radius: 2px;
 }
-
 
 .origional-commenter-options-menu:not(.hidden) {
     display: flex;
@@ -26,9 +26,23 @@
     z-index: 100;
 }
 
-.origional-commenter-options-menu-section {
+.origional-commenter-options-container div.origional-commenter-options-menu {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.origional-commenter-options-menu div.origional-commenter-options-menu-section {
     cursor: pointer;
     font-weight: bold;
+    text-align: center;
+    width: 100px;
+    padding: 10px 20px;
+}
+
+.origional-commenter-options-menu-section:hover {
+    background-color: rgb(65, 65, 65);
 }
 
 .comment-delete-button {

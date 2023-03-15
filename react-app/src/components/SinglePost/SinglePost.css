@@ -16,9 +16,14 @@ div.post-details div.origional-poster-options * {
     border: none;
 }
 
+.post-details div.origional-poster-options.hidden {
+    border: none;
+}
+
 .origional-poster-options > * .fa-trash-can.delete-post-button-icon,
 .origional-poster-options > * .fa-pencil.edit-post-button-icon {
     padding: 0px;
+    cursor: pointer;
 }
 
 /* Origional commenter options */
@@ -125,6 +130,7 @@ div.post-comment-section-container div.post-options-container {
     height: 0px;
     margin: 0px;
     padding: 0px;
+    border: none;
 }
 
 /* Post a comment bar here */
@@ -251,5 +257,5 @@ div.likes-container div.user-like {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0px;
+    padding: 15px 0px 10px 0px;
 }
