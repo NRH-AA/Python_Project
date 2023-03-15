@@ -245,3 +245,8 @@ body {
 .user-menu-section.user-menu-modals {
   width: 88%;
 }
+
+.user-menu-liked-posts {
+  text-decoration: none;
+  padding: 1px 6px;
+}

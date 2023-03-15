@@ -2,7 +2,7 @@ const READ_USERS = "/user"
 const READ_USER = "/user/:userId"
 const READ_USER_FOLLOWERS = "/user/:userId/followers"
 const READ_USER_FOLLOWINGS = "/user/:userId/followings"
-const READ_USER_LIKED_POSTS = "/user/:userId/liked-posts"
+
 
 export const getUser = () => async (dispatch) => {
     const data = await fetch("/api")
