@@ -1,27 +1,32 @@
 /* Origional user options */
-/* .origional-poster-options > * {
-    background: none;
-    border: none;
-    color: red;
+div.post-details div.origional-poster-options {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px;
+    margin: 0px 15px;
+    border-bottom: 1px solid grey;
 }
 
-.origional-poster-options * * {
-    color: red;
-} */
+div.post-details div.origional-poster-options * {
+    padding: 0px 2px 22px 28px;
+}
 
-/* Origional commenter options */
-.post-comment-container div.origional-commenter-options-container {
+.origional-poster-options > * {
+    background: none;
+    border: none;
+}
+
+.origional-poster-options > * .fa-trash-can.delete-post-button-icon,
+.origional-poster-options > * .fa-pencil.edit-post-button-icon {
     padding: 0px;
 }
 
-.origional-commenter-options-menu {
-    position: absolute;
-    right: 41%;
-}
+/* Origional commenter options */
 
 /* Comment section below */
-.post-details div.post-comment-section-container {
-    padding: 15px 15px 0px 15px;
+.post-details div.post-comment-section-container:not(.hidden) {
+    padding: 0px 15px;
+    border-top: 1px solid grey;
 }
 
 .post-comment-section-container div.post-stats-container {
@@ -40,6 +45,11 @@
 .post-stats > * {
     display: flex;
     align-items: center;
+}
+
+.post-details div.post-option-container {
+    margin: 0px 15px;
+    padding-bottom: 15px;
 }
 
 div.post-comment-section-container div.post-options-container {
