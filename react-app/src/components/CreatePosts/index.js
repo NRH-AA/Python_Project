@@ -29,13 +29,12 @@ const handleSubmit = (e) => {
     if(!user) return setErrors(["You Must Be Logged in To Create A post"])
    dispatch(postsActions.createPost({post_title, post_text}, user.id))
    .then(closeModal)
-  .then(()=>dispatch(postsActions.getPosts()))
   .catch(async (res) => {
     const data = await res.json();
     if (data && data.errors) setErrors(data.errors);
   });
 
- history.push(`/posts/${id}`)
+ history.push(`/posts`)
   
 }
 
