@@ -268,6 +268,21 @@ div.make-comment-container.false form.type-comment-box-container {
     padding: 8px 12px;
 }
 
+.post-commenter-p {
+    margin: 0px;
+}
+.post-commenter-p2 {
+    margin: 0px;
+    font-size: 14px;
+}
+.post-commenter-username {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -10px;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
 .post-comment-box .post-commenter-username {
     padding: 0px;
     cursor: pointer;

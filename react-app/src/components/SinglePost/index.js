@@ -61,6 +61,11 @@ function SinglePost({ info }) {
         setComment("");
     }
     
+    function setUpdating() {
+        if (updatingComment) return;
+        setUpdatingComment(true);
+    }
+    
     function commentDiv(userComment) {
         if (updatingComment) {
             return <div className="post-comment">
@@ -155,14 +160,19 @@ function SinglePost({ info }) {
                             </button>
                         </form>
                     </div>
-                    <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}>
+                    <div className={`comments-container ${viewStat !== "comments" && "hidden"}`}
+                        onClick={() => setUpdating()}
+                    >
                         {post.comments.length ? post.comments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container">
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
                                     <div className="post-comment-box">
                                         <div className="post-commenter-username">
-                                            {comment.user.username}
+                                            <p className="post-commenter-p">{comment.user.username}</p>
+                                            <p className="post-commenter-p2">
+                                                {!updatingComment && session.user.id === comment.user.id ? "Click to update" : ""}
+                                            </p>
                                         </div>
                                         {commentDiv(comment)}
                                     </div>
