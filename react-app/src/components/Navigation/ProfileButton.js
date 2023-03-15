@@ -8,6 +8,7 @@ import UserFollower from "./UserFollower";
 import UserFollowing from "./UserFollowing";
 import UserLikedPosts from "./UserLikedPost";
 import './Navigation.css';
+import CreatePostForm from "../CreatePosts/index"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -77,6 +78,11 @@ function ProfileButton({ user }) {
           </div>
           <div id="nav-post-button">
             <i className="fa-sharp fa-solid fa-pencil fa-lg" />
+            <span className="bts" >
+                  <OpenModalButton id="postbutton"
+                    modalComponent={<CreatePostForm userId={user.id} />}
+                  />
+                </span>
           </div>
         </div>
       ) : (

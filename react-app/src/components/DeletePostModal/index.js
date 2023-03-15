@@ -4,11 +4,18 @@ import { useModal } from "../../context/Modal";
 import { deletePost } from "../../store/posts";
 import "./DeletePostModal.css";
 
+
+
+
 const DeletePostModal = ({ postId }) => {
+
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
     const handleDelete = () => {
+
+
+
         dispatch(deletePost(postId))
         .then(closeModal)
     }
