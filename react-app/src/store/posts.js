@@ -13,7 +13,7 @@ export const createPosts = (post) => ({
 })
 
 export const createPost = (post, userId) => async (dispatch) => {
-    const { user_id, post_title, post_heading, post_text, imageUrl } = post
+    const { user_id, post_title, post_heading, post_text, imageURL } = post
     const data = await fetch(`/api/${userId}/posts`, {
         method: "POST",
         headers: {
@@ -24,7 +24,7 @@ export const createPost = (post, userId) => async (dispatch) => {
             post_title,
             post_heading,
             post_text,
-            imageUrl
+            imageURL
         })
     })
     if (data.ok) {
@@ -67,7 +67,7 @@ export const updatePosts = (post) => {
 }
 
 export const updatePost = (id, postDetails) => async (dispatch) => {
-    const { post_title, imageUrl, post_text } = postDetails
+    const { post_title, imageURL, post_text } = postDetails
     const data = await fetch(`/api/posts/${id}`, {
         method: "PUT",
         headers: {
@@ -75,13 +75,14 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
         },
         body: JSON.stringify({
             post_title,
-            imageUrl,
+            imageURL,
             post_text
         }),
     });
     if (data.ok) {
         const response = await data.json();
         dispatch(updatePosts(response));
+        dispatch(getPosts())
         return response;
     };
     return data;

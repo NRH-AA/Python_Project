@@ -58,7 +58,8 @@ def edit_post(postId):
         post.updatedAt = datetime.now()
 
         db.session.commit()
-        return post.to_dict()
+        ret=Post.query.get(postId)
+        return ret.to_dict()
 
     if form.errors:
         return {"errors": form.errors}

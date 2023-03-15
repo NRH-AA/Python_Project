@@ -18,7 +18,7 @@ const UpdatePostModal = ({ info }) => {
         console.log("Update modal button working!")
         const postDetails = {
             post_title: postTitle,
-            post_URL: imageURL,
+            imageURL: imageURL,
             post_text: postText
         }
         dispatch(updatePost(post.id, postDetails))
