@@ -23,11 +23,11 @@ function Feed() {
                 {posts && Object.values(posts).map((post, idx) => (
                     <div className="post" key={idx}>
                         <div className="post-user-image-container">
-                            <img className="post-user-image" src={post.user.profile_picture} alt='user profile'></img>
+                            <img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>
                         </div>
                         <div className="post-details">
                             <div className="post-user">
-                                <div className="user-username">{post.user.username}</div>
+                                <div className="user-username">{post?.user?.username}</div>
                                 <div className={`follow-user-button ${(post.user_id === session?.user?.id) && "hidden"}`}>Follow</div>
                             </div>
                             <h2 className="post-title">{post.post_title}</h2>

@@ -45,7 +45,7 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div id="sign-up-modal-container-container">
 			<i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
 			<div id='sign-up-modal-container'>
 				<h1 id="sign-up-title">scrollr</h1>
@@ -130,7 +130,7 @@ function SignupFormModal() {
 				</ul>
 
 			</div>
-		</>
+		</div>
 	);
 }
 

@@ -67,14 +67,25 @@ def create_user_post(userId):
 # /api/users/<userId>/posts : GET, POST
 
 
-# Get user's follower
+# Get user's followers
 @user_routes.route('/<int:userId>/followers', methods=['GET'])
 def get_user_follower(userId):
     user = User.query.get(userId)
     return {"followers": user.to_dict()["followers"]}
+
+# Get user's followings
 
 
 @user_routes.route('/<int:userId>/followings', methods=['GET'])
 def get_user_following(userId):
     user = User.query.get(userId)
     return {"followings": user.to_dict()["followings"]}
+
+
+# Get user's liked_posts
+@user_routes.route('/<int:userId>/liked-posts', methods=['GET'])
+def get_user_liked_posts(userId):
+    user = User.query.get(userId)
+    posts = user.liked_posts
+    # return {"liked_posts": posts.to_dict()}
+    return {post.id: post.to_dict() for post in posts}

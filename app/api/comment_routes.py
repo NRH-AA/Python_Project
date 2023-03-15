@@ -26,7 +26,7 @@ def edit_comment(commentId):
         comment.comment = text
         db.session.commit()
         ret = Comment.query.get(commentId)
-        return ret
+        return ret.to_dict()
     
     if form.errors:
         return {"errors": form.errors}

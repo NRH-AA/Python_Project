@@ -38,7 +38,7 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div id="login-modal-container-container">
       <i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
       <div id='login-modal-container'>
         <h1 id="login-title">scrollr</h1>
@@ -88,7 +88,7 @@ function LoginFormModal() {
         </ul>
         <p id='demo-user-sign-in' onClick={signInDemoUser}>demo user</p>
       </div>
-    </>
+    </div>
   );
 };
 
