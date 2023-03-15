@@ -6,6 +6,7 @@ import "./SinglePost.css";
 import CommentOptionsMenu from "../CommentOptionsMenu";
 import OpenModalButton from "../OpenModalButton";
 import DeletePostModal from "../DeletePostModal";
+import UpdatePostModal from "../UpdatePostModal";
 
 function SinglePost({ info }) {
     const [openComments, setOpenComments] = useState(false);
@@ -50,26 +51,33 @@ function SinglePost({ info }) {
         <>
             {session.user &&
                 <div className={`origional-poster-options ${post.user_id !== session.user.id && "hidden"}`}>
-
+                    <OpenModalButton
+                        className="open-update-post-modal-button"
+                        buttonText={<i className="fa-regular fa-trash-can fa-xl delete-post-button-icon" />}
+                        modalComponent={<DeletePostModal />} />
+                    <OpenModalButton
+                        className="open-delete-post-modal-button"
+                        buttonText={<i className="fa-solid fa-pencil fa-xl edit-post-button-icon" />}
+                        modalComponent={<UpdatePostModal />}
+                    />
                 </div>
             }
-            <div className="post-comment-section-container">
-                <div className="post-option-container">
-                    <div className="post-options">
-                        <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
-                            {post.comments.length + post.likes.amount} notes
-                        </div>
-                        <div className={`close-comments-button ${openComments ? "show" : "hidden"}`} onClick={() => setOpenComments(!openComments)}>
-                            <i className="fa-solid fa-x fa-xs close-comments-button-image" />
-                            <p className="close-notes-button-text">Close notes</p>
-                        </div>
-                        <div className="comment-and-like-button-container">
-                            <i className={"fa-sharp fa-regular fa-comment fa-xl comment-button"} onClick={() => setOpenComments(!openComments)} />
-                            <i className={`fa-heart fa-xl like-button ${liked ? "liked fa-solid" : "fa-regular"}`} onClick={handleLikeButton} />
-                        </div>
+            <div className="post-option-container">
+                <div className="post-options">
+                    <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
+                        {post.comments.length + post.likes.amount} notes
+                    </div>
+                    <div className={`close-comments-button ${openComments ? "show" : "hidden"}`} onClick={() => setOpenComments(!openComments)}>
+                        <i className="fa-solid fa-x fa-xs close-comments-button-image" />
+                        <p className="close-notes-button-text">Close notes</p>
+                    </div>
+                    <div className="comment-and-like-button-container">
+                        <i className={"fa-sharp fa-regular fa-comment fa-xl comment-button"} onClick={() => setOpenComments(!openComments)} />
+                        <i className={`fa-heart fa-xl like-button ${liked ? "liked fa-solid" : "fa-regular"}`} onClick={handleLikeButton} />
                     </div>
                 </div>
-
+            </div>
+            <div className={`post-comment-section-container ${!openComments && "hidden"}`}>
                 <div className={openComments ? "post-comments-container" : "hidden"}>
                     <div className="post-stats-container">
                         <div className="post-stats">
@@ -120,7 +128,7 @@ function SinglePost({ info }) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`origional-commenter-options-container ${comment.user_id !== session.user.id && "hidden"}`}>
+                                <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
                                     <CommentOptionsMenu />
                                 </div>
                             </div>
