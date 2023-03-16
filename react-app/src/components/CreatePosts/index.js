@@ -46,10 +46,7 @@ function CreatePostForm({ type }) {
     setImageLoading(true);
     const res = await fetch('/api/users/upload', {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: {file},
+      body: formData,
     });
 
     if (res.ok) {
@@ -61,6 +58,8 @@ function CreatePostForm({ type }) {
       setImageURL(imageUrl)
       setImageLoading(false);
     }
+    
+    console.log(res)
   }
 
   const updateImage = (e) => {
