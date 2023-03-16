@@ -33,12 +33,6 @@ const CommentOptionsMenu = ({ commentId }) => {
         console.log("Reply to comment button is working!")
     }
 
-    // const handleDeleteComment = async (e, commentId) => {
-    //     e.preventDefault();
-
-    //     dispatch(deleteCommentThunk(commentId))
-    // }
-
     const closeMenu = () => setShowMenu(false);
 
     return (
@@ -50,7 +44,7 @@ const CommentOptionsMenu = ({ commentId }) => {
                     buttonText="Delete reply"
                     modalComponent={<DeleteReplyModal commentId={commentId}/>}
                 />
-                <div className={`origional-commenter-options-menu-section ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
+                <div className={`origional-commenter-options-menu-section comment-cancel-button ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
             </div>
             <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
         </>
