@@ -58,8 +58,6 @@ function CreatePostForm({ type }) {
       setImageURL(imageUrl)
       setImageLoading(false);
     }
-    
-    console.log(res)
   }
 
   const updateImage = (e) => {
