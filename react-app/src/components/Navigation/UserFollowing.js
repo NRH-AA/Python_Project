@@ -35,7 +35,7 @@ export default function UserFollowing({ userId }) {
                 </span>
                 <span className="post-user">
                     <span className="user-username">{following?.username}</span>
-                    <span className={`follow-user-button ${(following?.username === session?.user?.id) && "hidden"}`}>
+                    <span className={`follow-user-button ${(following?.username === session?.user?.username) && "hidden"}`}>
                         <div className="follow-button-container">
                             <span className="follow-user-button" onClick={() => handleFollowButton(following.id)}>{followed ? "Unfollow" : "Follow"}</span>
                         </div>
