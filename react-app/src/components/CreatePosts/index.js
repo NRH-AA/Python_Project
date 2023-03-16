@@ -87,7 +87,7 @@ function CreatePostForm({ type }) {
       return (
         <>
           <img id="show-img" src={imageURL} />
-          <i id="remove-image-button" class="fa-solid fa-x" onClick={removeImage} />
+          <i id="remove-image-button" className="fa-solid fa-x" onClick={removeImage} />
         </>
       )
     }
