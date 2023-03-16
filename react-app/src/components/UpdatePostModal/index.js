@@ -20,25 +20,25 @@ function UpdatePostForm({ type, post }) {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrors([]);
     if (!user) return setErrors(["You Must Be Logged in To Create A post"]);
-      
+
     if (!post_title && !post_text && !imageURL) return setErrors(["You must have a title, text or image."]);
     if (post_title === post.post_title
         && post_text === post.post_text
         && !image) return setErrors(["No updates were detected."]);
-    
+
     const postUpdated = {
         post_title,
         post_text
     }
-    
+
     if (image) postUpdated.imageURL = imageURL
-    
+
     dispatch(postsActions.updatePost(post.id, postUpdated))
       .then(closeModal)
       .catch(async (res) => {
@@ -47,33 +47,33 @@ function UpdatePostForm({ type, post }) {
             history.push(`/posts`);
       });
   };
-  
+
   const handleImageUpload = async () => {
       const formData = new FormData();
       formData.append("image", image);
-      
+
       setImageLoading(true);
       const res = await fetch('/api/users/upload', {
           method: "POST",
           body: formData,
       });
-      
+
       if (res.ok) {
         const data = await res.json();
         const imageUrl = data.url
         console.log("ImageURL", imageUrl)
-        
+
         if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
         setImageURL(imageUrl)
         setImageLoading(false);
       }
   }
-  
+
   const updateImage = (e) => {
       const file = e.target.files[0];
       setImage(file);
   }
-  
+
   const showImageUpload = () => {
     return <div>
       {(imageLoading) && <p>Loading...</p>}
@@ -91,22 +91,22 @@ function UpdatePostForm({ type, post }) {
         >Upload</button>
       </div>
   }
-  
+
   const showImage = () => {
     if (imageURL) return <img id="show-img" src={imageURL}/>
   }
 
   return (
     <div id="createForm">
-      
+
       <img id="create-post-profile-picture" src={user.profile_picture} alt="user profile"></img>
       <p className="create-form-text" >{user.username.toUpperCase()}</p>
-      
-      <form onSubmit={handleSubmit} autoComplete="on">
+
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        
+
         <label className="create-input-label">
           <input className="input"
             placeholder="Post Title"
@@ -116,12 +116,12 @@ function UpdatePostForm({ type, post }) {
             onChange={(e) => setPostTitle(e.target.value)}
           />
         </label>
-        
+
         {isImagePost === "photo" ? showImageUpload() : ""}
         {showImage()}
-        
+
         <label className="labels">
-          <textarea className="create-post-text" 
+          <textarea className="create-post-text"
             placeholder="What would you like to say?"
             maxLength="250"
             cols="20"
@@ -138,13 +138,13 @@ function UpdatePostForm({ type, post }) {
             onClick={() => closeModal()}
           >
           Cancel</button>
-          <button 
-            className='create-form-button' 
-            type="submit" 
+          <button
+            className='create-form-button'
+            type="submit"
             disabled={imageLoading && true}
           >Update Post</button>
         </div>
-        
+
       </form>
     </div>
   );
