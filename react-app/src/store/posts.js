@@ -14,9 +14,7 @@ export const createPosts = (post) => ({
 })
 
 export const createPost = (post, userId) => async (dispatch) => {
-
-    const { post_title, post_text } = post
-
+    const { post_title, imageURL, post_text } = post
     const data = await fetch(`/api/users/${userId}/posts`, {
         method: "POST",
         headers: {
@@ -24,9 +22,8 @@ export const createPost = (post, userId) => async (dispatch) => {
         },
         body: JSON.stringify({
             post_title,
-       
+            imageURL,
             post_text,
-
         })
     })
     if (data.ok) {
@@ -35,14 +32,6 @@ export const createPost = (post, userId) => async (dispatch) => {
         return response
     }
     return data;
-    // else if (response.status < 500) {
-    //     const data = await response.json();
-    //     if (data.errors) {
-    //         return data.errors;
-    //     }
-    // } else {
-    //     return ["An error occurred. Please try again."];
-    // }
 }
 
 export const deletePosts = (id) => {
@@ -84,7 +73,6 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
     if (data.ok) {
         const response = await data.json();
         dispatch(updatePosts(response));
-        dispatch(getPosts())
         return response;
     };
     return data;
