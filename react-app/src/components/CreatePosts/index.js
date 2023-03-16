@@ -65,6 +65,7 @@ function CreatePostForm({ id }) {
           <textarea className="create-post-text" placeholder="text"
             maxLength="500"
             cols="20"
+
             rows="10"
             value={post_text}
             onChange={(e) => setPostText(e.target.value)}

@@ -15,6 +15,7 @@ function SinglePost({ info }) {
     const [comment, setComment] = useState("")
     const [updateComment, setUpdateComment] = useState("")
     const [updatingComment, setUpdatingComment] = useState(false)
+    const [focusedComment, setFocusedComment] = useState(0)
     const [post, session] = info
 
     const dispatch = useDispatch()
@@ -65,33 +66,48 @@ function SinglePost({ info }) {
         if (updatingComment) return;
         setUpdatingComment(true);
     }
+    
+    function setFocusComment(comment) {
+        setFocusedComment(comment.id)
+        setUpdating()
+    }
 
     function commentDiv(userComment) {
-        if (updatingComment) {
+        if (updatingComment && session.user.id === userComment.user_id
+            && userComment.id == focusedComment) {
             return <div className="post-comment">
                 <textarea
                     maxLength="250"
                     className="edit-post-comment"
-                    value={updateComment ? updateComment : userComment.comment}
+                    value={updateComment ? updateComment : ""}
                     onChange={(e) => setUpdateComment(e.target.value)}
                 >
                 </textarea>
                 <div id="edit-comment-button-div">
                     <button className="edit-comment-button"
                         onClick={(e) => handleEditCommentSubmit(e, userComment)}
+                        diabled={updateComment === userComment.comment || updateComment.length === 0 ? true : false}
                     >Update</button>
                     <button className="edit-comment-button"
-                        onClick={() => setUpdatingComment(false)}
+                        onClick={() => {
+                            setUpdatingComment(false);
+                            setUpdateComment("");
+                        }}
                     >Cancel</button>
                 </div>
             </div>
         }
         return <div className="post-comment"
-            onClick={() => session.user.id === comment.user_id ? setUpdatingComment(true) : ""}
+            onClick={() => session.user.id === userComment.user_id ?
+                setFocusComment(userComment)
+                : ""
+            }
         >
             {userComment.comment}
         </div>
     }
+    
+    
 
     return (
         <>
@@ -168,7 +184,7 @@ function SinglePost({ info }) {
                         {post.comments.length ? post.comments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container"
-                                    onClick={() => session.user.id === comment.user_id ? setUpdating() : ""}
+                                    onClick={() => session.user.id === comment.user_id ? setFocusComment(comment) : ""}
                                 >
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
                                     <div className="post-comment-box">
