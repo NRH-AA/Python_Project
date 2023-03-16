@@ -30,7 +30,8 @@ function Feed() {
                 <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
                     <OpenModalButton
                         buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
-                        modalComponent={<UserHome id={session?.user?.id} />}
+                        // modalComponent={<UserHome info={[session, posts]} />}
+                        onButtonClick={() => unfinishedAlert()}
                     />
                     <div id="logged-user-post-options">
                         <OpenModalButton
@@ -79,7 +80,8 @@ function Feed() {
                             <div className="post-user-image-container">
                                 <OpenModalButton
                                     buttonText={<img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>}
-                                    modalComponent={<UserHome id={post?.user?.id} />}
+                                    // modalComponent={<UserHome info={[session, posts]} />}
+                                    onButtonClick={() => unfinishedAlert()}
                                 />
                             </div>
                             <div className="post-details">

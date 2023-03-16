@@ -18,6 +18,8 @@ function SinglePost({ info }) {
     const [focusedComment, setFocusedComment] = useState(0)
     const [post, session] = info
 
+    
+
     const dispatch = useDispatch()
 
     const commentPlaceholders = [

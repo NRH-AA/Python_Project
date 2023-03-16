@@ -164,17 +164,17 @@
 }
 
 .post-user-image-container > button {
+    position: sticky;
+    top: 70px;
     border: none;
     background: none;
     margin: 0px;
     padding: 0px;
-    height: min-content;
-    width: min-content;
+    height: 64px;
+    width: 64px;
 }
 
 .post-user-image {
-    position: sticky;
-    top: 70px;
     width: 64px;
     height: 64px;
     border-radius: 3px;
