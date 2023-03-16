@@ -21,6 +21,10 @@
     margin-bottom: 20px;
 }
 
+#logged-user-bar.hidden {
+    display: none;
+}
+
 #logged-user-image {
     border-radius: 3px;
     margin-left: 18px;
