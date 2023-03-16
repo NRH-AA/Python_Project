@@ -25,11 +25,21 @@
     display: none;
 }
 
+#logged-user-bar > button {
+    border: none;
+    background: none;
+    padding: 0px;
+    margin: 0px;
+    height: min-content;
+    width: min-content;
+}
+
 #logged-user-image {
     border-radius: 3px;
     margin-left: 18px;
     height: 64px;
     width: 64px;
+    cursor: pointer;
 }
 
 #logged-user-post-options {
@@ -44,26 +54,43 @@
 }
 
 #logged-user-post-options > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: none;
     padding: 0px;
 }
 
-.post-option-container {
+.post-details div.post-react-options-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
+    padding: 0px;
 }
 
 #logged-user-post-options > * .post-option-container .post-option-text {
     height: 19px;
-    font-size: 17px;
+    margin-top: 14px;
+    margin-bottom: 1px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .post-option-text,
 .post-option-icon {
     margin-top: 20px;
+}
+
+.post-option-icon {
+    transition-duration: 0.1s;
+}
+
+.post-option-container:hover .post-option-icon {
+    transform: translateY(-5px);
 }
 
 #post-image-option-icon {
@@ -137,6 +164,7 @@
 .post-details .post-title {
     margin: 0px;
     padding-left: 15px;
+    outline: none;
 }
 
 .post-details .post-text {
@@ -153,16 +181,27 @@
     width: 100px;
 }
 
-.post-user-image {
+.post-user-image-container > button {
     position: sticky;
     top: 70px;
+    border: none;
+    background: none;
+    margin: 0px;
+    padding: 0px;
+    height: 64px;
+    width: 64px;
+}
+
+.post-user-image {
     width: 64px;
     height: 64px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
-.post-details .post-option-container {
+.post-details div.post-option-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 15px 0px 10px 0px;
     width: auto;
@@ -173,14 +212,15 @@
     border-bottom: none;
 }
 
-.post-option-container .close-notes-button-text {
+.close-comments-button p.close-notes-button-text {
     margin: 0px;
     padding: 0px;
     font-size: 15px;
 }
 
-.post-option-container .post-options {
+.post-react-options-container div.post-options {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     padding: 0px;
@@ -189,11 +229,12 @@
 .post-options .view-comments-button {
     cursor: pointer;
     padding: 0px;
+    height: min-content;
 }
 
-.post-options .view-comments-button.show,
 .post-options .close-comments-button.show {
     padding: 6px 10px 6px 0px;
+    margin-left: 15px;
 }
 
 .post-options .close-comments-button.show {
@@ -203,21 +244,20 @@
     border-radius: 25px;
 }
 
-.post-options .close-comments-button-image {
-    padding: 0px 8px 0px 0px;
+.post-options i.close-comments-button-image {
+    padding: 0px 10px 0px 0px;
 }
 
-.post-options .comment-and-like-button-container {
+.post-options div.comment-and-like-button-container {
     display: flex;
     align-items: center;
-    padding: 0px;
+    padding: 20px 0px 20px 10px;
 }
 
-.comment-and-like-button-container *.comment-button,
-.comment-and-like-button-container *.like-button {
+.comment-and-like-button-container i.comment-button,
+.comment-and-like-button-container i.like-button {
     cursor: pointer;
-    padding: 0px;
-    margin-left: 24px;
+    padding: 10px 13px 10px 15px;
 }
 
 #extras {

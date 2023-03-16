@@ -33,12 +33,6 @@ const CommentOptionsMenu = ({ commentId }) => {
         console.log("Reply to comment button is working!")
     }
 
-    // const handleDeleteComment = async (e, commentId) => {
-    //     e.preventDefault();
-
-    //     dispatch(deleteCommentThunk(commentId))
-    // }
-
     const closeMenu = () => setShowMenu(false);
 
     return (
@@ -46,11 +40,11 @@ const CommentOptionsMenu = ({ commentId }) => {
             <div className={`origional-commenter-options-menu ${!showMenu && "hidden"}`}>
                 {/* <div className={`origional-commenter-options-menu-section comment-reply-button ${!showMenu && "hidden"}`} onClick={handleReplyComment}>Reply</div> */}
                 <OpenModalButton
-                    className={`origional-commenter-options-menu-section comment-delete-button ${!showMenu && "hidden"}`}
+                    className={`origional-commenter-options-menu-section comment-option-delete-button ${!showMenu && "hidden"}`}
                     buttonText="Delete reply"
                     modalComponent={<DeleteReplyModal commentId={commentId}/>}
                 />
-                <div className={`origional-commenter-options-menu-section ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
+                <div className={`origional-commenter-options-menu-section comment-option-cancel-button ${!showMenu && "hidden"}`} onClick={() => setShowMenu(false)}>Close</div>
             </div>
             <i className="fa-solid fa-ellipsis open-commenter-options-button" onClick={openMenu} />
         </>

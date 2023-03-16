@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PostLike from "../PostLike";
 import { likePost, createCommentThunk, updateCommentThunk } from "../../store/posts";
@@ -9,14 +9,23 @@ import DeletePostModal from "../DeletePostModal";
 import UpdatePostModal from "../UpdatePostModal";
 
 function SinglePost({ info }) {
+    const [post, session] = info
+
+    const likes = post.likes.users.map((like) => {
+        return like?.username
+    })
+
     const [openComments, setOpenComments] = useState(false);
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(likes.includes(session.user.username));
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
     const [updateComment, setUpdateComment] = useState("")
     const [updatingComment, setUpdatingComment] = useState(false)
     const [focusedComment, setFocusedComment] = useState(0)
-    const [post, session] = info
+
+    useEffect(() => {
+        setLiked(likes.includes(session.user.username))
+    }, [likes])
 
     const dispatch = useDispatch()
 
@@ -123,12 +132,13 @@ function SinglePost({ info }) {
                         className="open-delete-post-modal-button"
                         buttonText={<i className="fa-solid fa-pencil fa-xl edit-post-button-icon" />}
                         modalComponent={<UpdatePostModal
-                            info={[session, post]}
+                            type={post.imageURL ? "photo" : ""}
+                            post={post}
                         />}
                     />
                 </div>
             }
-            <div className="post-option-container">
+            <div className="post-react-options-container">
                 <div className="post-options">
                     <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
                         {post?.comments?.length + post?.likes?.amount} notes

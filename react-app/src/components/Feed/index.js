@@ -4,6 +4,7 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
+import UserHome from "../UserHome";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
@@ -29,21 +30,30 @@ function Feed() {
         <div id="homepage">
             <div id='dashboard'>
                 <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
-                    <img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>
+                    <OpenModalButton
+                        buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
+                        // modalComponent={<UserHome info={[session, posts]} />}
+                        onButtonClick={() => unfinishedAlert()}
+                    />
                     <div id="logged-user-post-options">
                         <OpenModalButton
                             buttonText={
-                                <div className="post-option-container">
+                                <div id="post-text-option-container" className="post-option-container">
                                     <i id="post-text-option-icon" className="fa-solid fa-font fa-2xl post-option-icon" />
                                     <div className="post-option-text">Text</div>
                                 </div>
                             }
                             modalComponent={<CreatePostForm />}
                         />
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
-                            <i id="post-image-option-icon" className="fa-solid fa-camera fa-2xl post-option-icon" />
-                            <div className="post-option-text">Photo</div>
-                        </div>
+                        <OpenModalButton
+                            buttonText={
+                                <div className="post-option-container">
+                                    <i id="post-image-option-icon" className="fa-solid fa-camera fa-2xl post-option-icon" />
+                                    <div className="post-option-text">Photo</div>
+                                </div>
+                            }
+                            modalComponent={<CreatePostForm type="photo"/>}
+                        />
                         <div className="post-option-container" onClick={() => unfinishedAlert()}>
                             <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />
                             <div className="post-option-text">Quote</div>
@@ -70,7 +80,11 @@ function Feed() {
                     {posts && Object.values(posts).map((post, idx) => (
                         <div className="post" key={idx}>
                             <div className="post-user-image-container">
-                                <img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>
+                                <OpenModalButton
+                                    buttonText={<img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>}
+                                    // modalComponent={<UserHome info={[session, posts]} />}
+                                    onButtonClick={() => unfinishedAlert()}
+                                />
                             </div>
                             <div className="post-details">
                                 <FollowUnfollowPostOwner post={post} session={session} />

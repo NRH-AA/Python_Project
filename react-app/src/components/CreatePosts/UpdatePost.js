@@ -13,7 +13,7 @@ function UpdatePostForm({post}) {
 
   const user = useSelector(state=>state.session.user)
   const [post_title, setPostTitle] = useState(post.post_title);
-  
+
   const [post_text, setPostText] = useState(post.post_text);
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
@@ -32,34 +32,34 @@ const handleSubmit = (e) => {
   });
 
  history.push(`/posts`)
-  
+
 }
 
 return (
     <div className="createForm">
-        
-             
+
+
       <h4 className="create-form-text" >{user.username}</h4>
-      <form onSubmit={handleSubmit} autoComplete="on">
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label className="create-input-label">
-        
+
           <input className="input"
           placeholder="Title"
             type="text"
             id="PostTitle"
-           
+
             value={post_title}
             onChange={(e) => setPostTitle(e.target.value)}
             required
           />
         </label>
-    
-      
+
+
         <label className="labels">
-      
+
           <textarea className="create-post-text" placeholder="text"
           maxLength="500"
           cols="20"
@@ -68,10 +68,10 @@ return (
             onChange={(e) => setPostText(e.target.value)}
             required>
           </textarea>
-        
+
         </label>
-       
-  
+
+
           <div className="button">
 
         <button className='create-form-button' type="submit" >Update Posts</button>
@@ -79,7 +79,7 @@ return (
       </form>
     </div>
   );
-  
+
 }
 
 
