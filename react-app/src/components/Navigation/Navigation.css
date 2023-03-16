@@ -207,9 +207,9 @@ body {
   justify-content: center;
   background-color: rgb(22, 189, 255);
   border-radius: 2px;
-  cursor: pointer;
   margin-left: 30px;
   padding: 0px;
+  cursor: pointer;
 }
 
 #nav-post-button * {
