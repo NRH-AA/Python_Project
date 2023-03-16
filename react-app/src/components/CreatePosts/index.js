@@ -1,10 +1,10 @@
 import React from "react"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as postsActions from "../../store/posts";
 import './createPosts.css';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 function CreatePostForm({ type }) {
@@ -15,9 +15,9 @@ function CreatePostForm({ type }) {
   const [post_text, setPostText] = useState("");
   const [isImagePost, setIsImagePost] = useState(type);
   const [image, setImage] = useState("");
+  const [imageIsSelected, setImageIsSelected] = useState(false)
   const [imageLoading, setImageLoading] = useState(false);
   const [imageURL, setImageURL] = useState('')
-
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
@@ -33,67 +33,74 @@ function CreatePostForm({ type }) {
     dispatch(postsActions.createPost({ post_title, imageURL, post_text }, user.id))
       .then(closeModal)
       .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-            history.push(`/posts`);
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+        history.push(`/posts`);
       });
   };
 
-  const handleImageUpload = async () => {
-      const formData = new FormData();
-      formData.append("image", image);
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
 
-      setImageLoading(true);
-      const res = await fetch('/api/users/upload', {
-          method: "POST",
-          body: formData,
-      });
+    setImageLoading(true);
+    const res = await fetch('/api/users/upload', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {file},
+    });
 
-      if (res.ok) {
-        const data = await res.json();
-        const imageUrl = data.url
-        console.log("ImageURL", imageUrl)
+    if (res.ok) {
+      const data = await res.json();
+      const imageUrl = data.url
+      console.log("ImageURL", imageUrl)
 
-        if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
-        setImageURL(imageUrl)
-        setImageLoading(false);
-      }
+      if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
+      setImageURL(imageUrl)
+      setImageLoading(false);
+    }
   }
 
   const updateImage = (e) => {
-      const file = e.target.files[0];
-      setImage(file);
+    const file = e.target.files[0];
+    setImage(file);
+    setImageIsSelected(true);
+    handleImageUpload(file);
   }
 
   const showImageUpload = () => {
-    return <div>
-      {(imageLoading) && <p>Loading...</p>}
-      <input
-        id="upload-img-input"
-        type="file"
-        accept="image/*"
-        onChange={updateImage}
-      />
+    return <div id="upload-image-container">
+      {(imageLoading) ? <p id="loading-text">Loading...</p>
+        :
+        <input
+          id="upload-img-input"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
+      }
       <button
-      onClick={() => handleImageUpload()}
+        onClick={() => handleImageUpload()}
         id="create-post-img-button"
         type="button"
-        disabled={!image && true}
-        >Upload</button>
-      </div>
+        disabled={!image || imageLoading || !imageIsSelected}
+      >Upload</button>
+    </div>
   }
 
   const showImage = () => {
-    if (imageURL) return <img id="show-img" src={imageURL}/>
+    if (imageURL) return <img id="show-img" src={imageURL} />
   }
 
   return (
     <div id="createForm">
 
       <img id="create-post-profile-picture" src={user.profile_picture} alt="user profile"></img>
-      <p className="create-form-text" >{user.username.toUpperCase()}</p>
+      <p className="create-form-text">{user.username}</p>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -124,16 +131,16 @@ function CreatePostForm({ type }) {
 
         <div className="create-post-button-div">
           <button
-            className='create-form-button'
+            className='create-form-cancel-button'
             type="button"
             onClick={() => closeModal()}
           >
-          Cancel</button>
+            Close</button>
           <button
-            className='create-form-button'
+            className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading && true}
-          >Create Post</button>
+            disabled={imageLoading || (!post_text && !post_title && !imageIsSelected)}
+          >Post now</button>
         </div>
 
       </form>

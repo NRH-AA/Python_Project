@@ -76,7 +76,7 @@ function UpdatePostForm({ type, post }) {
 
   const showImageUpload = () => {
     return <div>
-      {(imageLoading) && <p>Loading...</p>}
+      {(imageLoading) && <p id="loading-text">Loading...</p>}
       <input
         id="upload-img-input"
         type="file"
@@ -133,16 +133,16 @@ function UpdatePostForm({ type, post }) {
 
         <div className="create-post-button-div">
           <button
-            className='create-form-button'
+            className='create-form-cancel-button'
             type="button"
             onClick={() => closeModal()}
           >
-          Cancel</button>
+          Close</button>
           <button
-            className='create-form-button'
+            className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading && true}
-          >Update Post</button>
+            disabled={imageLoading || (!post_text && !post_title && !image)}
+          >Save</button>
         </div>
 
       </form>

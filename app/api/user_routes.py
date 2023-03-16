@@ -37,20 +37,20 @@ def get_user_posts(userId):
 # Create a user post
 @user_routes.route('/upload', methods=['POST'])
 @login_required
-def upload_image(): 
+def upload_image():
     if "image" in request.files:
         image = request.files["image"]
 
     if not allowed_file(image.filename):
         return {"errors": "file type not permitted"}, 400
-        
+
     image.filename = get_unique_filename(image.filename)
-        
+
     upload = upload_file_to_s3(image)
-        
+
     if "url" not in upload:
          return upload, 400
-        
+
     imageURL = upload["url"]
     return {"url": imageURL}
 
@@ -64,7 +64,7 @@ def create_user_post(userId):
         title = form.post_title.data
         text = form.post_text.data
         imageURL = form.imageURL.data
-        
+
         new_post = Post(
             user_id=userId,
             post_title=title,
