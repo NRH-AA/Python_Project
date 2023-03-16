@@ -5,6 +5,7 @@
 .input {
     height: fit-content;
     color: black;
+    outline: none;
 }
 
 #create-title {

@@ -77,18 +77,20 @@ div.post-comment-section-container div.post-options-container {
 
 .post-comment-box {
     width: 400px;
-    height: 120px;
+    height: max-content;
 }
 
 .edit-post-comment {
     width: 95%;
     border: none;
+    outline: none;
     margin: none;
     background-color: inherit;
     resize: none;
     font-size: 16px;
     margin-left: -10px;
 }
+
 
 #edit-comment-button-div {
     display: flex;
@@ -313,7 +315,7 @@ div.make-comment-container.false form.type-comment-box-container {
     padding: 5px 0px;
     font-size: 16px;
     overflow-wrap: break-word;
-    height: 50px;
+    height: max-content;
 }
 
 /* Likes container */

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import PostLike from "../PostLike";
 import { likePost, createCommentThunk, updateCommentThunk } from "../../store/posts";
@@ -10,7 +10,7 @@ import UpdatePostModal from "../UpdatePostModal";
 
 function SinglePost({ info }) {
     const [post, session] = info
-    
+
     const likes = post.likes.users.map((like) => {
         return like?.username
     })
@@ -23,6 +23,9 @@ function SinglePost({ info }) {
     const [updatingComment, setUpdatingComment] = useState(false)
     const [focusedComment, setFocusedComment] = useState(0)
 
+    useEffect(() => {
+        setLiked(likes.includes(session.user.username))
+    }, [likes])
 
     const dispatch = useDispatch()
 
@@ -135,7 +138,7 @@ function SinglePost({ info }) {
                     />
                 </div>
             }
-            <div className="post-option-container">
+            <div className="post-react-options-container">
                 <div className="post-options">
                     <div className={`view-comments-button ${openComments ? "hidden" : "show"}`} onClick={() => setOpenComments(!openComments)}>
                         {post?.comments?.length + post?.likes?.amount} notes
