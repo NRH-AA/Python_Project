@@ -3,6 +3,8 @@ from flask_login import login_required
 from app.models import db, User, Post
 from app.forms import PostForm
 from datetime import datetime
+from app.util import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 user_routes = Blueprint('users', __name__)
 
@@ -33,7 +35,24 @@ def get_user_posts(userId):
     return f'<h1>Get user posts: UserID: {userId} </h1>'
 
 # Create a user post
+@user_routes.route('/upload', methods=['POST'])
+@login_required
+def upload_image(): 
+    if "image" in request.files:
+        image = request.files["image"]
 
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+        
+    image.filename = get_unique_filename(image.filename)
+        
+    upload = upload_file_to_s3(image)
+        
+    if "url" not in upload:
+         return upload, 400
+        
+    imageURL = upload["url"]
+    return {"url": imageURL}
 
 @user_routes.route('/<int:userId>/posts', methods=['POST'])
 @login_required
@@ -44,14 +63,13 @@ def create_user_post(userId):
     if form.validate_on_submit():
         title = form.post_title.data
         text = form.post_text.data
-
-        if not title and not text:
-            return {"errors": ["Invalid Post Request"]}
-
+        imageURL = form.imageURL.data
+        
         new_post = Post(
             user_id=userId,
             post_title=title,
             post_text=text,
+            imageURL=imageURL,
             createdAt=datetime.now(),
             updatedAt=datetime.now()
         )

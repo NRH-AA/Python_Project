@@ -43,6 +43,7 @@
     height: 12em;
     margin-left: 1.5em;
     font-size: large;
+    resize: none;
     box-sizing: border-box;
     border: none;
     background-color: rgba(159, 132, 255, 0);
