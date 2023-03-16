@@ -4,6 +4,8 @@
 
 .post-comment-container:hover .fa-solid.fa-ellipsis.open-commenter-options-button {
     visibility: visible;
+    cursor: pointer;
+    height: 10px;
 }
 
 .fa-solid.fa-ellipsis.open-commenter-options-button {
