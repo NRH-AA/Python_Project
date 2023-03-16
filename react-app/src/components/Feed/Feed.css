@@ -25,11 +25,21 @@
     display: none;
 }
 
+#logged-user-bar > button {
+    border: none;
+    background: none;
+    padding: 0px;
+    margin: 0px;
+    height: min-content;
+    width: min-content;
+}
+
 #logged-user-image {
     border-radius: 3px;
     margin-left: 18px;
     height: 64px;
     width: 64px;
+    cursor: pointer;
 }
 
 #logged-user-post-options {
@@ -153,12 +163,22 @@
     width: 100px;
 }
 
-.post-user-image {
+.post-user-image-container > button {
     position: sticky;
     top: 70px;
+    border: none;
+    background: none;
+    margin: 0px;
+    padding: 0px;
+    height: 64px;
+    width: 64px;
+}
+
+.post-user-image {
     width: 64px;
     height: 64px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .post-details .post-option-container {

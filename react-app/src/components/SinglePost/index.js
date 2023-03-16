@@ -9,14 +9,20 @@ import DeletePostModal from "../DeletePostModal";
 import UpdatePostModal from "../UpdatePostModal";
 
 function SinglePost({ info }) {
+    const [post, session] = info
+    
+    const likes = post.likes.users.map((like) => {
+        return like?.username
+    })
+
     const [openComments, setOpenComments] = useState(false);
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(likes.includes(session.user.username));
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
     const [updateComment, setUpdateComment] = useState("")
     const [updatingComment, setUpdatingComment] = useState(false)
     const [focusedComment, setFocusedComment] = useState(0)
-    const [post, session] = info
+
 
     const dispatch = useDispatch()
 
