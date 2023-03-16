@@ -14,13 +14,7 @@
 body {
   background-color: black;
 }
-.bts {
 
-
-  background-color: rgb(22, 189, 255);
- 
-
-}
 #navbar {
   display: flex;
   align-items: center;
@@ -211,22 +205,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
-  width: 47px;
   background-color: rgb(22, 189, 255);
   border-radius: 2px;
   cursor: pointer;
   margin-left: 30px;
-
+  padding: 0px;
 }
 
 #nav-post-button * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: black;
   background-color:rgb(22, 189, 255);
-  border:none;
-  cursor: pointer;
+  border: none;
+  padding: 0px;
+  height: 32px;
+  width: 47px;
+  border-radius: 3px;
 }
-
 
 .user-menu-section.user-menu-modals button {
   background-color: rgb(36, 36, 36);

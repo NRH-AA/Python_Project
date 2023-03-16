@@ -1,0 +1,27 @@
+#delete-reply-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#delete-reply-modal-buttons-container {
+    display: flex;
+    align-items: center;
+}
+
+#delete-reply-modal-buttons-container * {
+    color: black;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#cancel-delete-reply-button {
+    background-color: rgb(255, 60, 0);
+}
+
+#delete-reply-button {
+    background-color: rgb(22, 189, 255);
+    margin-left: 28px;
+}
