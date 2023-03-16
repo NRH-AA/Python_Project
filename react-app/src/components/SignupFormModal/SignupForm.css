@@ -108,6 +108,7 @@
     padding: 15px;
     border-radius: 20px;
     font-weight: 600;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -119,6 +120,7 @@
 i.sign-up-form-arrow-img {
     width: 10px;
     padding-left: 20px;
+    color: black;
 }
 
 #demo-user-sign-in {

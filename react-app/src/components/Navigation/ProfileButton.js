@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -9,6 +8,7 @@ import UserFollowing from "./UserFollowing";
 import './Navigation.css';
 import CreatePostForm from "../CreatePosts/index"
 import { NavLink } from "react-router-dom";
+import LogoutModal from "../LogoutModal";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -33,11 +33,6 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-  };
-  
   const showFeatureMessage = () => alert("Feature Coming Soon")
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -53,7 +48,11 @@ function ProfileButton({ user }) {
           <div id='user-menu-options' className={ulClassName} ref={ulRef}>
             <div className="user-menu-header user-menu-section top">
               <div>Account</div>
-              <div id='logout-button' onClick={handleLogout}>Log out</div>
+              <OpenModalButton
+                id='logout-button'
+                buttonText={"Log out"}
+                modalComponent={<LogoutModal />}
+              />
             </div>
             <div className="user-menu-section user-menu-modals">
               <NavLink to="/likes" className="user-menu-liked-posts">
@@ -81,10 +80,10 @@ function ProfileButton({ user }) {
             </div>
           </div>
           <div id="nav-post-button">
-              <OpenModalButton
-                buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
-                modalComponent={<CreatePostForm userId={user.id} />}
-              />
+            <OpenModalButton
+              buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
+              modalComponent={<CreatePostForm userId={user.id} />}
+            />
           </div>
         </div>
       ) : (
