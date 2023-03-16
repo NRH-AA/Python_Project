@@ -35,6 +35,16 @@
     align-items: center;
 }
 
+.origional-commenter-options-menu > button:hover {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.origional-commenter-options-menu .comment-cancel-button:hover {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 .origional-commenter-options-menu > button {
     border: none;
     background: none;
