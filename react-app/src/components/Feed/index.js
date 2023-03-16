@@ -68,7 +68,7 @@ function Feed() {
                     <div id="logged-user-post-options">
                         <OpenModalButton
                             buttonText={
-                                <div className="post-option-container">
+                                <div id="post-text-option-container" className="post-option-container">
                                     <i id="post-text-option-icon" className="fa-solid fa-font fa-2xl post-option-icon" />
                                     <div className="post-option-text">Text</div>
                                 </div>

@@ -54,6 +54,10 @@
 }
 
 #logged-user-post-options > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: none;
     padding: 0px;
@@ -63,18 +67,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     padding: 0px;
 }
 
-#logged-user-post-options > * .post-react-options-container .post-option-text {
+#logged-user-post-options > * .post-option-container .post-option-text {
     height: 19px;
-    font-size: 17px;
+    margin-top: 14px;
+    margin-bottom: 1px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .post-option-text,
 .post-option-icon {
     margin-top: 20px;
+}
+
+.post-option-icon {
+    transition-duration: 0.1s;
+}
+
+.post-option-container:hover .post-option-icon {
+    transform: translateY(-5px);
 }
 
 #post-image-option-icon {
@@ -183,8 +199,9 @@
     cursor: pointer;
 }
 
-.post-details .post-option-container {
+.post-details div.post-option-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 15px 0px 10px 0px;
     width: auto;
@@ -237,10 +254,10 @@
     padding: 20px 0px 20px 10px;
 }
 
-.comment-and-like-button-container *.comment-button,
-.comment-and-like-button-container *.like-button {
+.comment-and-like-button-container i.comment-button,
+.comment-and-like-button-container i.like-button {
     cursor: pointer;
-    padding: 0px;
+    padding: 10px 13px 10px 15px;
 }
 
 #extras {
@@ -251,7 +268,7 @@
 
 #extras p {
     position: sticky;
-    top: 98vh;
+    top: 920px;
     display: flex;
     font-size: 12px;
     height: 20px;

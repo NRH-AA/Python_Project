@@ -53,7 +53,7 @@ div.post-details div.origional-poster-options * {
     padding: 0px;
 }
 
-.post-stats>* {
+.post-stats > * {
     display: flex;
     align-items: center;
 }

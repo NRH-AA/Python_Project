@@ -133,16 +133,16 @@ function UpdatePostForm({ type, post }) {
 
         <div className="create-post-button-div">
           <button
-            className='create-form-button'
+            className='create-form-cancel-button'
             type="button"
             onClick={() => closeModal()}
           >
-          Cancel</button>
+          Close</button>
           <button
-            className='create-form-button'
+            className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading && true}
-          >Update Post</button>
+            disabled={imageLoading || (!post_text && !post_title)}
+          >Save</button>
         </div>
 
       </form>

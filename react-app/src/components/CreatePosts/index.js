@@ -33,36 +33,36 @@ function CreatePostForm({ type }) {
     dispatch(postsActions.createPost({ post_title, imageURL, post_text }, user.id))
       .then(closeModal)
       .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-            history.push(`/posts`);
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+        history.push(`/posts`);
       });
   };
 
   const handleImageUpload = async () => {
-      const formData = new FormData();
-      formData.append("image", image);
+    const formData = new FormData();
+    formData.append("image", image);
 
-      setImageLoading(true);
-      const res = await fetch('/api/users/upload', {
-          method: "POST",
-          body: formData,
-      });
+    setImageLoading(true);
+    const res = await fetch('/api/users/upload', {
+      method: "POST",
+      body: formData,
+    });
 
-      if (res.ok) {
-        const data = await res.json();
-        const imageUrl = data.url
-        console.log("ImageURL", imageUrl)
+    if (res.ok) {
+      const data = await res.json();
+      const imageUrl = data.url
+      console.log("ImageURL", imageUrl)
 
-        if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
-        setImageURL(imageUrl)
-        setImageLoading(false);
-      }
+      if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
+      setImageURL(imageUrl)
+      setImageLoading(false);
+    }
   }
 
   const updateImage = (e) => {
-      const file = e.target.files[0];
-      setImage(file);
+    const file = e.target.files[0];
+    setImage(file);
   }
 
   const showImageUpload = () => {
@@ -75,25 +75,25 @@ function CreatePostForm({ type }) {
         onChange={updateImage}
       />
       <button
-      onClick={() => handleImageUpload()}
+        onClick={() => handleImageUpload()}
         id="create-post-img-button"
         type="button"
         disabled={!image && true}
-        >Upload</button>
-      </div>
+      >Upload</button>
+    </div>
   }
 
   const showImage = () => {
-    if (imageURL) return <img id="show-img" src={imageURL}/>
+    if (imageURL) return <img id="show-img" src={imageURL} />
   }
 
   return (
     <div id="createForm">
 
       <img id="create-post-profile-picture" src={user.profile_picture} alt="user profile"></img>
-      <p className="create-form-text" >{user.username.toUpperCase()}</p>
+      <p className="create-form-text">{user.username}</p>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
@@ -124,16 +124,16 @@ function CreatePostForm({ type }) {
 
         <div className="create-post-button-div">
           <button
-            className='create-form-button'
+            className='create-form-cancel-button'
             type="button"
             onClick={() => closeModal()}
           >
-          Cancel</button>
+            Close</button>
           <button
-            className='create-form-button'
+            className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading && true}
-          >Create Post</button>
+            disabled={imageLoading || (!post_text && !post_title && !image)}
+          >Post now</button>
         </div>
 
       </form>
