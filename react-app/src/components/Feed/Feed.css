@@ -248,7 +248,7 @@
 
 #extras p {
     position: sticky;
-    top: 920px;
+    top: 98vh;
     display: flex;
     font-size: 12px;
     height: 20px;
