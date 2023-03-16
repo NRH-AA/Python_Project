@@ -37,6 +37,8 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
   };
+  
+  const showFeatureMessage = () => alert("Feature Coming Soon")
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -71,16 +73,18 @@ function ProfileButton({ user }) {
               <div>Blogs</div>
               <div>+ New</div>
             </div>
-            <div id="user-information-section" className="user-menu-section">
+            <div id="user-information-section" className="user-menu-section"
+              onClick={() => showFeatureMessage()}
+            >
               <img id='user-profile-picture' src={user.profile_picture} alt='user profile'></img>
               <div id='user-username'>{user.username}</div>
             </div>
           </div>
           <div id="nav-post-button">
-            <OpenModalButton
-              buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
-              modalComponent={<CreatePostForm userId={user.id} />}
-            />
+              <OpenModalButton
+                buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
+                modalComponent={<CreatePostForm userId={user.id} />}
+              />
           </div>
         </div>
       ) : (
