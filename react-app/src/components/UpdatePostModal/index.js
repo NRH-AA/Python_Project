@@ -76,7 +76,7 @@ function UpdatePostForm({ type, post }) {
 
   const showImageUpload = () => {
     return <div>
-      {(imageLoading) && <p>Loading...</p>}
+      {(imageLoading) && <p id="loading-text">Loading...</p>}
       <input
         id="upload-img-input"
         type="file"
@@ -141,7 +141,7 @@ function UpdatePostForm({ type, post }) {
           <button
             className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading || (!post_text && !post_title)}
+            disabled={imageLoading || (!post_text && !post_title && !image)}
           >Save</button>
         </div>
 

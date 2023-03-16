@@ -40,7 +40,26 @@
 
 #create-post-img-button {
     width: 80px;
+    border: none;
     background: none;
+    border-radius: 20px;
+    margin: 0px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 15px;
+    background-color: rgb(22, 189, 255);
+    color: rgb(32, 32, 32);
+}
+
+#create-post-img-button:disabled {
+    cursor: default;
+    background-color: rgb(56, 56, 56);
+    color: rgb(99, 99, 99);
+}
+
+#loading-text {
+    margin-left: 26px;
 }
 
 .create-form-text-container *.create-form-text {
@@ -54,7 +73,7 @@
     flex-flow: nowrap;
     width: 580px;
     height: 12em;
-    padding: 10px;
+    padding: 25px 10px 10px 10px;
     margin: 0px 16px;
     font-size: large;
     resize: none;
@@ -65,8 +84,9 @@
 
 .create-input-label {
     display: flex;
+    height: min-content;
     width: 95%;
-    margin-left: 1em;
+    margin: 0px 0px 0px 1em;
     border: none;
 }
 
@@ -83,7 +103,6 @@
 #PostTitle {
     font-size: 25px;
     font-weight: 500;
-    margin-bottom: 10px;
 }
 
 .create-post-button-div {
@@ -120,11 +139,19 @@ button.create-form-submit-button:disabled {
     color: rgb(99, 99, 99);
 }
 
+#upload-image-container {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
 #upload-img-input {
-    height: 50px;
-    margin-top: 20px;
-    margin-left: 30px;
+    height: min-content;
+    padding: 10px;
+    margin-left: 26px;
     cursor: pointer;
+    background-color: rgb(54, 54, 54);
+    border: 2px dashed rgb(85, 85, 85);
 }
 
 #create-post-profile-picture {

@@ -1,10 +1,10 @@
 import React from "react"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as postsActions from "../../store/posts";
 import './createPosts.css';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 function CreatePostForm({ type }) {
@@ -15,9 +15,9 @@ function CreatePostForm({ type }) {
   const [post_text, setPostText] = useState("");
   const [isImagePost, setIsImagePost] = useState(type);
   const [image, setImage] = useState("");
+  const [imageIsSelected, setImageIsSelected] = useState(false)
   const [imageLoading, setImageLoading] = useState(false);
   const [imageURL, setImageURL] = useState('')
-
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
@@ -39,14 +39,17 @@ function CreatePostForm({ type }) {
       });
   };
 
-  const handleImageUpload = async () => {
+  const handleImageUpload = async (file) => {
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", file);
 
     setImageLoading(true);
     const res = await fetch('/api/users/upload', {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {file},
     });
 
     if (res.ok) {
@@ -63,22 +66,26 @@ function CreatePostForm({ type }) {
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
+    setImageIsSelected(true);
+    handleImageUpload(file);
   }
 
   const showImageUpload = () => {
-    return <div>
-      {(imageLoading) && <p>Loading...</p>}
-      <input
-        id="upload-img-input"
-        type="file"
-        accept="image/*"
-        onChange={updateImage}
-      />
+    return <div id="upload-image-container">
+      {(imageLoading) ? <p id="loading-text">Loading...</p>
+        :
+        <input
+          id="upload-img-input"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
+      }
       <button
         onClick={() => handleImageUpload()}
         id="create-post-img-button"
         type="button"
-        disabled={!image && true}
+        disabled={!image || imageLoading || !imageIsSelected}
       >Upload</button>
     </div>
   }
@@ -132,7 +139,7 @@ function CreatePostForm({ type }) {
           <button
             className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading || (!post_text && !post_title && !image)}
+            disabled={imageLoading || (!post_text && !post_title && !imageIsSelected)}
           >Post now</button>
         </div>
 
