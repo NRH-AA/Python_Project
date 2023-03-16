@@ -217,7 +217,7 @@ body {
   justify-content: center;
   align-items: center;
   color: black;
-  background-color:rgb(22, 189, 255);
+  background-color: rgb(22, 189, 255);
   border: none;
   padding: 0px;
   height: 32px;
@@ -250,4 +250,14 @@ body {
 .user-menu-liked-posts {
   text-decoration: none;
   padding: 1px 6px;
+}
+
+.post-details.post-details-user-menu {
+  display: flex;
+}
+
+.post-details.post-details-user-menu .post-user {
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
 }
