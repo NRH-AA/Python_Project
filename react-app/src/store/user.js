@@ -68,6 +68,22 @@ export const getUserFollowings = (userId) => async (dispatch) => {
     return followings
 }
 
+export const followUnfollowUser = (user_id, curr_user_id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${user_id}/follow`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            curr_user_id
+        })
+    })
+
+    if (res.ok) {
+        const curr_user = await res.json();
+        dispatch(getUserFollowers(curr_user.id))
+    }
+}
+
+
 let initialState = { allUsers: {}, singleUser: {} }
 export default function userReducer(state = initialState, action) {
     let newState = {}
