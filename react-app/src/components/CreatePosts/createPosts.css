@@ -14,14 +14,19 @@
 }
 
 .create-form-text {
+    margin-left: 20px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    margin: 15px 0;
     border: none;
 }
 
+#show-img {
+    height: 300px;
+    width: 100%;
+}
+
 #createForm {
-    height: 29em;
+    height: auto;
     display: flex;
     flex-flow: column;
     width: 622px;
@@ -29,6 +34,11 @@
     border: none;
     margin: 10px;
     color: rgb(190, 22, 22);
+}
+
+#create-post-img-button {
+    width: 80px;
+    background: none;
 }
 
 .create-form-text-container *.create-form-text {
@@ -68,19 +78,46 @@
     background-color: rgba(159, 132, 255, 0);
 }
 
-.create-form-button {
+.create-post-button-div {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+}
+
+.create-form-button {
+    height: 2.5em;
+    width: 12em;
     background: none;
-    outline: none;
     border: none;
-    background-color: rgb(52, 154, 216);
-    color: black;
-    margin-top: 5em;
     border-radius: 20px;
+    background-color: rgb(52, 154, 216);
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: black;
     font-weight: 600;
     cursor: pointer;
-    height: 2.5em;
-    margin-left: 38em
+}
+.create-form-button:disabled {
+    cursor: default;
+}
+
+#upload-img-input {
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+#create-post-profile-picture {
+    position: absolute;
+    height: 64px;
+    width: 64px;
+    border-radius: 3px;
+    left: -65px;
+}
+
+::file-selector-button {
+    display: none;
 }

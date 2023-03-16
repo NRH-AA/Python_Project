@@ -129,7 +129,8 @@ function SinglePost({ info }) {
                         className="open-delete-post-modal-button"
                         buttonText={<i className="fa-solid fa-pencil fa-xl edit-post-button-icon" />}
                         modalComponent={<UpdatePostModal
-                            info={[session, post]}
+                            type={post.imageURL ? "photo" : ""}
+                            post={post}
                         />}
                     />
                 </div>
