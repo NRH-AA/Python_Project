@@ -261,3 +261,20 @@ body {
   justify-content: space-between;
   width: 65%;
 }
+
+.user-menu-section button:hover {
+  background-color: rgb(63, 63, 63);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.post-user-follower {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-user-follower .user-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
