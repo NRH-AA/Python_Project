@@ -92,3 +92,27 @@ def get_user_liked_posts(userId):
     posts = user.liked_posts
     # return {post.id: post.to_dict() for post in posts}
     return [post.to_dict() for post in posts]
+
+# follow or unfollow an user
+
+
+@user_routes.route('/<int:userId>/follow', methods=['POST'])
+@login_required
+def follow_unfollow_user(userId):
+    target_user = User.query.get(userId)
+
+    curr_user_id = request.get_json()['curr_user_id']
+    user = User.query.get(curr_user_id)
+
+    if not user:
+        return {"errors": ["User does not exist"]}
+
+    for following in user.followings:
+        if following.id == target_user.id:
+            user.followings.remove(target_user)
+            db.session.commit()
+            return user.to_dict()
+
+    user.followings.append(target_user)
+    db.session.commit()
+    return user.to_dict()
