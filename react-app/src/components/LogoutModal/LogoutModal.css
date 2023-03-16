@@ -1,0 +1,25 @@
+#logout-modal-container {
+    text-align: center;
+}
+
+#logout-modal-div {
+    background-color: rgb(46, 42, 42);
+    opacity: 0.7;
+}
+
+#logout-modal-h2 {
+    color: white;
+}
+
+#logout-modal-button-div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.logout-modal-button {
+    width: 120px;
+    height: 25px;
+    color: white;
+    background: none;
+    margin-bottom: 10px;
+}
