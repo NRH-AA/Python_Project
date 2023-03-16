@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
 import "./Feed.css";
-import { followUnfollowUser } from "../../store/user";
+import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
 function Feed() {
     const dispatch = useDispatch();
@@ -24,36 +24,6 @@ function Feed() {
     }, [dispatch])
 
     // Need to implement a way to check if a post's user is in current user's followings
-    // Following user
-    const FollowingPostOwner = ({ post }) => {
-        //const [followed, setFollowed] = useState(false);
-        let followedStr = false
-        const currUserId = session.user?.id
-        const followerUserIdList = post.user?.followers.map(follower => follower.id)
-        //if (currUserId in followerUserIdList) setFollowed(true)
-        if (currUserId in followerUserIdList) followedStr = true
-        const [followed, setFollowed] = useState(followedStr);
-        //console.log(followerUserIdList)
-        const handleFollowButton = (target_user_id) => {
-            if (session?.user) {
-                setFollowed(!followed);
-                //console.log(following)
-                dispatch(followUnfollowUser(target_user_id, currUserId))
-            } else {
-                console.log("You need to belogged in to test that feature!")
-            }
-        };
-        return (
-            <div className="post-user">
-                <span className="user-username">{post.user?.username}</span>
-                <span className={`follow-user-button ${(post.user?.username === session?.user?.username) && "hidden"}`}>
-                    <div className="follow-button-container">
-                        <span className="follow-user-button" onClick={() => handleFollowButton(post.user.id)}>{followed ? "Unfollow" : "Follow"}</span>
-                    </div>
-                </span>
-            </div>
-        )
-    }
 
     return (
         <div id="homepage">
@@ -103,11 +73,7 @@ function Feed() {
                                 <img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>
                             </div>
                             <div className="post-details">
-                                {/* <div className="post-user">
-                                    <div className="user-username">{post?.user?.username}</div>
-                                    <div className={`follow-user-button ${(post.user_id === session?.user?.id) && "hidden"}`}>Follow</div>
-                                </div> */}
-                                <FollowingPostOwner post={post} />
+                                <FollowUnfollowPostOwner post={post} session={session} />
                                 <h2 className="post-title">{post.post_title}</h2>
                                 <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
                                 <div className={post.post_text ? "post-text" : "hidden"}>{post.post_text}</div>

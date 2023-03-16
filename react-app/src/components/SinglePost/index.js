@@ -66,7 +66,7 @@ function SinglePost({ info }) {
         if (updatingComment) return;
         setUpdatingComment(true);
     }
-    
+
     function setFocusComment(comment) {
         setFocusedComment(comment.id)
         setUpdating()
@@ -74,7 +74,7 @@ function SinglePost({ info }) {
 
     function commentDiv(userComment) {
         if (updatingComment && session.user.id === userComment.user_id
-            && userComment.id == focusedComment) {
+            && userComment.id === focusedComment) {
             return <div className="post-comment">
                 <textarea
                     maxLength="250"
@@ -106,8 +106,8 @@ function SinglePost({ info }) {
             {userComment.comment}
         </div>
     }
-    
-    
+
+
 
     return (
         <>
