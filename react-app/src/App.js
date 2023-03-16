@@ -19,16 +19,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/user/:userId">
-          <UserHome />
-          </Route>
           <Route path="/likes">
             <UserLikedPosts />
           </Route>
           <Route path="/">
             <Feed />
           </Route>
-
         </Switch>
       )}
     </>

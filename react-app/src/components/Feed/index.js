@@ -4,6 +4,7 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
+import UserHome from "../UserHome";
 import "./Feed.css";
 
 function Feed() {
@@ -27,7 +28,10 @@ function Feed() {
         <div id="homepage">
             <div id='dashboard'>
                 <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
-                    <img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>
+                    <OpenModalButton
+                        buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
+                        modalComponent={<UserHome id={session?.user?.id} />}
+                    />
                     <div id="logged-user-post-options">
                         <OpenModalButton
                             buttonText={
@@ -73,7 +77,10 @@ function Feed() {
                     {posts && Object.values(posts).map((post, idx) => (
                         <div className="post" key={idx}>
                             <div className="post-user-image-container">
-                                <img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>
+                                <OpenModalButton
+                                    buttonText={<img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>}
+                                    modalComponent={<UserHome id={post?.user?.id} />}
+                                />
                             </div>
                             <div className="post-details">
                                 <div className="post-user">
