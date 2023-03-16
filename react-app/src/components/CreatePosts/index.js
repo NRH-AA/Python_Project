@@ -14,7 +14,6 @@ function CreatePostForm({ type }) {
   const [post_text, setPostText] = useState("");
   const [isImagePost, setIsImagePost] = useState(type);
   const [image, setImage] = useState("");
-  const [imageIsSelected, setImageIsSelected] = useState(false)
   const [imageLoading, setImageLoading] = useState(false);
   const [imageURL, setImageURL] = useState('')
   const [errors, setErrors] = useState([]);
@@ -62,28 +61,36 @@ function CreatePostForm({ type }) {
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
-    setImageIsSelected(true);
     handleImageUpload(file);
   }
 
   const showImageUpload = () => {
     return (
       <div id="upload-image-container">
-        {(imageLoading) ? <p id="loading-text">Loading...</p>
-          :
-          <input
-            id="upload-img-input"
-            type="file"
-            accept="image/*"
-            onChange={updateImage}
-          />
-        }
+        <input
+          id="upload-img-input"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
       </div>
     )
   }
 
+  const removeImage = () => {
+    setImage("")
+    setImageURL("")
+  }
+
   const showImage = () => {
-    if (imageURL) return <img id="show-img" src={imageURL} />
+    if (imageURL) {
+      return (
+        <>
+          <img id="show-img" src={imageURL} />
+          <i id="remove-image-button" class="fa-solid fa-x" onClick={removeImage} />
+        </>
+      )
+    }
   }
 
   return (
@@ -108,6 +115,7 @@ function CreatePostForm({ type }) {
         </label>
 
         {isImagePost === "photo" && image === "" ? showImageUpload() : ""}
+        {(imageLoading && <p id="loading-text">Loading...</p>)}
         {showImage()}
 
         <label className="labels">
@@ -131,7 +139,7 @@ function CreatePostForm({ type }) {
           <button
             className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading || (!post_text && !post_title && !imageIsSelected)}
+            disabled={imageLoading || (!post_text && !post_title && !imageURL)}
           >Post now</button>
         </div>
 
