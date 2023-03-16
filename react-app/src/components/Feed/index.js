@@ -38,10 +38,15 @@ function Feed() {
                             }
                             modalComponent={<CreatePostForm />}
                         />
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
-                            <i id="post-image-option-icon" className="fa-solid fa-camera fa-2xl post-option-icon" />
-                            <div className="post-option-text">Photo</div>
-                        </div>
+                        <OpenModalButton
+                            buttonText={
+                                <div className="post-option-container">
+                                    <i id="post-image-option-icon" className="fa-solid fa-camera fa-2xl post-option-icon" />
+                                    <div className="post-option-text">Photo</div>
+                                </div>
+                            }
+                            modalComponent={<CreatePostForm type="photo"/>}
+                        />
                         <div className="post-option-container" onClick={() => unfinishedAlert()}>
                             <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />
                             <div className="post-option-text">Quote</div>
