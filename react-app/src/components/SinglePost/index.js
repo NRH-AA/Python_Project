@@ -16,7 +16,7 @@ function SinglePost({ info }) {
     })
 
     const [openComments, setOpenComments] = useState(false);
-    const [liked, setLiked] = useState(likes.includes(session.user.username));
+    const [liked, setLiked] = useState(likes.includes(session?.user?.username));
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
     const [updateComment, setUpdateComment] = useState("")
@@ -24,7 +24,7 @@ function SinglePost({ info }) {
     const [focusedComment, setFocusedComment] = useState(0)
 
     useEffect(() => {
-        setLiked(likes.includes(session.user.username))
+        setLiked(likes.includes(session?.user?.username))
     }, [likes])
 
     const dispatch = useDispatch()

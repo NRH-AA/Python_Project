@@ -9,13 +9,11 @@ import { useHistory } from "react-router-dom";
 
 function CreatePostForm({ type }) {
   const dispatch = useDispatch();
-  //   const posts = useSelector(state=>state.posts.allPosts)
   const user = useSelector(state => state.session.user)
   const [post_title, setPostTitle] = useState("");
   const [post_text, setPostText] = useState("");
   const [isImagePost, setIsImagePost] = useState(type);
   const [image, setImage] = useState("");
-  const [imageIsSelected, setImageIsSelected] = useState(false)
   const [imageLoading, setImageLoading] = useState(false);
   const [imageURL, setImageURL] = useState('')
   const [errors, setErrors] = useState([]);
@@ -63,32 +61,36 @@ function CreatePostForm({ type }) {
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);
-    setImageIsSelected(true);
     handleImageUpload(file);
   }
 
   const showImageUpload = () => {
-    return <div id="upload-image-container">
-      {(imageLoading) ? <p id="loading-text">Loading...</p>
-        :
+    return (
+      <div id="upload-image-container">
         <input
           id="upload-img-input"
           type="file"
           accept="image/*"
           onChange={updateImage}
         />
-      }
-      <button
-        onClick={() => handleImageUpload()}
-        id="create-post-img-button"
-        type="button"
-        disabled={!image || imageLoading || !imageIsSelected}
-      >Upload</button>
-    </div>
+      </div>
+    )
+  }
+
+  const removeImage = () => {
+    setImage("")
+    setImageURL("")
   }
 
   const showImage = () => {
-    if (imageURL) return <img id="show-img" src={imageURL} />
+    if (imageURL) {
+      return (
+        <>
+          <img id="show-img" src={imageURL} />
+          <i id="remove-image-button" class="fa-solid fa-x" onClick={removeImage} />
+        </>
+      )
+    }
   }
 
   return (
@@ -112,7 +114,8 @@ function CreatePostForm({ type }) {
           />
         </label>
 
-        {isImagePost === "photo" ? showImageUpload() : ""}
+        {isImagePost === "photo" && image === "" ? showImageUpload() : ""}
+        {(imageLoading && <p id="loading-text">Loading...</p>)}
         {showImage()}
 
         <label className="labels">
@@ -136,7 +139,7 @@ function CreatePostForm({ type }) {
           <button
             className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading || (!post_text && !post_title && !imageIsSelected)}
+            disabled={imageLoading || (!post_text && !post_title && !imageURL)}
           >Post now</button>
         </div>
 
