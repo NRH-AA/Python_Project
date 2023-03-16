@@ -8,8 +8,6 @@ import { useHistory, useParams } from "react-router-dom";
 
 
 function CreatePostForm({ type }) {
-  type = "photo"
-  
   const dispatch = useDispatch();
   //   const posts = useSelector(state=>state.posts.allPosts)
   const user = useSelector(state => state.session.user)
