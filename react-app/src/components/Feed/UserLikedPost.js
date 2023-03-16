@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SinglePost from "../SinglePost";
 import { getUserLikedPosts } from "../../store/posts";
+import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 import "./Feed.css"
 
 export default function UserLikedPosts() {
@@ -27,10 +28,7 @@ export default function UserLikedPosts() {
                                 <img className="post-user-image" src={post.user.profile_picture} alt='user profile'></img>
                             </div>
                             <div className="post-details">
-                                <div className="post-user">
-                                    <div className="user-username">{post.user.username}</div>
-                                    <div className={`follow-user-button ${(post.user_id === session?.user?.id) && "hidden"}`}>Follow</div>
-                                </div>
+                                <FollowUnfollowPostOwner post={post} session={session} />
                                 <h2 className="post-title">{post.post_title}</h2>
                                 <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
                                 <div className={post.post_text ? "post-text" : "hidden"}>{post.post_text}</div>
