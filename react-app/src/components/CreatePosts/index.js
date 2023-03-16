@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 
 function CreatePostForm({ type }) {
   const dispatch = useDispatch();
-  //   const posts = useSelector(state=>state.posts.allPosts)
   const user = useSelector(state => state.session.user)
   const [post_title, setPostTitle] = useState("");
   const [post_text, setPostText] = useState("");
@@ -68,23 +67,19 @@ function CreatePostForm({ type }) {
   }
 
   const showImageUpload = () => {
-    return <div id="upload-image-container">
-      {(imageLoading) ? <p id="loading-text">Loading...</p>
-        :
-        <input
-          id="upload-img-input"
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        />
-      }
-      <button
-        onClick={() => handleImageUpload()}
-        id="create-post-img-button"
-        type="button"
-        disabled={!image || imageLoading || !imageIsSelected}
-      >Upload</button>
-    </div>
+    return (
+      <div id="upload-image-container">
+        {(imageLoading) ? <p id="loading-text">Loading...</p>
+          :
+          <input
+            id="upload-img-input"
+            type="file"
+            accept="image/*"
+            onChange={updateImage}
+          />
+        }
+      </div>
+    )
   }
 
   const showImage = () => {
@@ -112,7 +107,7 @@ function CreatePostForm({ type }) {
           />
         </label>
 
-        {isImagePost === "photo" ? showImageUpload() : ""}
+        {isImagePost === "photo" && image === "" ? showImageUpload() : ""}
         {showImage()}
 
         <label className="labels">
