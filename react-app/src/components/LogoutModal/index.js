@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { logout } from "../../store/session";
 import "./LogoutModal.css";
 
 
 const LogoutModal = () => {
-    
+    const dispatch = useDispatch();
+    const { closeModal } = useModal()
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout())
+        .then(closeModal);
+      };
+
     return (
         <div id="logout-modal-container">
             <div id="logout-modal-div">
                 <h2 id="logout-modal-h2">Are you sure you want to log out?</h2>
                 <div id="logout-modal-button-div">
-                    <button className="logout-modal-button">Cancel</button>
-                    <button className="logout-modal-button">Ok</button>
+                    <div id="cancel-logout-modal-button" onClick={closeModal}>Cancel</div>
+                    <div id="confirm-logout-modal-button" onClick={handleLogout}>Ok</div>
                 </div>
             </div>
         </div>
