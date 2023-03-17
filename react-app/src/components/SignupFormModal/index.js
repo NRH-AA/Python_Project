@@ -71,9 +71,9 @@ function SignupFormModal() {
 		closeModal();
 	};
 	
-	const tabSubmitEmail = (e) => e.key === "Tab" && handleEmailSubmit();
-	const tabSumbitPassword = (e) => e.key === "Tab" && handlePasswordSubmit();
-	const tabSumbitSignup = (e) => e.key === "Tab" && handleSignUpSubmit();
+	const tabSubmitEmail = (e) => e.key === "Tab" && handleEmailSubmit(e);
+	const tabSumbitPassword = (e) => e.key === "Tab" && handlePasswordSubmit(e);
+	const tabSumbitSignup = (e) => e.key === "Tab" && handleSignUpSubmit(e);
 	
 	
 	const showEmailForm = () => {
@@ -114,7 +114,7 @@ function SignupFormModal() {
 					placeholder="Set a password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
-					autoFocus={!isPasswordEntered && true}
+					autoFocus={true}
 					required
 				/>
 			</label>
@@ -153,7 +153,7 @@ function SignupFormModal() {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						onKeyDown={(e) => tabSumbitSignup(e)}
-						autoFocus={!username.length && true}
+						autoFocus={true}
 						required
 					/>
 				</label>
