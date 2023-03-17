@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { isValidEmail } from "../../store/user";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -19,17 +20,25 @@ function LoginFormModal() {
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    setIsEmailEntered(true);
+    
+    setErrors([]);
+    dispatch(isValidEmail(email))
+    .then(async (res) => {
+      if (res && res.errors) return setErrors(res.errors);
+      setIsEmailEntered(true);
+    });
   };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    } else {
-      closeModal()
-    }
+    
+    setErrors([]);
+    dispatch(login(email, password))
+    .then(async (res) => {
+      if (res && res.errors) return setErrors(res.errors);
+      closeModal();
+    });
+    
   };
 
   const signInDemoUser = () => {

@@ -1,7 +1,7 @@
 #login-modal-container-container {
     height: fit-content;
     width: 622px;
-    background-color: rgba(125, 89, 255, 0.959);
+    background-color: rgba(34, 33, 36, 0.959);
     border-radius: 5px;
     margin: 10px;
     color: white;
@@ -54,28 +54,28 @@
     width: 90%;
     border-radius: 10px;
     padding: 15px 10px;
-    background-color: rgb(156, 129, 253);
+    background-color: rgb(128, 128, 128);
     cursor: text;
 }
 
 .login-input-label * {
     width: 100%;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 18px;
 }
 
 .login-input-label:focus-within {
-    border: 2px solid rgba(220, 210, 255, 0.651);
+    border: 2px solid rgba(175, 175, 175, 0.651);
 }
 
 .login-input-field {
-    background-color: rgba(159, 132, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
     border: none;
     outline: none;
 }
 
 .login-input-field::placeholder {
-    color: rgba(220, 210, 255, 0.651);
+    color: rgba(187, 187, 187, 0.651);
 }
 
 .login-form-button {

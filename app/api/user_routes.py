@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, User, Post
+from sqlalchemy import text
 from app.forms import PostForm
 from datetime import datetime
 from app.util import (
@@ -18,6 +19,14 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
+@user_routes.route('/checkEmail/<string:email>')
+def check_email(email):
+    account = User.query.where(text(f'email = {email}')).all()
+    
+    if not account:
+        return {"errors": ['Email does not exist.']}, 200
+    
+    return {"message": "Success"}
 
 @user_routes.route('/<int:id>')
 @login_required
