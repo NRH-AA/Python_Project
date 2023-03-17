@@ -1,11 +1,12 @@
 import React from "react";
 import "./PostLike.css";
+import FollowUnfollowPostOwner from '../Feed/FollowUnfollowPostOwner'
 
 function PostLike({ info }) {
     const [like, session] = info;
-
+    //console.log(like)
     const handleFollow = () => {
-        if (!session?.user){
+        if (!session?.user) {
             console.log("You need to be logged in to test this feature!")
         } else {
             console.log("Follow button is working! Curr user id and like user id: ", session?.user?.id, like.id)
@@ -19,18 +20,11 @@ function PostLike({ info }) {
     return (
         <>
             <div className="user-like-info">
-                <img className="post-like-user-image" src={like?.profile_picture} alt="user like"></img>
-                <div className="post-like-user-username">{like?.username}</div>
+                {/* <img className="post-like-user-image" src={like?.profile_picture} alt="user like"></img>
+                <div className="post-like-user-username">{like?.username}</div> */}
+                <FollowUnfollowPostOwner targetUser={like} session={session} />
             </div>
-            {false ?
-                <div className="unfollow-button" onClick={handleUnfollow}>
-                    Unfollow
-                </div>
-                :
-                <div className="follow-button" onClick={handleFollow}>
-                    Follow
-                </div>
-            }
+
         </>
     )
 }
