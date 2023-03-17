@@ -32,9 +32,11 @@ function UpdatePostForm({ type, post }) {
         && !image) return setErrors(["No updates were detected."]);
 
     const postDetails = {
-        post_title,
-        post_text
+        post_title: post_title ? post_title : null,
+        post_text: post_text ? post_text : null
     }
+
+    console.log(postDetails)
 
     if (image) postDetails.imageURL = imageURL
 
