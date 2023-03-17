@@ -27,14 +27,14 @@ def seed_comments():
     )
     comment4 = Comment(
         user_id=8,
-        post_id=8,
+        post_id=7,
         comment='Come on guys, it\'s just a hypothetical!',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
     comment5 = Comment(
         user_id=9,
-        post_id=8,
+        post_id=7,
         comment='I\'d ban them but we haven\'t made a ban button yet.',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
@@ -48,14 +48,14 @@ def seed_comments():
     )
     comment7 = Comment(
         user_id=10,
-        post_id=3,
+        post_id=9,
         comment='Very cute!',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
     comment8 = Comment(
         user_id=10,
-        post_id=10,
+        post_id=9,
         comment='Their names are Scratchy and Puddles!',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
@@ -109,10 +109,16 @@ def seed_comments():
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
+    comment16 = Comment(
+        user_id=5,
+        post_id=15,
+        comment='I have been made aware that this is a typewriter.'
+    )
 
     comments = [comment1, comment2, comment3, comment4, comment5,
                 comment6, comment7, comment8, comment9, comment10,
-                comment11, comment12, comment13, comment14, comment15]
+                comment11, comment12, comment13, comment14, comment15,
+                comment16]
 
     add_comments = [db.session.add(comment) for comment in comments]
 

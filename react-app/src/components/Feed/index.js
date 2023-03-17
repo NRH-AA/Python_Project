@@ -12,9 +12,26 @@ function Feed() {
     const dispatch = useDispatch();
 
     const allPosts = useSelector(state => state.posts)
-    const posts = allPosts.allPosts
     const session = useSelector(state => state.session)
 
+    // const posts = allPosts.allPosts
+    const unorderedPosts = allPosts.allPosts
+
+    const sortPosts = (posts) => {
+        const arr = []
+        for (const id in posts) {
+            arr.push(posts[id])
+        }
+        arr.sort(function(a, b) {
+            if (a.createdAt < b.createdAt) return 1;
+            if (a.createdAt > b.createdAt) return -1;
+            return 0;
+        })
+        return arr
+    }
+
+    const posts = sortPosts(unorderedPosts)
+    console.log(posts)
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")
@@ -23,8 +40,6 @@ function Feed() {
     useEffect(() => {
         dispatch(getPosts())
     }, [dispatch])
-
-    // Need to implement a way to check if a post's user is in current user's followings
 
     return (
         <div id="homepage">
@@ -88,9 +103,9 @@ function Feed() {
                             </div>
                             <div className="post-details">
                                 <FollowUnfollowPostOwner post={post} session={session} />
-                                <h2 className="post-title">{post.post_title}</h2>
-                                <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
-                                <div className={post.post_text ? "post-text" : "hidden"}>{post.post_text}</div>
+                                <h2 className="post-title">{post?.post_title}</h2>
+                                <img className={post?.imageURL !== null ? "post-image" : "hidden"} src={post?.imageURL} alt=''></img>
+                                <div className={post?.post_text ? "post-text" : "hidden"}>{post?.post_text}</div>
                                 <SinglePost info={[post, session]} />
                             </div>
                         </div>
