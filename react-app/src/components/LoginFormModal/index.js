@@ -35,7 +35,7 @@ function LoginFormModal() {
     setErrors([]);
     dispatch(login(email, password))
     .then(async (res) => {
-      if (res && res.errors) return setErrors(res.errors);
+      if (res && res.errors) return setErrors(['Password is invalid.']);
       closeModal();
     });
     
