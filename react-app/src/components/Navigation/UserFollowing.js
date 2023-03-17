@@ -23,7 +23,7 @@ export default function UserFollowing({ userId }) {
         return (
             <div className="post-details post-details-user-menu">
                 <span>
-                    <img className="user-follow-image" src={following.profile_picture} alt="following img" />
+                    <img className="user-follow-image" src={following?.profile_picture} alt="following img" />
                 </span>
                 <span className="post-user">
                     <span className="user-username">{following?.username}</span>

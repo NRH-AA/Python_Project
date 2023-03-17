@@ -45,7 +45,7 @@ function SinglePost({ info }) {
             setLiked(!liked);
             dispatch(likePost(session.user.id, post.id))
         } else {
-            console.log("You need to belogged in to test that feature!")
+            window.alert("You need to log in to test use that feature!")
         }
     };
 

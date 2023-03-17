@@ -24,7 +24,7 @@ export default function UserFollower({ userId }) {
         <div className="following-Users">
             {followers && followers.map((follower, idx) => (
                 <div key={idx} className="post-user-follower">
-                    <img className="user-follow-image" src={follower.profile_picture} alt="follower img"></img>
+                    <img className="user-follow-image" src={follower?.profile_picture} alt="follower img"></img>
                     <span className="user-username">{follower?.username}</span>
                 </div>
 
