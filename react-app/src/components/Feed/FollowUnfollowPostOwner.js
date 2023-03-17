@@ -4,11 +4,11 @@ import { followUnfollowUser } from "../../store/session";
 import "./Feed.css";
 
 
-export default function FollowUnfollowPostOwner({ post, session }) {
+export default function FollowUnfollowPostOwner({ targetUser, session }) {
     const dispatch = useDispatch();
     const currUserId = session?.user?.id
     const followings = useSelector(state => state.session?.user?.followings.map(following => following.id))
-    const followingFlag = followings?.includes(post?.user?.id)
+    const followingFlag = followings?.includes(targetUser?.id)
     const [followed, setFollowed] = useState(followingFlag);
 
     useEffect(() => {
@@ -19,20 +19,20 @@ export default function FollowUnfollowPostOwner({ post, session }) {
         window.alert("Sorry, this feature is not functional.")
     }
 
-    const handleFollowButton = (target_user_id) => {
+    const handleFollowButton = (targetUserId) => {
         if (session?.user) {
             setFollowed(!followed);
-            dispatch(followUnfollowUser(target_user_id, currUserId))
+            dispatch(followUnfollowUser(targetUserId, currUserId))
         } else {
             console.log("You need to belogged in to test that feature!")
         }
     };
     return (
         <div className="post-user">
-            <span className="user-username" onClick={unfinishedAlert}>{post?.user?.username}</span>
-            <span className={`follow-user-button ${(post?.user?.username === session?.user?.username) && "hidden"}`}>
+            <span className="user-username" onClick={unfinishedAlert}>{targetUser?.username}</span>
+            <span className={`follow-user-button ${(!session.user || (targetUser?.username === session?.user?.username)) && "hidden"}`}>
                 <div className="follow-button-container">
-                    <span className="follow-user-button" onClick={() => handleFollowButton(post?.user?.id)}>{followed ? "Unfollow" : "Follow"}</span>
+                    <span className="follow-user-button" onClick={() => handleFollowButton(targetUser.id)}>{followed ? "Unfollow" : "Follow"}</span>
                 </div>
             </span>
         </div>
