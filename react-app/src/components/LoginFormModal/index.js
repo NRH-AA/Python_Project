@@ -40,8 +40,8 @@ function LoginFormModal() {
     });
   };
   
-  const tabSubmitEmail = (e) => e.key === "Tab" && handleEmailSubmit();
-	const tabSumbitLogin = (e) => e.key === "Tab" && handleLoginSubmit();
+  const tabSubmitEmail = (e) => e.key === "Tab" && handleEmailSubmit(e);
+	const tabSumbitLogin = (e) => e.key === "Tab" && handleLoginSubmit(e);
 
   const signInDemoUser = () => {
     return dispatch(login('demo@aa.io', 'password'))
@@ -60,7 +60,7 @@ function LoginFormModal() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onKeyDown={(e) => tabSumbitLogin(e)}
-              autoFocus="true"
+              autoFocus={true}
               required
             />
           </label>
@@ -87,7 +87,7 @@ function LoginFormModal() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={(e) => tabSubmitEmail(e)}
-              autoFocus="true"
+              autoFocus={true}
               required
             />
           </label>
