@@ -20,6 +20,15 @@ export const getUser = () => async (dispatch) => {
     }
 }
 
+export const isValidEmail = (email) => async (dispatch) => {
+    const res = await fetch(`/api/users/checkEmail/"${email}"`, {
+        method: 'GET'
+    })
+
+    const data = await res.json();
+    return data;
+}
+
 
 
 export const getUserById = (userId) => async (dispatch) => {
