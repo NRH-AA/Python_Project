@@ -28,7 +28,7 @@ export default function UserLikedPosts() {
                                 <img className="post-user-image" src={post.user.profile_picture} alt='user profile'></img>
                             </div>
                             <div className="post-details">
-                                <FollowUnfollowPostOwner post={post} session={session} />
+                                <FollowUnfollowPostOwner targetUser={post.user} session={session} />
                                 <h2 className="post-title">{post.post_title}</h2>
                                 <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
                                 <div className={post.post_text ? "post-text" : "hidden"}>{post.post_text}</div>
