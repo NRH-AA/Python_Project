@@ -29,6 +29,7 @@ def get_post(postId):
 @post_routes.route('/<int:postId>', methods=['PUT', 'PATCH'])
 @login_required
 def edit_post(postId):
+
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

@@ -14,7 +14,7 @@ def seed_posts():
     post2 = Post(
         user_id=3,
         post_title='Look at this cute cat!',
-        imageURL='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fcats%2F&psig=AOvVaw1jc_v0zf_uztnBUf4_CUzO&ust=1678559077539000&source=images&cd=vfe&ved=2ahUKEwjC-Nb9_dH9AhWlmYQIHcziCQgQjRx6BAgAEAo',
+        imageURL='https://cdn.discordapp.com/attachments/544277536255770695/1069333446654185542/IMG_6095.jpg',
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
@@ -57,7 +57,7 @@ def seed_posts():
     post8 = Post(
         user_id=9,
         post_title='Thank you!',
-        post_text='It has officially been out 1 year anniversary being out on the internet. And we wouldn\'t be here if it were not for all of our users. Thanks for being here, and here\'s to another good year!',
+        post_text='Scrollr has officially been out long enough to have a 1 year anniversary. And we wouldn\'t be here if it were not for all of our users. Thanks for being here, and here\'s to another good year!',
         imageURL='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJwkxjYFUj-CuZCBppPC0ImpKSarJzgXvLLw&usqp=CAU',
         createdAt=datetime.now(),
         updatedAt=datetime.now()

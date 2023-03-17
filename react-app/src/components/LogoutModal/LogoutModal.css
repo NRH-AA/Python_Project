@@ -1,0 +1,36 @@
+#logout-modal-container {
+    text-align: center;
+}
+
+#logout-modal-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#logout-modal-h2 {
+    color: white;
+    margin-bottom: 40px;
+}
+
+#logout-modal-button-div {
+    display: flex;
+    justify-content: center;
+}
+
+#logout-modal-button-div div {
+    color: black;
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#cancel-logout-modal-button {
+    background-color: rgb(146, 146, 146);
+}
+
+#confirm-logout-modal-button {
+    background-color: rgb(22, 189, 255);
+    margin-left: 28px;
+}

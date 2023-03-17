@@ -13,10 +13,9 @@ function UpdatePostForm({ type, post }) {
   const [post_title, setPostTitle] = useState(post.post_title || "");
   const [post_text, setPostText] = useState(post.post_text || "");
   const [isImagePost, setIsImagePost] = useState(type);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(post.imageURL || "");
   const [imageLoading, setImageLoading] = useState(false);
   const [imageURL, setImageURL] = useState(post.imageURL || "")
-
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory()
@@ -25,21 +24,21 @@ function UpdatePostForm({ type, post }) {
     e.preventDefault();
 
     setErrors([]);
-    if (!user) return setErrors(["You Must Be Logged in To Create A post"]);
+    if (!user) return setErrors(["You Must Be Logged in To Edit A post"]);
 
     if (!post_title && !post_text && !imageURL) return setErrors(["You must have a title, text or image."]);
     if (post_title === post.post_title
         && post_text === post.post_text
         && !image) return setErrors(["No updates were detected."]);
 
-    const postUpdated = {
+    const postDetails = {
         post_title,
         post_text
     }
 
-    if (image) postUpdated.imageURL = imageURL
+    if (image) postDetails.imageURL = imageURL
 
-    dispatch(postsActions.updatePost(post.id, postUpdated))
+    dispatch(postsActions.updatePost(post.id, postDetails))
       .then(closeModal)
       .catch(async (res) => {
           const data = await res.json();
@@ -48,52 +47,60 @@ function UpdatePostForm({ type, post }) {
       });
   };
 
-  const handleImageUpload = async () => {
-      const formData = new FormData();
-      formData.append("image", image);
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
 
-      setImageLoading(true);
-      const res = await fetch('/api/users/upload', {
-          method: "POST",
-          body: formData,
-      });
+    setImageLoading(true);
+    const res = await fetch('/api/users/upload', {
+      method: "POST",
+      body: formData,
+    });
 
-      if (res.ok) {
-        const data = await res.json();
-        const imageUrl = data.url
-        console.log("ImageURL", imageUrl)
+    if (res.ok) {
+      const data = await res.json();
+      const imageUrl = data.url
+      console.log("ImageURL", imageUrl)
 
-        if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
-        setImageURL(imageUrl)
-        setImageLoading(false);
-      }
+      if (!imageUrl) return setErrors(["Failed to upload image. Please try again."])
+      setImageURL(imageUrl)
+      setImageLoading(false);
+    }
   }
 
   const updateImage = (e) => {
-      const file = e.target.files[0];
-      setImage(file);
+    const file = e.target.files[0];
+    setImage(file);
+    handleImageUpload(file);
   }
 
   const showImageUpload = () => {
-    return <div>
-      {(imageLoading) && <p id="loading-text">Loading...</p>}
-      <input
-        id="upload-img-input"
-        type="file"
-        accept="image/*"
-        onChange={updateImage}
-      />
-      <button
-      onClick={() => handleImageUpload()}
-        id="create-post-img-button"
-        type="button"
-        disabled={!image && true}
-        >Upload</button>
+    return (
+      <div id="upload-image-container">
+        <input
+          id="upload-img-input"
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+        />
       </div>
+    )
+  }
+
+  const removeImage = () => {
+    setImage("")
+    setImageURL("")
   }
 
   const showImage = () => {
-    if (imageURL) return <img id="show-img" src={imageURL}/>
+    if (imageURL) {
+      return (
+        <>
+          <img id="show-img" src={imageURL} />
+          <i id="remove-image-button" className="fa-solid fa-x" onClick={removeImage} />
+        </>
+      )
+    }
   }
 
   return (
@@ -117,7 +124,8 @@ function UpdatePostForm({ type, post }) {
           />
         </label>
 
-        {isImagePost === "photo" ? showImageUpload() : ""}
+        {isImagePost === "photo" && image === "" ? showImageUpload() : ""}
+        {(imageLoading && <p id="loading-text">Loading...</p>)}
         {showImage()}
 
         <label className="labels">
@@ -141,7 +149,7 @@ function UpdatePostForm({ type, post }) {
           <button
             className='create-form-submit-button'
             type="submit"
-            disabled={imageLoading || (!post_text && !post_title && !image)}
+            disabled={imageLoading || (!post_text && !post_title && !imageURL)}
           >Save</button>
         </div>
 
