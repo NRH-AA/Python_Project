@@ -8,11 +8,13 @@ import UserFollower from "./UserFollower";
 import UserFollowing from "./UserFollowing";
 import './Navigation.css';
 import CreatePostForm from "../CreatePosts/index"
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -36,8 +38,9 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/');
   };
-  
+
   const showFeatureMessage = () => alert("Feature Coming Soon")
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -81,10 +84,10 @@ function ProfileButton({ user }) {
             </div>
           </div>
           <div id="nav-post-button">
-              <OpenModalButton
-                buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
-                modalComponent={<CreatePostForm userId={user.id} />}
-              />
+            <OpenModalButton
+              buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
+              modalComponent={<CreatePostForm userId={user.id} />}
+            />
           </div>
         </div>
       ) : (

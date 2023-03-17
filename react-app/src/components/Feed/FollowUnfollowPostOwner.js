@@ -8,14 +8,12 @@ export default function FollowUnfollowPostOwner({ post, session }) {
     const dispatch = useDispatch();
     const currUserId = session?.user?.id
     const followings = useSelector(state => state.session?.user?.followings.map(following => following.id))
-    // console.log(followings)
-    // console.log(post?.user?.id)
-    const [followed, setFollowed] = useState(followings.includes(post?.user?.id));
-    console.log(followed)
+    const followingFlag = followings?.includes(post?.user?.id)
+    const [followed, setFollowed] = useState(followingFlag);
 
     useEffect(() => {
-        setFollowed(followings.includes(post?.user?.id))
-    }, [session])
+        setFollowed(followingFlag)
+    }, [session, followingFlag])
 
 
     const handleFollowButton = (target_user_id) => {

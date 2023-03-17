@@ -117,7 +117,6 @@ export const followUnfollowUser = (user_id, curr_user_id) => async (dispatch) =>
 }
 
 export default function reducer(state = initialState, action) {
-	let newState = {}
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
