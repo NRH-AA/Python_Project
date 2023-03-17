@@ -88,16 +88,16 @@ function SinglePost({ info }) {
                 <textarea
                     maxLength="250"
                     className="edit-post-comment"
-                    value={updateComment ? updateComment : ""}
+                    value={updateComment ? updateComment : userComment.comment}
                     onChange={(e) => setUpdateComment(e.target.value)}
                 >
                 </textarea>
                 <div id="edit-comment-button-div">
-                    <button className="edit-comment-button"
+                    <button className="edit-comment-button update"
                         onClick={(e) => handleEditCommentSubmit(e, userComment)}
-                        diabled={updateComment === userComment.comment || updateComment.length === 0 ? true : false}
+                        disabled={updateComment === userComment.comment || updateComment.length === 0}
                     >Update</button>
-                    <button className="edit-comment-button"
+                    <button className="edit-comment-button cancel"
                         onClick={() => {
                             setUpdatingComment(false);
                             setUpdateComment("");
