@@ -100,7 +100,7 @@ function Feed() {
                             </div>
                             <div className="post-details">
                                 <FollowUnfollowPostOwner targetUser={post.user} session={session} />
-                                <h2 className="post-title">{post?.post_title}</h2>
+                                <h2 className={`post-title ${!post?.post_title && "hidden"}`}>{post?.post_title}</h2>
                                 <img className={post?.imageURL !== null ? "post-image" : "hidden"} src={post?.imageURL} alt=''></img>
                                 <div className={post?.post_text ? "post-text" : "hidden"}>{post?.post_text}</div>
                                 <SinglePost info={[post, session]} />
