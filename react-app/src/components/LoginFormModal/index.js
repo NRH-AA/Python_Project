@@ -19,7 +19,7 @@ function LoginFormModal() {
   };
 
   const handleEmailSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     
     setErrors([]);
     dispatch(isValidEmail(email))
@@ -30,7 +30,7 @@ function LoginFormModal() {
   };
 
   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     
     setErrors([]);
     dispatch(login(email, password))
@@ -38,12 +38,38 @@ function LoginFormModal() {
       if (res && res.errors) return setErrors(['Password is invalid.']);
       closeModal();
     });
-    
   };
+  
+  const tabSubmitEmail = (e) => e.key === "Tab" && handleEmailSubmit();
+	const tabSumbitLogin = (e) => e.key === "Tab" && handleLoginSubmit();
 
   const signInDemoUser = () => {
     return dispatch(login('demo@aa.io', 'password'))
       .then(closeModal);
+  };
+  
+  const showPasswordForm = () => {
+    return (
+      <form noValidate className={isEmailEntered ? 'login-form' : 'hidden login-form'} onSubmit={handleLoginSubmit}>
+          <h4 className="login-form-text">Welcome back to your corner of the internet.</h4>
+          <label className="login-input-label">
+            <input
+              className="login-input-field"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => tabSumbitLogin(e)}
+              autoFocus="true"
+              required
+            />
+          </label>
+          <button className="login-form-button" type="submit" disabled={password.length < 6 && true}>
+            Log in
+            <i className="fa-solid fa-arrow-right login-form-arrow-img" />
+          </button>
+      </form>
+    );
   };
 
   return (
@@ -60,6 +86,8 @@ function LoginFormModal() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => tabSubmitEmail(e)}
+              autoFocus="true"
               required
             />
           </label>
@@ -68,24 +96,8 @@ function LoginFormModal() {
             <i className="fa-solid fa-arrow-right login-form-arrow-img" />
           </button>
         </form>
-
-        <form noValidate className={isEmailEntered ? 'login-form' : 'hidden login-form'} onSubmit={handleLoginSubmit}>
-          <h4 className="login-form-text">Welcome back to your corner of the internet.</h4>
-          <label className="login-input-label">
-            <input
-              className="login-input-field"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </label>
-          <button className="login-form-button" type="submit">
-            Log in
-            <i className="fa-solid fa-arrow-right login-form-arrow-img" />
-          </button>
-        </form>
+        
+        {isEmailEntered && showPasswordForm()}
 
         <ul id='login-form-errors' className={errors.length ? '' : 'hidden'}>
           <i className="fa-solid fa-circle-exclamation" id='login-errors-symbol' />
