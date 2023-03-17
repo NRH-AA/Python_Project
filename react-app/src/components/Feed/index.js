@@ -22,7 +22,7 @@ function Feed() {
         for (const id in posts) {
             arr.push(posts[id])
         }
-        arr.sort(function(a, b) {
+        arr.sort(function (a, b) {
             if (a.createdAt < b.createdAt) return 1;
             if (a.createdAt > b.createdAt) return -1;
             return 0;
@@ -31,7 +31,7 @@ function Feed() {
     }
 
     const posts = sortPosts(unorderedPosts)
-    console.log(posts)
+    //console.log(posts)
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")
