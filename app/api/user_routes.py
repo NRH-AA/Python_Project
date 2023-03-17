@@ -21,6 +21,9 @@ def users():
 
 @user_routes.route('/checkEmail/<string:email>')
 def check_email(email):
+    if not email:
+        return {"errors": ['Email does not exist.']}, 200
+    
     account = User.query.where(text(f'email = {email}')).all()
     
     if not account:
