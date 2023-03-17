@@ -192,7 +192,7 @@ Don't forget to give the project a star! Thanks again!
 Patrick McKinney -  CorkscrewHollow@gmail.com
 Nathan Heinz -
 (James) Xinbo Zhou -
-John Timothy Cruz -
+John Timothy Cruz - tim@cruz-family.ws
 </pre>
 Project Link: [https://github.com/NRH-AA/Python_Project.git](https://github.com/NRH-AA/Python_Project.git)
 
@@ -207,6 +207,3 @@ Project Link: [https://github.com/NRH-AA/Python_Project.git](https://github.com/
 
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-
-
-
