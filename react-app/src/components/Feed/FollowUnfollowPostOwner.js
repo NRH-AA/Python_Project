@@ -11,11 +11,14 @@ export default function FollowUnfollowPostOwner({ post, session }) {
     const followerUserIdList = post.user?.followers.map(follower => follower.id)
     if (currUserId in followerUserIdList) followedStr = true
     const [followed, setFollowed] = useState(followedStr);
-    //console.log(followerUserIdList)
+
+    const unfinishedAlert = () => {
+        window.alert("Sorry, this feature is not functional.")
+    }
+
     const handleFollowButton = (target_user_id) => {
         if (session?.user) {
             setFollowed(!followed);
-            //console.log(following)
             dispatch(followUnfollowUser(target_user_id, currUserId))
         } else {
             console.log("You need to belogged in to test that feature!")
@@ -23,7 +26,7 @@ export default function FollowUnfollowPostOwner({ post, session }) {
     };
     return (
         <div className="post-user">
-            <span className="user-username">{post.user?.username}</span>
+            <span className="user-username" onClick={unfinishedAlert}>{post.user?.username}</span>
             <span className={`follow-user-button ${(post.user?.username === session?.user?.username) && "hidden"}`}>
                 <div className="follow-button-container">
                     <span className="follow-user-button" onClick={() => handleFollowButton(post.user.id)}>{followed ? "Unfollow" : "Follow"}</span>

@@ -31,7 +31,6 @@ function Feed() {
     }
 
     const posts = sortPosts(unorderedPosts)
-    console.log(posts)
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")

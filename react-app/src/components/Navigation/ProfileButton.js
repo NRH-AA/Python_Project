@@ -33,6 +33,10 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const unfinishedAlert = () => {
+    window.alert("Sorry, this feature is not functional.")
+  }
+
   const showFeatureMessage = () => alert("Feature Coming Soon")
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -70,7 +74,7 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-menu-header user-menu-section">
               <div>Blogs</div>
-              <div>+ New</div>
+              <div id="new-blog-button" onClick={unfinishedAlert}>+ New</div>
             </div>
             <div id="user-information-section" className="user-menu-section"
               onClick={() => showFeatureMessage()}

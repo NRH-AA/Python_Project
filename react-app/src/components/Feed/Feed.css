@@ -61,6 +61,7 @@
     border: none;
     background: none;
     padding: 0px;
+    cursor: pointer;
 }
 
 .post-details div.post-react-options-container {
@@ -146,9 +147,15 @@
     padding: 5px 15px 15px 15px;
 }
 
-.post-user .user-username {
-    padding-left: 0px;
-    padding-right: 10px;
+.post-user span.user-username {
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.follow-user-button div.follow-button-container {
+    padding: 10px;
 }
 
 .post-user .follow-user-button {
@@ -261,14 +268,15 @@
 }
 
 #extras {
+    height: auto;
     display: flex;
     width: 320px;
     margin-left: 20px;
 }
 
-#extras p {
+#homepage div#extras p {
     position: sticky;
-    top: 98vh;
+    top: 95vh;
     display: flex;
     font-size: 12px;
     height: 20px;
