@@ -21,8 +21,12 @@ export const getUser = () => async (dispatch) => {
 }
 
 export const isValidEmail = (email) => async (dispatch) => {
-    const res = await fetch(`/api/users/checkEmail/"${email}"`, {
-        method: 'GET'
+    const res = await fetch(`/api/users/checkEmail`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email})
     })
 
     const data = await res.json();
