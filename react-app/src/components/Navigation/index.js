@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
 					<NavLink exact to="/" id='logo' onClick={() => window.scrollTo(0, 0)}>S</NavLink>
 					<div id='searchbar-container'>
 						<i id='search-icon' className="fa-solid fa-magnifying-glass" onClick={() => window.alert("Search feature coming soon maybe.")} />
-						<input id='searchbar' type='text' placeholder='Search Scrollr'></input>
+						<input id='searchbar' type='text' placeholder='Search Scrollr' onClick={()=> window.alert("coming soon")} ></input>
 					</div>
 				</div>
 				{isLoaded && (

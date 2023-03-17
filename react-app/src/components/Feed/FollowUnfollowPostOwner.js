@@ -15,6 +15,9 @@ export default function FollowUnfollowPostOwner({ targetUser, session }) {
         setFollowed(followingFlag)
     }, [session, followingFlag])
 
+    const unfinishedAlert = () => {
+        window.alert("Sorry, this feature is not functional.")
+    }
 
     const handleFollowButton = (targetUserId) => {
         if (session?.user) {

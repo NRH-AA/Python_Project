@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFollowers } from "../../store/user";
 import './Navigation.css';
+import './Follower.css';
+// import '../Feed/Feed.css';
 
 export default function UserFollower({ userId }) {
     const dispatch = useDispatch();
@@ -15,16 +17,19 @@ export default function UserFollower({ userId }) {
 
     return (
         <>
-            <h2>
-                Follower Users
+
+            <h2 className="Follower Tite">
+                Users Following
             </h2>
+        <div className="following-Users">
             {followers && followers.map((follower, idx) => (
                 <div key={idx} className="post-user-follower">
                     <img className="user-follow-image" src={follower.profile_picture} alt="follower img"></img>
                     <span className="user-username">{follower?.username}</span>
                 </div>
 
-            ))}
+))}
+</div>
         </>
     )
 }

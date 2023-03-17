@@ -186,6 +186,10 @@ body {
   border-top-left-radius: 2px;
 }
 
+#new-blog-button {
+  cursor: pointer;
+}
+
 #user-information-section {
   display: flex;
   justify-content: flex-start;
