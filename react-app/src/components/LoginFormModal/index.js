@@ -18,16 +18,30 @@ function LoginFormModal() {
     setErrors([]);
   };
 
-  const handleEmailSubmit = async (e) => {
-    if (e) e.preventDefault();
-    
-    setErrors([]);
-    dispatch(isValidEmail(email))
-    .then(async (res) => {
-      if (res && res.errors) return setErrors(res.errors);
-      setIsEmailEntered(true);
-    });
-  };
+  const checkValidEmail = () => {
+		if (!email.includes('@') || !email.includes('.')) return ["Email is invalid"];
+		if (!email || !email.length > 6) return ["Email must be 6 characters or more"];
+
+		const textAfterPeriod = email.split(".")[1]
+		const textAfterAmpersand = email.split("@")[1]
+
+		if (!textAfterPeriod || !textAfterAmpersand) return ["Email is invalid"]
+		return false
+	}
+
+	const handleEmailSubmit = async (e) => {
+		if (e) e.preventDefault();
+
+		const checkEmail = checkValidEmail();
+		if (checkEmail) return setErrors(checkEmail)
+
+		setErrors([]);
+		dispatch(isValidEmail(email))
+			.then(async (res) => {
+				if (res && !res.errors) return setErrors(['Email is taken.']);
+				setIsEmailEntered(true);
+			});
+	};
 
   const handleLoginSubmit = async (e) => {
     if (e) e.preventDefault();
