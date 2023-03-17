@@ -2,6 +2,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
+
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -10,6 +11,8 @@ const setUser = (user) => ({
 const removeUser = () => ({
 	type: REMOVE_USER,
 });
+
+
 
 const initialState = { user: null };
 
@@ -96,12 +99,30 @@ export const signUp = (username, email, password, firstName, lastName) => async 
 	}
 };
 
+
+
+export const followUnfollowUser = (user_id, curr_user_id) => async (dispatch) => {
+	const res = await fetch(`/api/users/${user_id}/follow`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			curr_user_id
+		})
+	})
+
+	if (res.ok) {
+		const curr_user = await res.json();
+		dispatch(setUser(curr_user))
+	}
+}
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+
 		default:
 			return state;
 	}

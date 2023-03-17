@@ -19,7 +19,7 @@ export default function UserLikedPosts() {
 
     return (
         <>
-            <h2>Liked Posts</h2>
+
             <div id='dashboard'>
                 <div id="user-liked-posts-feed">
                     {posts && Object.values(posts).map((post, idx) => (

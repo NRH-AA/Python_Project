@@ -4,7 +4,7 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
-import UserHome from "../UserHome";
+//import UserHome from "../UserHome";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
@@ -22,7 +22,7 @@ function Feed() {
         for (const id in posts) {
             arr.push(posts[id])
         }
-        arr.sort(function(a, b) {
+        arr.sort(function (a, b) {
             if (a.createdAt < b.createdAt) return 1;
             if (a.createdAt > b.createdAt) return -1;
             return 0;
@@ -31,6 +31,7 @@ function Feed() {
     }
 
     const posts = sortPosts(unorderedPosts)
+    //console.log(posts)
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")
@@ -66,7 +67,7 @@ function Feed() {
                                     <div className="post-option-text">Photo</div>
                                 </div>
                             }
-                            modalComponent={<CreatePostForm type="photo"/>}
+                            modalComponent={<CreatePostForm type="photo" />}
                         />
                         <div className="post-option-container" onClick={() => unfinishedAlert()}>
                             <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />

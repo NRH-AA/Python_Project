@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { followUnfollowUser } from "../../store/user";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { followUnfollowUser } from "../../store/session";
 import "./Feed.css";
 
 
 export default function FollowUnfollowPostOwner({ post, session }) {
-    let followedStr = false
     const dispatch = useDispatch();
-    const currUserId = session.user?.id
-    const followerUserIdList = post.user?.followers.map(follower => follower.id)
-    if (currUserId in followerUserIdList) followedStr = true
-    const [followed, setFollowed] = useState(followedStr);
+    const currUserId = session?.user?.id
+    const followings = useSelector(state => state.session?.user?.followings.map(following => following.id))
+    const followingFlag = followings?.includes(post?.user?.id)
+    const [followed, setFollowed] = useState(followingFlag);
+
+    useEffect(() => {
+        setFollowed(followingFlag)
+    }, [session, followingFlag])
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")
@@ -29,7 +32,7 @@ export default function FollowUnfollowPostOwner({ post, session }) {
             <span className="user-username" onClick={unfinishedAlert}>{post.user?.username}</span>
             <span className={`follow-user-button ${(post.user?.username === session?.user?.username) && "hidden"}`}>
                 <div className="follow-button-container">
-                    <span className="follow-user-button" onClick={() => handleFollowButton(post.user.id)}>{followed ? "Unfollow" : "Follow"}</span>
+                    <span className="follow-user-button" onClick={() => handleFollowButton(post?.user?.id)}>{followed ? "Unfollow" : "Follow"}</span>
                 </div>
             </span>
         </div>

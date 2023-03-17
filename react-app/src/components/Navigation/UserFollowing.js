@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserFollowings } from "../../store/user";
-import { followUnfollowUser } from "../../store/user";
+import { followUnfollowUser } from "../../store/session";
 import './Navigation.css';
-import '../Feed/Feed.css'
+import '../Feed/Feed.css';
 
 export default function UserFollowing({ userId }) {
     const dispatch = useDispatch();
-    const followings = useSelector(state => state.user.followings)
+    const followings = useSelector(state => state.session?.user?.followings)
     const session = useSelector(state => state.session)
-
-    //console.log(followings)
-    useEffect(() => {
-        dispatch(getUserFollowings(userId))
-    }, [dispatch, userId])
-
-
 
     const FollowingUser = ({ following, idx }) => {
         const [followed, setFollowed] = useState(true);

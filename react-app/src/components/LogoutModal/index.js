@@ -3,7 +3,6 @@ import { useModal } from "../../context/Modal";
 import { logout } from "../../store/session";
 import "./LogoutModal.css";
 
-
 const LogoutModal = () => {
     const dispatch = useDispatch();
     const { closeModal } = useModal()
@@ -11,8 +10,8 @@ const LogoutModal = () => {
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout())
-        .then(closeModal);
-      };
+            .then(closeModal);
+    };
 
     return (
         <div id="logout-modal-container">
