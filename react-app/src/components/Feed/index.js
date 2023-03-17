@@ -4,7 +4,7 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
-import UserHome from "../UserHome";
+//import UserHome from "../UserHome";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
@@ -52,7 +52,7 @@ function Feed() {
                                     <div className="post-option-text">Photo</div>
                                 </div>
                             }
-                            modalComponent={<CreatePostForm type="photo"/>}
+                            modalComponent={<CreatePostForm type="photo" />}
                         />
                         <div className="post-option-container" onClick={() => unfinishedAlert()}>
                             <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />
