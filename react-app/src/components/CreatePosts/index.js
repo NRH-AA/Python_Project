@@ -106,7 +106,8 @@ function CreatePostForm({ type }) {
 
         <label className="create-input-label">
           <input className="input"
-            placeholder="Post Title"
+            placeholder="Post Title (max 40 char)"
+            maxLength={40}
             type="text"
             id="PostTitle"
             value={post_title}
