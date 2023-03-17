@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../store/posts"
+import AboutModal from "../AboutModal";
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
@@ -111,7 +112,10 @@ function Feed() {
                 </div>
             </div>
             <div id='extras'>
-                <p onClick={() => unfinishedAlert()}>About</p>
+                <OpenModalButton
+                    modalComponent={AboutModal}
+                    buttonText="About"
+                />
                 <p onClick={() => unfinishedAlert()}>Apps</p>
                 <p onClick={() => unfinishedAlert()}>Legal</p>
                 <p onClick={() => unfinishedAlert()}>Privacy</p>
