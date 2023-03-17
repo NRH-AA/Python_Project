@@ -76,9 +76,9 @@ function LoginFormModal() {
     <div id="login-modal-container-container">
       <i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
       <div id='login-modal-container'>
-        <h1 id="login-title">scrollr</h1>
+        <h1 id="login-title">Scrollr</h1>
         <form noValidate className={isEmailEntered ? 'hidden login-form' : 'login-form'} onSubmit={handleEmailSubmit}>
-          <h4 className="login-form-text">Enter your email to log in or register:</h4>
+          <h4 className="login-form-text">Enter your email to log in:</h4>
           <label className="login-input-label">
             <input
               className="login-input-field"

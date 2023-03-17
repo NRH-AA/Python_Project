@@ -79,7 +79,7 @@ function SignupFormModal() {
 	const showEmailForm = () => {
 		return (
 			<form noValidate className={isEmailEntered ? 'hidden sign-up-form' : 'sign-up-form'} onSubmit={handleEmailSubmit}>
-				<h4 className="sign-up-form-text">Enter your email to log in or register:</h4>
+				<h4 className="sign-up-form-text">Enter the email you would like to register:</h4>
 				<label className="sign-up-input-label">
 					<input
 						className="sign-up-input-field"
@@ -171,7 +171,7 @@ function SignupFormModal() {
 		<div id="sign-up-modal-container-container">
 			<i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
 			<div id='sign-up-modal-container'>
-				<h1 id="sign-up-title">scrollr</h1>
+				<h1 id="sign-up-title">Scrollr</h1>
 				
 				{!isEmailEntered ? showEmailForm() : ""}
 				{isEmailEntered && !isPasswordEntered ? showPasswordForm() : ""}
