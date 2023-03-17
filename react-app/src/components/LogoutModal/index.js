@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { logout } from "../../store/session";
 import "./LogoutModal.css";
-import { useHistory } from "react-router-dom";
 
 const LogoutModal = () => {
     const dispatch = useDispatch();
