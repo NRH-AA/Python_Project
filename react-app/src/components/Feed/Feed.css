@@ -148,7 +148,8 @@
 }
 
 .post-user span.user-username {
-    padding: 0px;
+    height: 19px;
+    padding: 10px 0px;
     margin-left: 0px;
     margin-right: 10px;
     cursor: pointer;
@@ -172,10 +173,12 @@
     margin: 0px;
     padding-left: 15px;
     outline: none;
+    overflow-wrap: break-word;
 }
 
 .post-details .post-text {
     padding-left: 15px;
+    overflow-wrap: break-word;
 }
 
 .post-image {
@@ -235,7 +238,7 @@
 
 .post-options .view-comments-button {
     cursor: pointer;
-    padding: 0px;
+    padding: 0px 15px;
     height: min-content;
 }
 

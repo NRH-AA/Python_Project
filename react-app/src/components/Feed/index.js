@@ -4,7 +4,6 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
-//import UserHome from "../UserHome";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
@@ -47,7 +46,6 @@ function Feed() {
                 <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
                     <OpenModalButton
                         buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
-                        // modalComponent={<UserHome info={[session, posts]} />}
                         onButtonClick={() => unfinishedAlert()}
                     />
                     <div id="logged-user-post-options">
@@ -97,7 +95,6 @@ function Feed() {
                             <div className="post-user-image-container">
                                 <OpenModalButton
                                     buttonText={<img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>}
-                                    // modalComponent={<UserHome info={[session, posts]} />}
                                     onButtonClick={() => unfinishedAlert()}
                                 />
                             </div>

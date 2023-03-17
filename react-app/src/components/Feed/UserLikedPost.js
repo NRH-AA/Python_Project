@@ -25,13 +25,13 @@ export default function UserLikedPosts() {
                     {posts && Object.values(posts).map((post, idx) => (
                         <div className="post" key={idx}>
                             <div className="post-user-image-container">
-                                <img className="post-user-image" src={post.user.profile_picture} alt='user profile'></img>
+                                <img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>
                             </div>
                             <div className="post-details">
                                 <FollowUnfollowPostOwner post={post} session={session} />
-                                <h2 className="post-title">{post.post_title}</h2>
-                                <img className={post.imageURL !== null ? "post-image" : "hidden"} src={post.imageURL} alt=''></img>
-                                <div className={post.post_text ? "post-text" : "hidden"}>{post.post_text}</div>
+                                <h2 className="post-title">{post?.post_title}</h2>
+                                <img className={post?.imageURL !== null ? "post-image" : "hidden"} src={post?.imageURL} alt=''></img>
+                                <div className={post?.post_text ? "post-text" : "hidden"}>{post?.post_text}</div>
                                 <SinglePost info={[post, session]} />
                             </div>
                         </div>

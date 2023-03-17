@@ -5,7 +5,6 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Feed from "./components/Feed";
 import UserLikedPosts from "./components/Feed/UserLikedPost";
-import UserHome from "./components/UserHome";
 
 function App() {
   const dispatch = useDispatch();

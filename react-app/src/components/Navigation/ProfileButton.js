@@ -66,11 +66,11 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-menu-section user-menu-modals">
               <OpenModalButton buttonText="Follower" icon="fa-regular fa-address-book user-menu-section-image"
-                modalComponent={<UserFollower userId={user.id} />} />
+                modalComponent={<UserFollower userId={user?.id} />} />
             </div>
             <div className="user-menu-section user-menu-modals">
               <OpenModalButton buttonText="Following" icon="fa-regular fa-address-book user-menu-section-image"
-                modalComponent={<UserFollowing userId={user.id} />} />
+                modalComponent={<UserFollowing userId={user?.id} />} />
             </div>
             <div className="user-menu-header user-menu-section">
               <div>Blogs</div>
@@ -79,14 +79,14 @@ function ProfileButton({ user }) {
             <div id="user-information-section" className="user-menu-section"
               onClick={() => showFeatureMessage()}
             >
-              <img id='user-profile-picture' src={user.profile_picture} alt='user profile'></img>
-              <div id='user-username'>{user.username}</div>
+              <img id='user-profile-picture' src={user?.profile_picture} alt='user profile'></img>
+              <div id='user-username'>{user?.username}</div>
             </div>
           </div>
           <div id="nav-post-button">
             <OpenModalButton
               buttonText={<i className="fa-sharp fa-solid fa-pencil fa-lg" />}
-              modalComponent={<CreatePostForm userId={user.id} />}
+              modalComponent={<CreatePostForm userId={user?.id} />}
             />
           </div>
         </div>

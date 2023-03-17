@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { logout } from "../../store/session";
 import "./LogoutModal.css";
@@ -6,11 +7,13 @@ import "./LogoutModal.css";
 const LogoutModal = () => {
     const dispatch = useDispatch();
     const { closeModal } = useModal()
+    const history = useHistory()
 
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout())
-            .then(closeModal);
+            .then(closeModal)
+            .then(history.push(`/`))
     };
 
     return (
