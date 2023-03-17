@@ -17,50 +17,54 @@ function SignupFormModal() {
 	const { closeModal } = useModal();
 
 	const backtrack = () => {
-		isEmailEntered ? setIsEmailEntered(false) : closeModal();
+		isPasswordEntered ? setIsPasswordEntered(false)
+			:
+			isEmailEntered ? setIsEmailEntered(false)
+				:
+				closeModal();
 		setErrors([]);
 	}
-	
+
 	const checkValidEmail = () => {
 		if (!email.includes('@') || !email.includes('.')) return ["Email is invalid"];
 		if (!email || !email.length > 6) return ["Email must be 6 characters or more"];
-		
+
 		const textAfterPeriod = email.split(".")[1]
 		const textAfterAmpersand = email.split("@")[1]
-		
+
 		if (!textAfterPeriod || !textAfterAmpersand) return ["Email is invalid"]
 		return false
 	}
 
 	const handleEmailSubmit = async (e) => {
 		e.preventDefault();
-		
+
 		const checkEmail = checkValidEmail();
 		if (checkEmail) return setErrors(checkEmail)
-		
+
 		setErrors([]);
 		dispatch(isValidEmail(email))
-		.then(async (res) => {
-		  if (res && !res.errors) return setErrors(['Email is taken.']);
-		  setIsEmailEntered(true);
-		});
+			.then(async (res) => {
+				if (res && !res.errors) return setErrors(['Email is taken.']);
+				setIsEmailEntered(true);
+			});
 	};
 
 	const handlePasswordSubmit = async (e) => {
 		e.preventDefault();
-		
+
 		if (!password || password.length < 6) return setErrors(['Password must be 6 characters or more']);
-		
+
 		if (password !== confirmPassword) return setErrors(['password: Your passwords should match'])
-		
+
 		setIsPasswordEntered(true);
 	};
 
 	const handleSignUpSubmit = async (e) => {
 		e.preventDefault();
-		
+
 		if (!username || username.length < 4) return setErrors(['Username must be 4 characters or more']);
-		
+
 		const data = await dispatch(signUp(username, email, password));
 		if (data) return setErrors(data);
 
