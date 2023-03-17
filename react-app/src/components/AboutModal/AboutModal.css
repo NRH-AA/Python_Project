@@ -1,0 +1,40 @@
+#about-modal-container {
+    background-color: rgb(40, 40, 40);
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#about-modal-prompt {
+    margin: 0px;
+}
+
+#contact-info-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-name {
+    /* text-decoration: underline; */
+    color: rgb(22, 189, 255);
+}
+
+.contact-links-container {
+    display: flex;
+    gap: 15px;
+}
+
+.link-button {
+    cursor: pointer;
+}
+
+.fa-linkedin {
+    color: rgb(0, 132, 255);
+}
+
+.link-icon {
+    /* color: rgb(22, 189, 255); */
+}

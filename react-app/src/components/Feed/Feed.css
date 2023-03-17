@@ -279,7 +279,14 @@
     margin-left: 20px;
 }
 
-#homepage div#extras p {
+#extras > button {
+    padding: 0px;
+    margin-right: 10px;
+}
+
+#homepage div#extras * {
+    background: none;
+    border: none;
     position: sticky;
     top: 95vh;
     display: flex;
