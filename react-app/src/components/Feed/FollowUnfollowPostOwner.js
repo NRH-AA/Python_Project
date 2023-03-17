@@ -15,6 +15,9 @@ export default function FollowUnfollowPostOwner({ post, session }) {
         setFollowed(followingFlag)
     }, [session, followingFlag])
 
+    const unfinishedAlert = () => {
+        window.alert("Sorry, this feature is not functional.")
+    }
 
     const handleFollowButton = (target_user_id) => {
         if (session?.user) {
@@ -26,7 +29,7 @@ export default function FollowUnfollowPostOwner({ post, session }) {
     };
     return (
         <div className="post-user">
-            <span className="user-username">{post.user?.username}</span>
+            <span className="user-username" onClick={unfinishedAlert}>{post.user?.username}</span>
             <span className={`follow-user-button ${(post.user?.username === session?.user?.username) && "hidden"}`}>
                 <div className="follow-button-container">
                     <span className="follow-user-button" onClick={() => handleFollowButton(post?.user?.id)}>{followed ? "Unfollow" : "Follow"}</span>
