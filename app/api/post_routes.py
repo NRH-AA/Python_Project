@@ -47,14 +47,11 @@ def edit_post(postId):
         if not title and not text:
             return {"errors": ["Invalid Post Request"]}
 
-        if title:
-            post.post_title = title
+        post.post_title = title
 
-        if imageURL:
-            post.imageURL = imageURL
+        post.imageURL = imageURL
 
-        if text:
-            post.post_text = text
+        post.post_text = text
 
         post.updatedAt = datetime.now()
 
