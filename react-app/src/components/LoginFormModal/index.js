@@ -38,8 +38,8 @@ function LoginFormModal() {
 		setErrors([]);
 		dispatch(isValidEmail(email))
 			.then(async (res) => {
-				if (res && !res.errors) return setErrors(['Email is taken.']);
-				setIsEmailEntered(true);
+				if (res && !res.errors) return setIsEmailEntered(true);
+				return setErrors(['Email is not registered']);
 			});
 	};
 
@@ -60,6 +60,30 @@ function LoginFormModal() {
   const signInDemoUser = () => {
     return dispatch(login('demo@aa.io', 'password'))
       .then(closeModal);
+  };
+  
+  const showEmailForm = () => {
+    return (
+      <form noValidate className={isEmailEntered ? 'hidden login-form' : 'login-form'} onSubmit={handleEmailSubmit}>
+          <h4 className="login-form-text">Enter your email to log in:</h4>
+          <label className="login-input-label">
+            <input
+              className="login-input-field"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => tabSubmitEmail(e)}
+              autoFocus={true}
+              required
+            />
+          </label>
+          <button className='login-form-button' type='submit' disabled={email === ''}>
+            Next
+            <i className="fa-solid fa-arrow-right login-form-arrow-img" />
+          </button>
+      </form>
+    );
   };
   
   const showPasswordForm = () => {
@@ -91,26 +115,8 @@ function LoginFormModal() {
       <i id='backtrack-button' className="fa-solid fa-arrow-left" onClick={backtrack} />
       <div id='login-modal-container'>
         <h1 id="login-title">Scrollr</h1>
-        <form noValidate className={isEmailEntered ? 'hidden login-form' : 'login-form'} onSubmit={handleEmailSubmit}>
-          <h4 className="login-form-text">Enter your email to log in:</h4>
-          <label className="login-input-label">
-            <input
-              className="login-input-field"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyDown={(e) => tabSubmitEmail(e)}
-              autoFocus={true}
-              required
-            />
-          </label>
-          <button className='login-form-button' type='submit' disabled={email === ''}>
-            Next
-            <i className="fa-solid fa-arrow-right login-form-arrow-img" />
-          </button>
-        </form>
         
+        {!isEmailEntered && showEmailForm()}
         {isEmailEntered && showPasswordForm()}
 
         <ul id='login-form-errors' className={errors.length ? '' : 'hidden'}>
