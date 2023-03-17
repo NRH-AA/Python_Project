@@ -4,7 +4,6 @@ import { getPosts } from "../../store/posts"
 import CreatePostForm from "../CreatePosts";
 import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
-//import UserHome from "../UserHome";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
 
