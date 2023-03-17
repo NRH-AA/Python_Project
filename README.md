@@ -1,8 +1,85 @@
 # Flask React Project
 
-This is the starter for the Flask React project.
+a name="readme-top"></a>
+
+<br />
+<div align="center">
+  <a href="https://github.com/NRH-AA/Python_Project.git">
+    <img src="./apple-touch-icon.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Scrollr</h3>
+
+  <p align="center">
+    A clone of the popular Tumblr web application. Scrollr is a place to share ideas and opinions with others. You are able to post, comment and  even follow other users.
+    <br />
+    <a href="https://github.com/NRH-AA/Python_Project.git"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/NRH-AA/Python_Project.git/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/NRH-AA/Python_Project.git/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+
+## About The Project
+'A clone of the popular Tumblr web application. Scrollr is a place to share ideas and opinions with others. You are able to post, comment and  even follow other users.'
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+
+* React
+* JavaScript
+* Python
+* HTML
+* CSS
+* Flask
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 ## Getting started
+
+
 1. Clone this repository (only this branch)
 
 2. Install dependencies
@@ -42,107 +119,94 @@ This is the starter for the Flask React project.
 7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
-## Deployment through Render.com
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
 
-### Part A: Configure the Start and Build Commands
+## Usage
 
-Start by giving your application a name.
+<img src="./ScrollrSignUp.png" alt="Logo" width="500" height="300">
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+Create your account with secure hashed password protection.
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+<img src="./ScrollrHome.png" alt="Logo" width="500" height="300">
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+The home page displays the Feed that shows all of the posts others have shared.
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+<img src="./ScrollrComment_Like.png" alt="Logo" width="500" height="300">
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+You may comment or like a post and even follow another user if you enjoy their content.
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+<img src="./Scrollr_Error.png" alt="Logo" width="500" height="300">
 
-Now, add your start command in the Start field:
+With validation in place any errors that you may encounter are intuitively brought to the users attention.
 
-```shell
-# start script
-gunicorn app:app
-```
 
-_If you are using websockets, use the following start command instead for increased performance:_
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-`gunicorn --worker-class eventlet -w 1 app:app`
 
-### Part B: Add the Environment Variables
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+## Roadmap
 
-Add the following keys and values in the Render GUI form:
+- [ ] Followers
+- [ ] Posts
+- [ ] Likes
+- [ ] Comments
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+See the [open issues](https://github.com/NRH-AA/Python_Project.git/issues) for a full list of proposed features (and known issues).
 
-Add the following keys and values:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-- DATABASE_URL (copy value from Internal Database URL field)
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
+## Contributing
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+## Contact
+<pre>
+Patrick McKinney -  CorkscrewHollow@gmail.com
+Nathan Heinz -
+(James) Xinbo Zhou -
+John Timothy Cruz -
+</pre>
+Project Link: [https://github.com/NRH-AA/Python_Project.git](https://github.com/NRH-AA/Python_Project.git)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+
+
+
