@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { followUnfollowUser } from "../../store/user";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { followUnfollowUser } from "../../store/session";
 import "./Feed.css";
 
 
 export default function FollowUnfollowPostOwner({ post, session }) {
-    let followedStr = false
     const dispatch = useDispatch();
-    const currUserId = session.user?.id
-    const followerUserIdList = post.user?.followers.map(follower => follower.id)
-    if (currUserId in followerUserIdList) followedStr = true
-    const [followed, setFollowed] = useState(followedStr);
-    //console.log(followerUserIdList)
+    const currUserId = session?.user?.id
+    const followings = useSelector(state => state.session?.user?.followings.map(following => following.id))
+    const followingFlag = followings?.includes(post?.user?.id)
+    const [followed, setFollowed] = useState(followingFlag);
+
+    useEffect(() => {
+        setFollowed(followingFlag)
+    }, [session, followingFlag])
+
+
     const handleFollowButton = (target_user_id) => {
         if (session?.user) {
             setFollowed(!followed);
-            //console.log(following)
             dispatch(followUnfollowUser(target_user_id, currUserId))
         } else {
             console.log("You need to belogged in to test that feature!")
@@ -26,7 +29,7 @@ export default function FollowUnfollowPostOwner({ post, session }) {
             <span className="user-username">{post.user?.username}</span>
             <span className={`follow-user-button ${(post.user?.username === session?.user?.username) && "hidden"}`}>
                 <div className="follow-button-container">
-                    <span className="follow-user-button" onClick={() => handleFollowButton(post.user.id)}>{followed ? "Unfollow" : "Follow"}</span>
+                    <span className="follow-user-button" onClick={() => handleFollowButton(post?.user?.id)}>{followed ? "Unfollow" : "Follow"}</span>
                 </div>
             </span>
         </div>
