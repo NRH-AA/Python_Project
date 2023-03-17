@@ -147,7 +147,7 @@ body {
   font-size: 15px;
 }
 
-#user-menu-options > * {
+#user-menu-options>* {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -245,8 +245,9 @@ body {
   border-radius: 2px;
 }
 
-.user-menu-section.user-menu-modals {
-  width: 88%;
+#user-menu-options .user-menu-section.user-menu-modals {
+  width: 98%;
+  padding: 0px 0px;
 }
 
 .user-menu-liked-posts {
@@ -277,4 +278,8 @@ body {
 
 #nav-post-button * {
   cursor: pointer;
+}
+
+.user-menu-liked-posts {
+  width: 100%;
 }
