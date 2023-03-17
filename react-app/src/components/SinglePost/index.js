@@ -20,6 +20,7 @@ function SinglePost({ info }) {
     const [viewStat, setViewStat] = useState("comments");
     const [comment, setComment] = useState("")
     const [updateComment, setUpdateComment] = useState("")
+    const [isDifferent, setIsDifferent] = useState(false)
     const [updatingComment, setUpdatingComment] = useState(false)
     const [focusedComment, setFocusedComment] = useState(0)
 
@@ -59,6 +60,11 @@ function SinglePost({ info }) {
         setComment("");
     };
 
+    const handleEditing = (text, curr) => {
+        setIsDifferent(text.value !== curr)
+        setUpdateComment(text)
+    }
+
     const handleEditCommentSubmit = async (e, userComment) => {
         e.preventDefault();
 
@@ -88,8 +94,8 @@ function SinglePost({ info }) {
                 <textarea
                     maxLength="250"
                     className="edit-post-comment"
-                    value={updateComment ? updateComment : userComment.comment}
-                    onChange={(e) => setUpdateComment(e.target.value)}
+                    value={isDifferent ? updateComment : userComment.comment}
+                    onChange={(e) => handleEditing(e.target.value, userComment.comment)}
                 >
                 </textarea>
                 <div id="edit-comment-button-div">
