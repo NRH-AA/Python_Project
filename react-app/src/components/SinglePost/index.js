@@ -41,6 +41,21 @@ function SinglePost({ info }) {
         "Send something nice"
     ];
 
+    function sortComments(comments) {
+        const arr = []
+        for (const id in comments) {
+            arr.push(comments[id])
+        }
+        arr.sort(function (a, b) {
+            if (a.createdAt < b.createdAt) return 1;
+            if (a.createdAt > b.createdAt) return -1;
+            return 0;
+        })
+        return arr
+    }
+
+    const orderedComments = sortComments(post.comments)
+
     const handleLikeButton = () => {
         if (session?.user) {
             setLiked(!liked);
@@ -197,7 +212,7 @@ function SinglePost({ info }) {
                         </form>
                     </div>
                     <div className={`comments-container ${viewStat !== "comments" && "hidden"} ${post.comments.length ? "" : "empty"}`}>
-                        {post.comments.length ? post.comments.map((comment, idx) => (
+                        {post.comments.length ? orderedComments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container"
                                     onClick={() => session.user.id === comment.user_id ? setFocusComment(comment) : ""}
