@@ -21,8 +21,8 @@ function Feed() {
             arr.push(posts[id])
         }
         arr.sort(function (a, b) {
-            if (a.createdAt < b.createdAt && a.likes < b.likes) return 1;
-            if (a.createdAt > b.createdAt && a.likes > b.likes) return -1;
+            if (a.createdAt < b.createdAt && a.likes.amount < b.likes.amount) return 1;
+            if (a.createdAt > b.createdAt && a.likes.amount > b.likes.amount) return -1;
             return 0;
         })
         return arr
