@@ -19,24 +19,19 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
-
-@user_routes.route('/checkEmail', methods=['POST'])
+@user_routes.route('/emailExists', methods=['POST'])
 def check_email():
     email = request.get_json()['email']
-
-    if not email:
-        return {"errors": ['Email does not exist.']}, 200
-
-    account = ''
+    
     try:
         account = User.query.where(text(f'email = "{email}"')).all()
     except:
-        return {"errors": ['Email does not exist.']}, 200
+        return {"errors": ['Email does not exist.']}
 
     if not account:
-        return {"errors": ['Email does not exist.']}, 200
-
-    return {"message": "Success"}
+        return {"errors": ['Email does not exist.']}
+    
+    return {"Success": ['Email Exists']}
 
 
 @ user_routes.route('/<int:id>')

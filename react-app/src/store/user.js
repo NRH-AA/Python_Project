@@ -20,8 +20,8 @@ export const getUser = () => async (dispatch) => {
     }
 }
 
-export const isValidEmail = (email) => async (dispatch) => {
-    const res = await fetch(`/api/users/checkEmail`, {
+export const emailExists = (email) => async (dispatch) => {
+    const res = await fetch(`/api/users/emailExists`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
