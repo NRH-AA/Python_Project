@@ -27,7 +27,7 @@ def check_email():
         account = User.query.where(text(f'email = "{email}"')).all()
     except:
         return {"errors": ['Email does not exist.']}
-
+    
     if len(account) == 0:
         return {"errors": ['Email does not exist.']}
     
