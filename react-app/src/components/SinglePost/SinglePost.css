@@ -82,13 +82,16 @@ div.post-comment-section-container div.post-options-container {
 
 .edit-post-comment {
     width: 95%;
+    height: 115px;
     border: none;
     outline: none;
     margin: none;
+    padding: none;
     background-color: inherit;
     resize: none;
     font-size: 16px;
     margin-left: -10px;
+    border-top: 1px solid grey;
 }
 
 

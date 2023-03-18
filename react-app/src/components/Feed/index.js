@@ -13,8 +13,6 @@ function Feed() {
 
     const allPosts = useSelector(state => state.posts)
     const session = useSelector(state => state.session)
-
-    // const posts = allPosts.allPosts
     const unorderedPosts = allPosts.allPosts
 
     const sortPosts = (posts) => {
@@ -23,15 +21,14 @@ function Feed() {
             arr.push(posts[id])
         }
         arr.sort(function (a, b) {
-            if (a.createdAt < b.createdAt) return 1;
-            if (a.createdAt > b.createdAt) return -1;
+            if (a.createdAt < b.createdAt && a.likes < b.likes) return 1;
+            if (a.createdAt > b.createdAt && a.likes > b.likes) return -1;
             return 0;
         })
         return arr
     }
 
     const posts = sortPosts(unorderedPosts)
-    //console.log(posts)
 
     const unfinishedAlert = () => {
         window.alert("Sorry, this feature is not functional.")
@@ -44,7 +41,7 @@ function Feed() {
     return (
         <div id="homepage">
             <div id='dashboard'>
-                <div id="logged-user-bar" className={session.user ? "" : "hidden"}>
+                <div id="logged-user-bar" className={session?.user ? "" : "hidden"}>
                     <OpenModalButton
                         buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
                         onButtonClick={() => unfinishedAlert()}
