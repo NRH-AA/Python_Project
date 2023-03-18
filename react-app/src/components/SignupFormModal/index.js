@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
-import { isValidEmail } from "../../store/user";
+import { emailExists } from "../../store/user";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -43,11 +43,12 @@ function SignupFormModal() {
 		if (checkEmail) return setErrors(checkEmail)
 
 		setErrors([]);
-		dispatch(isValidEmail(email))
-			.then(async (res) => {
-				if (res && !res.errors) return setErrors(['Email is taken.']);
-				setIsEmailEntered(true);
-			});
+		const emailReturn = await dispatch(emailExists(email))
+		if (!emailReturn || emailReturn.errors) {
+			setIsEmailEntered(true)
+		} else {
+			return setErrors(['Email already in use.'])
+		}
 	};
 
 	const handlePasswordSubmit = async (e) => {
