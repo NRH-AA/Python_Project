@@ -20,8 +20,10 @@ function PostLike({ info }) {
     return (
         <>
             <div className="user-like-info">
-                {/* <img className="post-like-user-image" src={like?.profile_picture} alt="user like"></img>
-                <div className="post-like-user-username">{like?.username}</div> */}
+                <div id="user-like-info">   
+                    <img className="post-like-user-image" src={like?.profile_picture} alt="user like"></img>
+                    <p className="post-like-user-username">{like?.username}</p>
+                </div>
                 <FollowUnfollowPostOwner targetUser={like} session={session} />
             </div>
 

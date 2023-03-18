@@ -11,7 +11,7 @@ import UpdatePostModal from "../UpdatePostModal";
 function SinglePost({ info }) {
     const [post, session] = info
 
-    const likes = post.likes.users.map((like) => {
+    const likes = post?.likes?.users?.map((like) => {
         return like?.username
     })
 
@@ -25,7 +25,7 @@ function SinglePost({ info }) {
     const [focusedComment, setFocusedComment] = useState(0)
 
     useEffect(() => {
-        setLiked(likes.includes(session?.user?.username))
+        setLiked(likes?.includes(session?.user?.username))
     }, [likes])
 
     const dispatch = useDispatch()
@@ -54,7 +54,7 @@ function SinglePost({ info }) {
         return arr
     }
 
-    const orderedComments = sortComments(post.comments)
+    const orderedComments = sortComments(post?.comments)
 
     const handleLikeButton = () => {
         if (session?.user) {
@@ -70,8 +70,8 @@ function SinglePost({ info }) {
 
         if (comment.length < 1) return;
 
-        const userId = session.user.id
-        dispatch(createCommentThunk(post.id, userId, comment));
+        const userId = session?.user?.id
+        dispatch(createCommentThunk(post?.id, userId, comment));
         setComment("");
     };
 
@@ -88,7 +88,7 @@ function SinglePost({ info }) {
 
         dispatch(updateCommentThunk(userComment.id, updateComment));
         setUpdatingComment(false);
-        setUpdateComment("")
+        setUpdateComment(updateComment)
         setComment("");
     }
 
@@ -111,6 +111,12 @@ function SinglePost({ info }) {
                     className="edit-post-comment"
                     value={isDifferent ? updateComment : userComment.comment}
                     onChange={(e) => handleEditing(e.target.value, userComment.comment)}
+                    autoFocus
+                    onFocus={function(e) {
+                        var val = e.target.value;
+                        e.target.value = '';
+                        e.target.value = val;
+                      }}
                 >
                 </textarea>
                 <div id="edit-comment-button-div">
@@ -121,14 +127,14 @@ function SinglePost({ info }) {
                     <button className="edit-comment-button cancel"
                         onClick={() => {
                             setUpdatingComment(false);
-                            setUpdateComment("");
+                            setUpdateComment(userComment.comment);
                         }}
                     >Cancel</button>
                 </div>
             </div>
         }
         return <div className="post-comment"
-            onClick={() => session.user.id === userComment.user_id ?
+            onClick={() => session?.user?.id === userComment?.user_id ?
                 setFocusComment(userComment)
                 : ""
             }
@@ -215,7 +221,7 @@ function SinglePost({ info }) {
                         {post.comments.length ? orderedComments.map((comment, idx) => (
                             <div className="post-comment-container" key={idx}>
                                 <div className="post-commenter-information-container"
-                                    onClick={() => session.user.id === comment.user_id ? setFocusComment(comment) : ""}
+                                    onClick={() => session?.user?.id === comment?.user_id ? setFocusComment(comment) : ""}
                                 >
                                     <img className="post-commenter-image" src={comment.user.profile_picture} alt="post commenter"></img>
                                     <div className="post-comment-box">
@@ -228,7 +234,7 @@ function SinglePost({ info }) {
                                         {commentDiv(comment)}
                                     </div>
                                 </div>
-                                <div className={`origional-commenter-options-container ${comment.user_id !== session.user?.id && "hidden"}`}>
+                                <div className={`origional-commenter-options-container ${comment?.user_id !== session?.user?.id && "hidden"}`}>
                                     <CommentOptionsMenu commentId={comment.id} />
                                 </div>
                             </div>
@@ -241,7 +247,7 @@ function SinglePost({ info }) {
                         }
                     </div>
                     <div className={`likes-container ${viewStat !== "likes" && "hidden"} ${post?.likes?.amount ? "" : "empty"}`}>
-                        {post?.likes?.amount ? post.likes.users.map((like, idx) => (
+                        {post?.likes?.amount ? post?.likes?.users?.map((like, idx) => (
                             <div className="user-like" key={idx}>
                                 <PostLike info={[like, session]} />
                             </div>

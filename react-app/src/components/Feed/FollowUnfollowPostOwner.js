@@ -29,12 +29,12 @@ export default function FollowUnfollowPostOwner({ targetUser, session }) {
     };
     return (
         <div className="post-user">
-            <span className="user-username" onClick={unfinishedAlert}>{targetUser?.username}</span>
+            {/* <span className="user-username" onClick={unfinishedAlert}>{targetUser?.username}</span> */}
             <span className={`follow-user-button ${(!session.user || (targetUser?.username === session?.user?.username)) && "hidden"}`}>
                 <div className="follow-button-container">
                     <span className="follow-user-button" onClick={() => handleFollowButton(targetUser.id)}>{followed ? "Unfollow" : "Follow"}</span>
                 </div>
             </span>
         </div>
-    )
-}
+    );
+};

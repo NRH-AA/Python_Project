@@ -28,7 +28,7 @@ def check_email():
     except:
         return {"errors": ['Email does not exist.']}
 
-    if not account:
+    if len(account) == 0:
         return {"errors": ['Email does not exist.']}
     
     return {"Success": ['Email Exists']}

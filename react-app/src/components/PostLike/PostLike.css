@@ -9,8 +9,24 @@ div.user-like-info .post-like-user-image {
     height: 32px;
     border-radius: 2px;
     padding: 0px;
-    margin-right: 10px;
     cursor: pointer;
+}
+
+.user-like-info {
+    border: 1px solid rgb(87, 87, 87);
+    width: 100%;
+    border-radius: 30px;
+    margin-bottom: -20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#user-like-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 20px;
 }
 
 div.user-like-info .post-like-user-username {
