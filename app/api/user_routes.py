@@ -19,22 +19,25 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
+
 @user_routes.route('/checkEmail', methods=['POST'])
 def check_email():
     email = request.get_json()['email']
-    
+
     if not email:
         return {"errors": ['Email does not exist.']}, 200
-    
-    account = User.query.where(text(f'email = "{email}"')).all()
-    
+
+    # account = User.query.where(text(f'email = "{email}"')).all()
+    account = User.query.filter(User.email == email).all()
+
     if not account:
         return {"errors": ['Email does not exist.']}, 200
-    
+
     return {"message": "Success"}
 
-@user_routes.route('/<int:id>')
-@login_required
+
+@ user_routes.route('/<int:id>')
+@ login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary
@@ -44,13 +47,15 @@ def user(id):
 
 
 # Get any users posts
-@user_routes.route('/<int:userId>/posts', methods=['GET'])
+@ user_routes.route('/<int:userId>/posts', methods=['GET'])
 def get_user_posts(userId):
     return f'<h1>Get user posts: UserID: {userId} </h1>'
 
 # Create a user post
-@user_routes.route('/upload', methods=['POST'])
-@login_required
+
+
+@ user_routes.route('/upload', methods=['POST'])
+@ login_required
 def upload_image():
     if "image" in request.files:
         image = request.files["image"]
@@ -63,13 +68,14 @@ def upload_image():
     upload = upload_file_to_s3(image)
 
     if "url" not in upload:
-         return upload, 400
+        return upload, 400
 
     imageURL = upload["url"]
     return {"url": imageURL}
 
-@user_routes.route('/<int:userId>/posts', methods=['POST'])
-@login_required
+
+@ user_routes.route('/<int:userId>/posts', methods=['POST'])
+@ login_required
 def create_user_post(userId):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -100,8 +106,8 @@ def create_user_post(userId):
 
 
 # Get user's followers
-@user_routes.route('/<int:userId>/followers', methods=['GET'])
-@login_required
+@ user_routes.route('/<int:userId>/followers', methods=['GET'])
+@ login_required
 def get_user_follower(userId):
     user = User.query.get(userId)
     return {"followers": user.to_dict()["followers"]}
@@ -109,16 +115,16 @@ def get_user_follower(userId):
 # Get user's followings
 
 
-@user_routes.route('/<int:userId>/followings', methods=['GET'])
-@login_required
+@ user_routes.route('/<int:userId>/followings', methods=['GET'])
+@ login_required
 def get_user_following(userId):
     user = User.query.get(userId)
     return {"followings": user.to_dict()["followings"]}
 
 
 # Get user's liked_posts
-@user_routes.route('/<int:userId>/liked-posts', methods=['GET'])
-@login_required
+@ user_routes.route('/<int:userId>/liked-posts', methods=['GET'])
+@ login_required
 def get_user_liked_posts(userId):
     user = User.query.get(userId)
     posts = user.liked_posts
@@ -128,8 +134,8 @@ def get_user_liked_posts(userId):
 # follow or unfollow an user
 
 
-@user_routes.route('/<int:userId>/follow', methods=['POST'])
-@login_required
+@ user_routes.route('/<int:userId>/follow', methods=['POST'])
+@ login_required
 def follow_unfollow_user(userId):
     target_user = User.query.get(userId)
 
