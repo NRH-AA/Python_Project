@@ -114,7 +114,17 @@ function CreatePostForm({ type }) {
             onChange={(e) => setPostTitle(e.target.value)}
           />
         </label>
-
+        
+        {!isImagePost && <>
+          <div id="post-upload-img-div" onClick={() => setIsImagePost("photo")}>
+            <i
+              id="post-image-option-icon-photo"
+              className="fa-solid fa-camera fa-2xl post-option-icon"
+            ></i> 
+            <p id="post-upload-img-text">Upload Image</p>
+          </div>
+        </>}
+        
         {isImagePost === "photo" && image === "" ? showImageUpload() : ""}
         {(imageLoading && <p id="loading-text">Loading...</p>)}
         {showImage()}

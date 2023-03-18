@@ -93,6 +93,28 @@
     background-color: rgba(159, 132, 255, 0);
 }
 
+#post-upload-img-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    border: 1px solid black;
+    width: fit-content;
+    padding: 2px;
+    margin-bottom: -5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#post-image-option-icon-photo {
+    color: red;
+    margin-left: 21px;
+    width: 5px;
+    height: 5px;
+}
+
+#post-upload-img-text {
+    font-size: 12px;
+}
+
 .create-input-label {
     display: flex;
     height: min-content;
