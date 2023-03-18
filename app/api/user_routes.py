@@ -24,7 +24,7 @@ def check_email():
     email = request.get_json()['email']
     
     try:
-        account = User.query.where(text(f'email = "{email}"')).all()
+        account = User.query.where(User.email == email).all()
     except:
         return {"errors": ['Email does not exist.']}
     
