@@ -38,8 +38,8 @@ function LoginFormModal() {
 		setErrors([]);
 		dispatch(isValidEmail(email))
 			.then(async (res) => {
-				if (res && !res.errors) return setIsEmailEntered(true);
-				return setErrors(['Email is not registered']);
+				if (res && res.errors) return setErrors(['Email is not registered']);
+				return setIsEmailEntered(true);
 			});
 	};
 

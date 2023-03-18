@@ -27,8 +27,11 @@ def check_email():
     if not email:
         return {"errors": ['Email does not exist.']}, 200
 
-    # account = User.query.where(text(f'email = "{email}"')).all()
-    account = User.query.filter(User.email == email).all()
+    account = ''
+    try:
+        account = User.query.where(text(f'email = "{email}"')).all()
+    except:
+        return {"errors": ['Email does not exist.']}, 200
 
     if not account:
         return {"errors": ['Email does not exist.']}, 200
