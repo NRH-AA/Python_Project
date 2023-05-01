@@ -1,19 +1,56 @@
-.following-Users {
-    display:flex;
-    flex-flow: column;
+#followers-modal,
+#following-modal {
     background-color: rgb(36, 36, 36);
-    padding:15px;
-    width:30em;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-radius: 10px;
 }
-.FollowerTitle {
-    display:flex;
-    background-color: rgb(36, 36, 36);
-    height:20em;
-}
-.followers-list{
 
-   /* display:flex; */
-   /* flex-flow:row;
-   flex-wrap:nowrap; */
-   width:15em;
+#follower-modal-prompt,
+#following-modal-prompt {
+    padding: 20px 0px;
+    margin: 0px 0px 0px 20px;
+    width: 30vw;
+}
+
+#followers-container,
+#followings-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-follower,
+.single-following {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.single-follower:hover,
+.single-following:hover {
+    background-color: rgb(87, 87, 87);
+}
+
+.single-follower-user-info,
+.single-following-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.single-follower-user-info:hover,
+.single-following-user-info:hover {
+    cursor: default;
+}
+
+.follow-user-button {
+    cursor: pointer;
+    color: rgb(22, 189, 255);
+}
+
+.no-followers-message,
+.no-followings-message {
+    margin-left: 20px;
 }
