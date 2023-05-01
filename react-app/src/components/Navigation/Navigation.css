@@ -227,6 +227,17 @@ body {
   border-radius: 3px;
 }
 
+.user-menu-section.user-menu-modals a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-menu-section.user-menu-modals * {
+  padding: 0px 0px 0px 5px;
+  font-size: 14px;
+}
+
 .user-menu-section.user-menu-modals button {
   background-color: rgb(36, 36, 36);
   border: none;
@@ -234,6 +245,9 @@ body {
   height: 100%;
   text-align: left;
   cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -246,8 +260,13 @@ body {
 }
 
 #user-menu-options .user-menu-section.user-menu-modals {
-  width: 98%;
-  padding: 0px 0px;
+  width: 100%;
+  padding: 0px;
+}
+
+#user-menu-options .user-menu-section.user-menu-modals:hover,
+#user-menu-options .user-menu-section.user-menu-modals:hover button {
+  background-color: rgb(87, 87, 87);
 }
 
 .user-menu-liked-posts {
