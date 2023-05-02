@@ -32,8 +32,8 @@ function Feed() {
     const posts = sortPosts(unorderedPosts)
 
     useEffect(() => {
-        dispatch(getPosts())
-    }, [dispatch])
+        dispatch(getPosts());
+    }, [dispatch]);
 
     return (
         <div id="homepage">
