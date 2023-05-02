@@ -48,9 +48,10 @@ body {
 #searchbar-container {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
-#searchbar-container:focus-within * {
+#searchbar-container:focus-within > * {
   background-color: rgb(37, 37, 37);
 }
 
@@ -87,6 +88,38 @@ body {
 #searchbar::placeholder {
   font-weight: 600;
   color: rgb(180, 180, 180);
+}
+
+#searchbar-options {
+  position: absolute;
+  top: 32px;
+  background-color: rgb(77, 77, 77);
+  width: 479px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#searchbar-options.hidden {
+  display: none;
+}
+
+.searchbar-option {
+  margin: 0px;
+  width: 457px;
+  cursor: pointer;
+  padding: 8px 0px;
+  font-size: 13px;
+  padding: 11px;
+  background-color: rgb(37, 37, 37) !important;
+}
+
+.searchbar-option.bottom {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.searchbar-option:hover {
+  background-color: rgb(51, 51, 51) !important;
 }
 
 #navbar-right-logged-out {

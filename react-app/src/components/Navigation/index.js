@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
+	const ulRef = useRef();
 	const sessionUser = useSelector(state => state.session.user);
+	const [showSearchMenu, setShowSearchMenu] = useState(false);
+	const [searchInput, setSearchInput] = useState("");
+	
+	useEffect(() => {
+		if (!showSearchMenu) return;
+
+		const closeMenu = (e) => {
+			if (!ulRef.current?.contains(e.target)) {
+				setShowSearchMenu(false);
+			}
+		};
+
+		document.addEventListener("click", closeMenu);
+
+		return () => document.removeEventListener("click", closeMenu);
+	}, [showSearchMenu]);
+
+	const handleSearch = (type) => {
+		console.log(searchInput, type)
+	}
 
 	return (
 		<>
@@ -13,8 +34,25 @@ function Navigation({ isLoaded }) {
 				<div id='navbar-left'>
 					<NavLink exact to="/" id='logo' onClick={() => window.scrollTo(0, 0)}>S</NavLink>
 					<div id='searchbar-container'>
-						<i id='search-icon' className="fa-solid fa-magnifying-glass" onClick={() => window.alert("Search feature coming soon maybe.")} />
-						<input id='searchbar' type='text' placeholder='Search Scrollr' onClick={()=> window.alert("coming soon")} ></input>
+						<i id='search-icon' className="fa-solid fa-magnifying-glass" />
+						<input id='searchbar'
+							type='text'
+							placeholder='Search Scrollr'
+							onClick={() => setShowSearchMenu(true)}
+							value={searchInput}
+							onChange={(e) => setSearchInput(e.target.value)}
+						/>
+						<div id='searchbar-options' className={showSearchMenu ? "" : "hidden"}>
+							<p className='searchbar-option' onClick={() => handleSearch("recent")}>
+								Most Recent
+							</p>
+							<p className='searchbar-option' onClick={() => handleSearch("popular")}>
+								Most Popular
+							</p>
+							<p className='searchbar-option bottom' onClick={() => handleSearch("user")}>
+								By User
+							</p>
+						</div>
 					</div>
 				</div>
 				{isLoaded && (
