@@ -39,7 +39,6 @@
     margin-left: 18px;
     height: 64px;
     width: 64px;
-    cursor: pointer;
 }
 
 #logged-user-post-options {
@@ -208,7 +207,6 @@
     width: 64px;
     height: 64px;
     border-radius: 3px;
-    cursor: pointer;
 }
 
 .post-details div.post-option-container {
@@ -295,6 +293,10 @@
     color: rgb(0, 195, 255);
     margin-right: 10px;
     cursor: pointer;
+}
+
+.github-to-link {
+    text-decoration: none;
 }
 
 .hidden {

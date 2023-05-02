@@ -4,15 +4,15 @@ from random import randint
 
 def seed_likes():
     users = []
-    for i in range(1, 11):
+    for i in range(1, 20):
         user = User.query.get(i)
         users.append(user)
-    
+
     posts = []
-    for i in range(1, 16):
+    for i in range(1, 50):
         post = Post.query.get(i)
         posts.append(post)
-    
+
     for i in range(len(users)):
         user = users[i]
         user.liked_posts.append(posts[randint(1, 14)])

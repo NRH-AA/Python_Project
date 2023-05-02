@@ -33,8 +33,6 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const showFeatureMessage = () => alert("Feature Coming Soon")
-
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -69,11 +67,9 @@ function ProfileButton({ user }) {
                 modalComponent={<UserFollowing userId={user?.id} />} />
             </div>
             <div className="user-menu-header user-menu-section">
-              <div>Blogs</div>
+              <div>User</div>
             </div>
-            <div id="user-information-section" className="user-menu-section"
-              onClick={() => showFeatureMessage()}
-            >
+            <div id="user-information-section" className="user-menu-section">
               <img id='user-profile-picture' src={user?.profile_picture} alt='user profile'></img>
               <div id='user-username'>{user?.username}</div>
             </div>
