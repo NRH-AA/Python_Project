@@ -1,4 +1,4 @@
-#about-modal-container {
+#tech-modal-container {
     background-color: rgb(40, 40, 40);
     border-radius: 10px;
     padding: 30px;
@@ -7,30 +7,25 @@
     align-items: center;
 }
 
-#about-modal-prompt {
+#tech-modal-prompt {
     margin: 0px;
 }
 
-#contact-info-container {
+#tech-info-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.contact-name {
-    color: rgb(22, 189, 255);
-}
-
-.contact-links-container {
+.single-tech-container {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.link-button {
-    cursor: pointer;
+.single-tech-img {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.fa-linkedin {
-    color: rgb(0, 132, 255);
-}
-

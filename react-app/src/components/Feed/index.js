@@ -7,6 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import SinglePost from "../SinglePost";
 import "./Feed.css";
 import FollowUnfollowPostOwner from "./FollowUnfollowPostOwner";
+import TechnologiesModal from "../TechnologiesModal";
 
 function Feed() {
     const dispatch = useDispatch();
@@ -30,10 +31,6 @@ function Feed() {
 
     const posts = sortPosts(unorderedPosts)
 
-    const unfinishedAlert = () => {
-        window.alert("Sorry, this feature is not functional.")
-    }
-
     useEffect(() => {
         dispatch(getPosts())
     }, [dispatch])
@@ -44,7 +41,6 @@ function Feed() {
                 <div id="logged-user-bar" className={session?.user ? "" : "hidden"}>
                     <OpenModalButton
                         buttonText={<img id="logged-user-image" src={session?.user?.profile_picture} alt="user profile"></img>}
-                        onButtonClick={() => unfinishedAlert()}
                     />
                     <div id="logged-user-post-options">
                         <OpenModalButton
@@ -65,23 +61,23 @@ function Feed() {
                             }
                             modalComponent={<CreatePostForm type="photo" />}
                         />
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                        <div className="post-option-container forbidden">
                             <i id="post-quote-option-icon" className="fa-solid fa-quote-left fa-2xl post-option-icon" />
                             <div className="post-option-text">Quote</div>
                         </div>
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                        <div className="post-option-container forbidden">
                             <i id="post-link-option-icon" className="fa-solid fa-link fa-2xl post-option-icon" />
                             <div className="post-option-text">Link</div>
                         </div>
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                        <div className="post-option-container forbidden">
                             <i id="post-chat-option-icon" className="fa-solid fa-message fa-2xl post-option-icon" />
                             <div className="post-option-text">Chat</div>
                         </div>
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                        <div className="post-option-container forbidden">
                             <i id="post-audio-option-icon" className="fa-solid fa-headphones fa-2xl post-option-icon" />
                             <div className="post-option-text">Audio</div>
                         </div>
-                        <div className="post-option-container" onClick={() => unfinishedAlert()}>
+                        <div className="post-option-container forbidden">
                             <i id="post-video-option-icon" className="fa-solid fa-video fa-2xl post-option-icon" />
                             <div className="post-option-text">Video</div>
                         </div>
@@ -93,7 +89,6 @@ function Feed() {
                             <div className="post-user-image-container">
                                 <OpenModalButton
                                     buttonText={<img className="post-user-image" src={post?.user?.profile_picture} alt='user profile'></img>}
-                                    onButtonClick={() => unfinishedAlert()}
                                 />
                             </div>
                             <div className="post-details">
@@ -113,9 +108,11 @@ function Feed() {
                     modalComponent={AboutModal}
                     buttonText="About"
                 />
-                <p onClick={() => unfinishedAlert()}>Apps</p>
-                <p onClick={() => unfinishedAlert()}>Legal</p>
-                <p onClick={() => unfinishedAlert()}>Privacy</p>
+                <a className="github-to-link" href="https://github.com/NRH-AA/Python_Project" target="_blank" rel="noopener noreferrer">Github</a>
+                <OpenModalButton
+                    modalComponent={TechnologiesModal}
+                    buttonText="Technologies"
+                />
             </div>
         </div>
     )

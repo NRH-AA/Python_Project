@@ -166,7 +166,6 @@ body {
 
 .user-menu-section:not(.user-menu-header) {
   height: 41px;
-  cursor: pointer;
 }
 
 .user-menu-section-image {
