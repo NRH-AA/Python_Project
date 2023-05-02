@@ -75,9 +75,81 @@ def seed_users():
         createdAt=datetime.now(),
         updatedAt=datetime.now()
     )
+    user11 = User(
+        username='JollyRandy',
+        email='randy@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user12 = User(
+        username='normalshoppingcart',
+        email='shopping@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user13 = User(
+        username='CloudSpotter245',
+        email='cloud@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user14 = User(
+        username='WackyPuzzles!!!',
+        email='puzzles@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user15 = User(
+        username='genericUser',
+        email='generic@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user16 = User(
+        username='Foodie',
+        email='food@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user17 = User(
+        username='john cruz',
+        email='johncruz@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user18 = User(
+        username='Daily Antartica Updates',
+        email='antartica@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user19 = User(
+        username='Federal Bureau of Investigation',
+        email='fbi@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
+    user20 = User(
+        username='Target',
+        email='target@aa.io',
+        password='password',
+        createdAt=datetime.now(),
+        updatedAt=datetime.now()
+    )
 
     users = [demoUser, user2, user3, user4, user5,
-                user6, user7, user8, user9, user10]
+             user6, user7, user8, user9, user10,
+             user11, user12, user13, user14, user15,
+             user16, user17, user18, user19, user20]
 
     add_users = [db.session.add(user) for user in users]
 
