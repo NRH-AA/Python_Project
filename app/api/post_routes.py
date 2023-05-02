@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from sqlalchemy.sql import text
+from sqlalchemy import desc, asc
 from app.models import db, Post, Comment, User
 from app.forms import PostForm, CommentForm
 from datetime import datetime
@@ -124,3 +124,40 @@ def like_post(postId):
     db.session.commit()
     ret = Post.query.get(postId)
     return ret.to_dict()
+
+@post_routes.route('/search', methods=['POST'])
+def search_posts():
+    data = request.get_json()
+    text = data['searchText']
+    type = data['searchType']
+    
+    
+    if type == 'recent':
+        posts = Post.query.order_by(desc('createdAt')).limit(20)
+        return [post.to_dict() for post in posts]
+    
+    if type == 'popular':
+        posts = Post.query.order_by(desc('createdAt')).limit(100)
+        return [post.to_dict() for post in posts]
+            
+    if type == 'user':
+        users = User.query.where(
+            User.username.ilike(text + '%%')
+        ).order_by(desc(User.username)).limit(6)
+        
+        allPosts = []
+        if not users is None:
+           for user in users:
+                user_dict = user.to_dict2()
+               
+                posts = Post.query.where(
+                   Post.user_id.ilike(user_dict['id'])
+                ).limit(2)
+                
+                if not posts is None:
+                    for post in posts:
+                        allPosts.append(post)
+                        
+        return [post.to_dict() for post in allPosts]
+    
+    return []

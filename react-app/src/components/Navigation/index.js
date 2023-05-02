@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { postSearchPosts } from '../../store/posts';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
@@ -26,8 +27,8 @@ function Navigation({ isLoaded }) {
 	}, [showSearchMenu]);
 
 	const handleSearch = (type) => {
-		dispatch(searchInput, type)
-	}
+		dispatch(postSearchPosts(searchInput, type));
+	};
 
 	return (
 		<>
