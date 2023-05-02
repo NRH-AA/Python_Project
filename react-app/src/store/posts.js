@@ -1,10 +1,59 @@
 // constants
-const CREATE_POST = "/posts/new";
-const DELETE_POST = "/posts/:postId";
-const UPDATE_POST = "/posts/:postId/edit";
 const READ_POSTS = "/posts";
 const READ_POST = "/posts/:postId";
+const CREATE_POST = "/posts/new";
+const UPDATE_POST = "/posts/:postId/edit";
+const DELETE_POST = "/posts/:postId";
 const LIKE_POST = "/posts/:postId/likes"
+
+// Actions
+
+export const readPosts = (posts, sort) => ({
+    type: READ_POSTS,
+    payload: posts,
+    sort
+})
+
+export const readPost = (post) => ({
+    type: READ_POST,
+    payload: post
+})
+
+export const createPosts = (post) => ({
+    type: CREATE_POST,
+    payload: post
+})
+
+export const updatePosts = (post) => {
+    return {
+        type: UPDATE_POST,
+        payload: post
+    }
+}
+
+export const deletePosts = (id) => {
+    return {
+        type: DELETE_POST,
+        id
+    }
+}
+
+export const createLike = (post) => {
+    return {
+        type: LIKE_POST,
+        post
+    }
+}
+
+// Thunks
+export const getPosts = () => async (dispatch) => {
+    const data = await fetch("/api/posts")
+    if (data.ok) {
+        const response = await data.json()
+        dispatch(readPosts(response, false))
+        return response
+    }
+}
 
 export const postSearchPosts = (searchText, searchType) => async dispatch => {
     const res = await fetch('/api/posts/search', {
@@ -20,17 +69,11 @@ export const postSearchPosts = (searchText, searchType) => async dispatch => {
 
     if (res.ok) {
         const posts = await res.json();
-        dispatch(readPosts(posts))
+        dispatch(readPosts(posts, searchType))
 
         return posts
     }
 }
-
-
-export const createPosts = (post) => ({
-    type: CREATE_POST,
-    payload: post
-})
 
 export const createPost = (post, userId) => async (dispatch) => {
     const { post_title, imageURL, post_text } = post
@@ -53,13 +96,6 @@ export const createPost = (post, userId) => async (dispatch) => {
     return data;
 }
 
-export const deletePosts = (id) => {
-    return {
-        type: DELETE_POST,
-        id
-    }
-}
-
 export const deletePost = (id) => async (dispatch) => {
     const response = await fetch(`/api/posts/${id}`, {
         method: "DELETE",
@@ -67,13 +103,6 @@ export const deletePost = (id) => async (dispatch) => {
     dispatch(deletePosts(id));
     dispatch(getPosts())
     return response
-}
-
-export const updatePosts = (post) => {
-    return {
-        type: UPDATE_POST,
-        payload: post
-    }
 }
 
 export const updatePost = (id, postDetails) => async (dispatch) => {
@@ -95,52 +124,16 @@ export const updatePost = (id, postDetails) => async (dispatch) => {
         return response;
     };
     return data;
-    // else if (response.status < 500) {
-    //     const data = await response.json();
-    //     if (data.errors) {
-    //         return data.errors;
-    //     }
-    // } else {
-    //     return ["An error occurred. Please try again."];
-    // }
 }
 
-export const readPosts = (posts) => ({
-    type: READ_POSTS,
-    payload: posts
-})
-
-export const getPosts = () => async (dispatch) => {
-    const data = await fetch("/api/posts")
-    if (data.ok) {
-        const response = await data.json()
-        dispatch(readPosts(response))
-        return response
-    }
-    // else if (response.status < 500) {
-    //     const data = await response.json();
-    //     if (data.errors) {
-    //         return data.errors;
-    //     }
-    // } else {
-    //     return ["An error occurred. Please try again."];
-    // }
-}
-
-//get user liked posts
 export const getUserLikedPosts = (userId) => async (dispatch) => {
     const data = await fetch(`/api/users/${userId}/liked-posts`)
     if (data.ok) {
         const response = await data.json()
-        dispatch(readPosts(response))
+        dispatch(readPosts(response, false))
         return response
     }
 }
-
-export const readPost = (post) => ({
-    type: READ_POST,
-    payload: post
-})
 
 export const getUser = (userId) => async (dispatch) => {
     const data = await fetch(`/api`)
@@ -151,29 +144,6 @@ export const getUser = (userId) => async (dispatch) => {
         return posts
     }
     return data
-}
-
-export const createLike = (post) => {
-    return {
-        type: LIKE_POST,
-        post
-    }
-}
-
-export const likePost = (user_id, postId) => async (dispatch) => {
-    const res = await fetch(`/api/posts/${postId}/likes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            user_id,
-            postId
-        })
-    })
-
-    if (res.ok) {
-        const post = await res.json();
-        dispatch(createLike(post))
-    }
 }
 
 export const createCommentThunk = (postId, user_id, comment) => async (dispatch) => {
@@ -224,19 +194,41 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     return res;
 };
 
+export const likePost = (user_id, postId) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/likes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            user_id,
+            postId
+        })
+    })
 
+    if (res.ok) {
+        const post = await res.json();
+        dispatch(createLike(post))
+    }
+}
 
+// Reducer
 const initialState = { allPosts: {}, singlePost: {} }
+
+const compareFn = (a, b) => {
+    if ((a.comments.length + a.likes.amount) > (b.comments.length + b.likes.amount)) return -1;
+    if ((a.comments.length + a.likes.amount) < (b.comments.length + b.likes.amount)) return 1;
+    if ((a.comments.length + a.likes.amount) === (b.comments.length + b.likes.amount)) return 0
+}
 
 export default function postReducer(state = initialState, action) {
     let newState = { ...state }
     switch (action.type) {
         case READ_POSTS:
-            const variable = action.payload.reduce((acc, post) => {
-                acc[post.id] = post
-                return acc
-            }, {})
-            newState.allPosts = variable
+            if (action.sort === 'popular') {
+                const sorted = action.payload.sort(compareFn)
+                newState.allPosts = sorted
+            } else {
+                newState.allPosts = action.payload
+            }
             return newState
 
         case READ_POST:
