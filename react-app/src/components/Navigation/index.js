@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postSearchPosts } from '../../store/posts';
+import { getPosts, postSearchPosts } from '../../store/posts';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
@@ -34,7 +34,10 @@ function Navigation({ isLoaded }) {
 		<>
 			<div id='navbar'>
 				<div id='navbar-left'>
-					<NavLink exact to="/" id='logo' onClick={() => window.scrollTo(0, 0)}>S</NavLink>
+					<NavLink exact to="/" id='logo' onClick={() => {
+						dispatch(getPosts())
+						window.scrollTo(0, 0)
+					}}>S</NavLink>
 					<div id='searchbar-container'>
 						<i id='search-icon' className="fa-solid fa-magnifying-glass" />
 						<input id='searchbar'
@@ -62,7 +65,7 @@ function Navigation({ isLoaded }) {
 						<ProfileButton user={sessionUser} />
 					</div>
 				)}
-			</div>
+			</div >
 			<div id='takes-up-space'></div>
 		</>
 	);
