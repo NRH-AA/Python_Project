@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
 	const ulRef = useRef();
+	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
 	const [showSearchMenu, setShowSearchMenu] = useState(false);
 	const [searchInput, setSearchInput] = useState("");
-	
+
 	useEffect(() => {
 		if (!showSearchMenu) return;
 
@@ -25,7 +26,7 @@ function Navigation({ isLoaded }) {
 	}, [showSearchMenu]);
 
 	const handleSearch = (type) => {
-		console.log(searchInput, type)
+		dispatch(searchInput, type)
 	}
 
 	return (

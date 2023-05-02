@@ -6,6 +6,25 @@ const READ_POSTS = "/posts";
 const READ_POST = "/posts/:postId";
 const LIKE_POST = "/posts/:postId/likes"
 
+export const postSearchPosts = (searchText, searchType) => async dispatch => {
+    const res = await fetch('/api/posts/search', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            searchText,
+            searchType
+        })
+    })
+
+    if (res.ok) {
+        const posts = await res.json();
+        dispatch(readPosts(posts))
+
+        return posts
+    }
+}
 
 
 export const createPosts = (post) => ({
